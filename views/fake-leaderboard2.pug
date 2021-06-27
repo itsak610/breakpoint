@@ -1,0 +1,47 @@
+extends layout
+
+block content
+  if eventOver
+    .card.leaderboard
+      h1.form-title Leaderboard
+      table
+        tr
+          th Rank
+          th Name
+          th School
+          th Level
+
+        each team, index in leaderboard
+          tr
+            td= index
+            td= team.name
+            td= team.school
+            td= team.level
+  else
+    .card.leaderboard
+      h1.form-title Leaderboard
+      table
+        tr
+          th Rank
+          th Username
+          th Level
+
+        each team, index in leaderboard
+          //- if team.username == 'admin'
+          //-   tr
+          //-   td= index + 1
+          //-   td= team.username
+          //-   td ∞
+          //- else
+
+          if team.username != 'admin'
+            if team.level == 2.2
+              tr
+              td= index 
+              td= team.username
+              td= 4
+            else
+              tr
+              td= index 
+              td= team.username
+              td= team.level

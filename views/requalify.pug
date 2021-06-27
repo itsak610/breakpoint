@@ -1,0 +1,12 @@
+extends admin-layout
+
+block content
+  .card.manage
+    h1.form-title Requalify Users
+    form(method='post', action='/admin/requalify')
+      label Select team:
+      select.select-teams(name='username')
+        each team in teams
+          option= team.username
+      input(type='submit', value='Requalify')
+

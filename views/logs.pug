@@ -1,0 +1,22 @@
+extends admin-layout
+
+block content
+  <div class="animated yt-loader"></div>
+  .card.leaderboard
+    h1.form-title Logs
+    //- table
+    each team in logs
+      if team.username == currentUser.username
+          if team.username == currentUser.level
+              p #{team.answer}
+      //- tr
+      //-   th User
+      //-   th Level
+      //-   th Answer
+      //-   th Time
+      //- each team in logs
+      //-   tr
+      //-     td= team.username
+      //-     td= team.level
+      //-     td= team.answer
+      //-     td= team.time

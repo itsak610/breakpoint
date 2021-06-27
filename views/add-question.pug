@@ -1,0 +1,16 @@
+extends admin-layout
+
+block content
+  .card
+    h1.form-title Add a Question
+    if error
+      p.error= error
+    form(method='post', action='/admin/add-question')
+      input(type='number', name='level', placeholder='Level',step=".1", required)
+      input(list="number", type='number', name='loop', placeholder='Number of questions (Loop)', autocomplete="off")
+      textarea(placeholder='Question', name='question' required)
+      //- textarea(placeholder='Question', name='question2', id='loop1' )
+      //- textarea(placeholder='Question', name='question3', id='loop2' )
+      input(type='text', placeholder='Answer', name='answer', id="answer" required)
+      input(type='submit', value='Add Question')    
+      a(href='/admin/add-question-loop') Add a Loop

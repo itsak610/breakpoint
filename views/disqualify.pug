@@ -1,0 +1,12 @@
+extends admin-layout
+
+block content
+  .card.manage
+    h1.form-title Disqualify Users
+    form(method='post', action='/admin/disqualify')
+      label Select team:
+      select.select-teams(name='username')
+        each team in teams
+          option= team.username
+      input(type='submit', value='Disqualify')
+
