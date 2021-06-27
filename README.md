@@ -1,2 +1,2 @@
-# enigma
-A web-app for an online hunt
+# De(c)ypher
+The original cryptic hunt of bhopal!
