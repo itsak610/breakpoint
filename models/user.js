@@ -8,9 +8,13 @@ var UserSchema = new Schema({
     password: String,
     schoolname: String,
     type: String,
+    verification: String,
     verified: {
         type: Boolean,
         default: false
+    },
+    time: {
+        type: Date,
     },
 
     //school

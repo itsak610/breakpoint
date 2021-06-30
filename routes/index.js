@@ -8,6 +8,7 @@ var passport = require('passport');
 var nodemailer = require('nodemailer');
 var User = require("../models/user");
 var LocalStrategy = require('passport-local').Strategy;
+const { find } = require('../models/user');
 
 
 let eventIsOn = true;
@@ -202,7 +203,9 @@ router.post('/school/register', function(req, res) {
       teachername : req.body.teachername,
       teachernumber : req.body.teachernumber,
       schoolemail: req.body.schoolemail,
+      verification: makeid(64),
       code: makeid(8),
+      time: new Date(),
     }), req.body.password, function(err, user) {
       var output = `<p>Thanks for registering to de(c)ypher. Here are your credentials!</p>
       <h3>Credentials</h3>
@@ -326,6 +329,8 @@ router.post('/student/register', function(req, res) {
       studentevent : req.body.event,
       studentemail : req.body.email,
       studentnumber: req.body.phonenumber,
+      verification: makeid(64),
+      time: new Date(),
     }), req.body.password, function(err, user) {
       var output = `<p>Thanks for registering to de(c)ypher. Here are your credentials!</p>
       <h3>Credentials</h3>
@@ -510,6 +515,8 @@ router.post('/school/participant/register/click', function(req, res) {
       participantevent : "click",
       participantemail : req.body.email1,
       participantnumber: req.body.number1,
+      verification: makeid(64),
+      time: new Date(),
     }), ((req.user.code) + '01' + '01'), function(err, user) {
         var output = `<p>Thanks for registering to de(c)ypher. Here are your credentials!</p>
         <h3>Credentials</h3>
@@ -554,6 +561,8 @@ router.post('/school/participant/register/click', function(req, res) {
       participantevent : "click",
       participantemail : req.body.email2,
       participantnumber: req.body.number2,
+      verification: makeid(64),
+      time: new Date(),
     }), ((req.user.code) + '01' + '02'), function(err, user) {
         var output = `<p>Thanks for registering to de(c)ypher. Here are your credentials!</p>
         <h3>Credentials</h3>
@@ -605,6 +614,8 @@ router.post('/school/participant/register/clipped', function(req, res) {
       participantevent : "clipped",
       participantemail : req.body.email1,
       participantnumber: req.body.number1,
+      verification: makeid(64),
+      time: new Date(),
     }), ((req.user.code) + '02' + '01'), function(err, user) {
         var output = `<p>Thanks for registering to de(c)ypher. Here are your credentials!</p>
         <h3>Credentials</h3>
@@ -649,6 +660,8 @@ router.post('/school/participant/register/clipped', function(req, res) {
       participantevent : "clipped",
       participantemail : req.body.email2,
       participantnumber: req.body.number2,
+      verification: makeid(64),
+      time: new Date(),
     }), ((req.user.code) + '02' + '02'), function(err, user) {
         var output = `<p>Thanks for registering to de(c)ypher. Here are your credentials!</p>
         <h3>Credentials</h3>
@@ -693,6 +706,8 @@ router.post('/school/participant/register/clipped', function(req, res) {
       participantevent : "clipped",
       participantemail : req.body.email3,
       participantnumber: req.body.number3,
+      verification: makeid(64),
+      time: new Date(),
     }), ((req.user.code) + '02' + '03'), function(err, user) {
         var output = `<p>Thanks for registering to de(c)ypher. Here are your credentials!</p>
         <h3>Credentials</h3>
@@ -743,6 +758,8 @@ router.post('/school/participant/register/crosshair', function(req, res) {
       participantevent : "crosshair",
       participantemail : req.body.email1,
       participantnumber: req.body.number1,
+      verification: makeid(64),
+      time: new Date(),
     }), ((req.user.code) + '03' + '01'), function(err, user) {
         var output = `<p>Thanks for registering to de(c)ypher. Here are your credentials!</p>
         <h3>Credentials</h3>
@@ -787,6 +804,8 @@ router.post('/school/participant/register/crosshair', function(req, res) {
       participantevent : "crosshair",
       participantemail : req.body.email2,
       participantnumber: req.body.number2,
+      verification: makeid(64),
+      time: new Date(),
     }), ((req.user.code) + '03' + '02'), function(err,user){;
         if (err) {
             return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Error: The team has already been registered.' });
@@ -805,6 +824,8 @@ router.post('/school/participant/register/crosshair', function(req, res) {
       participantevent : "crosshair",
       participantemail : req.body.email3,
       participantnumber: req.body.number3,
+      verification: makeid(64),
+      time: new Date(),
     }), ((req.user.code) + '03' + '03'), function(err,user){;
         if (err) {
             return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Error: The team has already been registered.' });
@@ -823,6 +844,8 @@ router.post('/school/participant/register/crosshair', function(req, res) {
       participantevent : "crosshair",
       participantemail : req.body.email4,
       participantnumber: req.body.number4,
+      verification: makeid(64),
+      time: new Date(),
     }), ((req.user.code) + '03' + '04'), function(err,user){;
         if (err) {
             return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Error: The team has already been registered.' });
@@ -841,6 +864,8 @@ router.post('/school/participant/register/crosshair', function(req, res) {
       participantevent : "crosshair",
       participantemail : req.body.email5,
       participantnumber: req.body.number5,
+      verification: makeid(64),
+      time: new Date(),
     }), ((req.user.code) + '03' + '05'), function(err,user){;
         if (err) {
             return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Error: The team has already been registered.' });
@@ -1022,7 +1047,8 @@ router.get('/dashboard', (req, res, next) => {
   }
   if (req.user) {
     if (req.user.username != 'admin'){
-        return res.render('dashboard', { title: 'Dashboard' });
+        var query = 'hey'
+        return res.render('dashboard', { query: query, title: 'Dashboard' });
     }
     else{
         return res.redirect('/admin')
@@ -1031,6 +1057,105 @@ router.get('/dashboard', (req, res, next) => {
   else{
     return res.redirect('/login')
   }
+});
+
+ // Student Team Edit
+
+router.get('/admin/manage/teams/student', (req, res, next) => {
+    if (req.user.username != 'admin' || !req.user.username) {
+      res.redirect('/');
+    }
+    var query = {type : 'Student'}
+    User.find().find(query).exec(function(err, teams) {
+      return res.render('manage-teams', { teams: teams, title: 'Manage Teams', userType:'Student' });
+    });
+});
+  
+router.post('/admin/manage/teams/student', (req, res, next) => {
+    User.findOne({username: req.body.username}, function(err, user) {
+        user.schoolname = req.body.newUsername;
+        user.studentname = req.body.newStudentName;
+        user.studentevent = req.body.newStudentEvent;
+        user.studentemail = req.body.newStudentEmail;
+        user.studentnumber = req.body.newStudentNumber;
+        user.save();
+    });
+    return res.redirect('/admin/manage/teams/student');
+});
+
+ // School Team Edit
+
+router.get('/admin/manage/teams/school', (req, res, next) => {
+    if (req.user.username != 'admin' || !req.user.username) {
+      res.redirect('/');
+    }
+    var query = {type : 'School'}
+    User.find().find(query).exec(function(err, teams) {
+      return res.render('manage-teams', { teams: teams, title: 'Manage Teams', userType:'School' });
+    });
+});
+  
+router.post('/admin/manage/teams/school', (req, res, next) => {
+    User.findOne({username: req.body.username}, function(err, user) {
+      user.schoolname = req.body.newUsername;
+      user.teachername = req.body.newTeacherName;
+      user.schoolemail = req.body.newSchoolEmail;
+      user.teachernumber = req.body.newTeacherNumber;
+      user.save();
+    });
+    return res.redirect('/admin/manage/teams/school');
+});
+
+ // Participant Team Edit
+
+router.get('/admin/manage/teams/participant', (req, res, next) => {
+    if (req.user.username != 'admin' || !req.user.username) {
+      res.redirect('/');
+    }
+    var query = {type : 'Participant'}
+    User.find().find(query).exec(function(err, teams) {
+      return res.render('manage-teams', { teams: teams, title: 'Manage Teams', userType:'Participant' });
+    });
+});
+  
+router.post('/admin/manage/teams/participant', (req, res, next) => {
+    User.findOne({username: req.body.username}, function(err, user) {
+        user.schoolname = req.body.newUsername;
+        user.participantname = req.body.newParticipantName;
+        user.participantevent = req.body.newParticipantEvent;
+        user.participantemail = req.body.newParticipantEmail;
+        user.participantnumber = req.body.newParticipantNumber;
+        user.save();
+    });
+    return res.redirect('/admin/manage/teams/participant');
+});
+router.get('/admin/verified', (req, res, next) => {
+    if (req.user){
+        if (req.user.username != 'admin') {
+            res.redirect('/dashboard');
+        }
+        else{
+            var sort = { type: -1 };
+            User.find().sort('verified').sort(sort).exec(function(err, teams1) {
+                return res.render('verify-list', { teams: teams1, eventOver: true, title: 'Verification Status' });
+            });
+        }
+    }
+    else{
+        res.redirect('/login')
+    }
+});
+router.get('/verify/:id', (req, res, next) => {
+    User.findOne({verification: req.params.id}, function(err, user) {
+        if(err){
+            return res.render('error')
+        }
+        else{
+            user.verified = true;
+            user.save();
+            return res.render('verified')
+        }
+    });
 });
 
 //LOGOUT user

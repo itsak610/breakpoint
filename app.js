@@ -100,7 +100,7 @@ const totalCPUs = require('os').cpus().length;
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
     res.setHeader('Access-Control-Allow-Credentials', true);
-    next();
+    return next();
   });
   //Setting routes
   var routes = require('./routes/index');
@@ -128,7 +128,6 @@ const totalCPUs = require('os').cpus().length;
 
   // // Enable if you're behind a reverse proxy (Heroku, Bluemix, AWS ELB, Nginx, etc)
   // // see https://expressjs.com/en/guide/behind-proxies.html
-  // // app.set('trust proxy', 1);
 
   // const apiLimiter = rateLimit({
   //   windowMs: 15 * 60 * 1000, // 15 minutes

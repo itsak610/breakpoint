@@ -13,5 +13,22 @@ block content
         br
         br
         a(href="/admin/events") View Event Teams
+        br
+        br
+        a(href="/admin/manage/teams/student") Edit Students
+        br
+        br
+        a(href="/admin/manage/teams/school") Edit Schools
+        br
+        br
+        a(href="/admin/manage/teams/participant") Edit Participants
+        br
+        br
+        a(href="/admin/verified") Verfication Status
+        br
+        br
+        br
+        if currentUser.verified == false 
+            b You are not verified yet!
     script.
-        document.getElementById("playnav").classList.toggle("active");
+        document.getElementById("dashboardnav").classList.toggle("active");
