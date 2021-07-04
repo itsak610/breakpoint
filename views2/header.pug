@@ -1,48 +1,101 @@
-header#masthead
-  .container
-    .four.columns.left
-      a.handletter(href='/')
-        img(src='https://distracted-wescoff-b1d8d6.netlify.app/img/logo_3.png', alt='de(c)ypher')
-    .eight.columns.right
-      img.mob-logo(src='https://distracted-wescoff-b1d8d6.netlify.app/img/logo_3.png', alt='de(c)ypher')
-      #mobilenavdiv.mobile-menu-toggle.js-toggle-menu.hamburger-menu(onclick='navfunction()')
+header
+    .logo
+        a.handletter(href='/home')
+            img(src='/img/cync_logo-converted.png' cursor-class='arrow')
+    img.mob-logo(src='/img/cync_logo-converted.png' cursor-class='arrow')
+    #mobilenavdiv.mobile-menu-toggle.js-toggle-menu.hamburger-menu(onclick='navfunction()')
         span.menu-item
         span.menu-item
         span.menu-item
+    nav.navbar.desktop-nav
+        if currentUser
+            ul
+                li
+                    a(href='/home' cursor-class='arrow') Home
+                li
+                    a(href='/events' cursor-class='arrow') Events
+                li
+                    a(href='/dashboard' cursor-class='arrow') Dashboard
+                li
+                    a(href='/logout' cursor-class='arrow') Logout from #{currentUser.username}
+        else
+            ul
+                li
+                    a(href='/home' cursor-class='arrow') Home
+                li
+                    a(href='/events' cursor-class='arrow') Events
+                li
+                    a(href='/login' cursor-class='arrow') Login
+                li
+                    a(href='/register' cursor-class='arrow') Register
+    nav#nav.mobile-nav.hidden
+        if currentUser
+            ul
+                li
+                    a(href='/home' cursor-class='arrow') Home
+                li
+                    a(href='/events' cursor-class='arrow') Events
+                li
+                    a(href='/dashboard' cursor-class='arrow') Dashboard
+                li
+                    a(href='/logout' cursor-class='arrow') Logout
+        else
+            ul
+                li
+                    a(href='/home' cursor-class='arrow') Home
+                li
+                    a(href='/events' cursor-class='arrow') Events
+                li
+                    a(href='/login' cursor-class='arrow') Login
+                li
+                    a(href='/register' cursor-class='arrow') Register
+
+
+//- header#masthead
+//-   .container
+//-     .four.columns.left
+//-       a.handletter(href='/')
+//-         img(src='https://distracted-wescoff-b1d8d6.netlify.app/img/logo_3.png', alt='de(c)ypher')
+//-     .eight.columns.right
+//-       img.mob-logo(src='https://distracted-wescoff-b1d8d6.netlify.app/img/logo_3.png', alt='de(c)ypher')
+//-       #mobilenavdiv.mobile-menu-toggle.js-toggle-menu.hamburger-menu(onclick='navfunction()')
+//-         span.menu-item
+//-         span.menu-item
+//-         span.menu-item
         
 
-      nav.desktop-nav
-        ul
-          if currentUser
-            li
-              a(href='/')#homenav Home
-            li 
-              a(href='/dashboard')#dashboardnav Dashboard
-            li
-              a(href='/logout') Logout from 
-                b #{currentUser.username}
-          else
-            li
-              a(href='/')#homenav Home
-            li
-              a(href='/login')#loginnav Login
-            li
-              a(href='/register')#registernav Register
-            //- li
-            //-   a(href='/results') Results
-    nav#nav.mobile-nav.hidden
-      ul.animated-box4.in
-        if currentUser
-          li
-            a(href='/')#homenav Home
-          li 
-            a(href='/dashboard')#dashboardnav Dashboard
-          li
-            a(href='/logout') Logout
-        else
-          li
-            a(href='/')#homenav Home
-          li
-            a(href='/login')#loginnav Login
-          li
-            a(href='/register')#registernav Register
+//-       nav.desktop-nav
+//-         ul
+//-           if currentUser
+//-             li
+//-               a(href='/')#homenav Home
+//-             li 
+//-               a(href='/dashboard')#dashboardnav Dashboard
+//-             li
+//-               a(href='/logout') Logout from 
+//-                 b #{currentUser.username}
+//-           else
+//-             li
+//-               a(href='/')#homenav Home
+//-             li
+//-               a(href='/login')#loginnav Login
+//-             li
+//-               a(href='/register')#registernav Register
+//-             //- li
+//-             //-   a(href='/results') Results
+//-     nav#nav.mobile-nav.hidden
+//-       ul.animated-box4.in
+//-         if currentUser
+//-           li
+//-             a(href='/')#homenav Home
+//-           li 
+//-             a(href='/dashboard')#dashboardnav Dashboard
+//-           li
+//-             a(href='/logout') Logout
+//-         else
+//-           li
+//-             a(href='/')#homenav Home
+//-           li
+//-             a(href='/login')#loginnav Login
+//-           li
+//-             a(href='/register')#registernav Register

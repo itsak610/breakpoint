@@ -65,7 +65,13 @@ html(lang='en')
             opacity: 0.5;
             /* margin-left:-10vh; */
             }
-
+            .mob-logo{
+                display:none
+            }
+            .temp-body {
+                opacity: 0.05;
+                transition: all 0.2s ease-in-out;
+            }
             /*----------------------------------------------CURSOR----------------------------------------------*/
 
             #cursor {
@@ -192,7 +198,7 @@ html(lang='en')
             display: flex;
             padding: 10px 50px;
             flex-flow: row;
-            height: 70%;
+            height: 40%;
             width: 100vw;
             align-items: flex-end;
             justify-content: space-evenly;
@@ -221,6 +227,7 @@ html(lang='en')
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             border-left: 1px solid rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(5px);
+            margin-top:-4em;
             }
 
             .card1 {
@@ -604,27 +611,372 @@ html(lang='en')
             
             
             /*  ================  */
+              /*---------------------------------------------- Navbar ----------------------------------------------*/
+
+            #nav.mobile-nav{
+                margin:auto;
+                /* position: fixed; */
+                font-size: 34px;
+                width: 100vw;
+                height: 100vh;
+                margin-top: 120px;
+            }
+            
+            .mobile-nav ul{
+                padding: 0 50px 50px 50px;
+                margin: auto;
+                list-style-type: none;  
+                padding-bottom:90px;
+            }
+            
+            .mobile-nav ul li{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding-top: 80px;
+                }
+                .mobile-nav ul li a{
+                cursor: pointer;
+                text-align: center;
+            }
+            .mobile-nav ul li a:hover{
+                color: #F11D7A;
+            }
+            .hidden{
+                display: none;
+            }
+            .notHidden{
+                display: block;
+                z-index: 9999;
+            }
+            .mobile-nav ul.animated-box4.in{
+                height: max-content;
+                width: max-content;
+                background: #030711;
+            }
+            .hamburger-menu {
+                display: none;
+                height: 100px;
+                padding: 35px 10px;
+                transition: all 0.4s ease-in-out;
+                z-index: 99999;
+                cursor: pointer;
+            }
+            .hamburger-menu .menu-item {
+                display: block;
+                height: 2px;
+                margin: 0 0 7px;
+                transition: all 0.3s ease-in-out;
+                background-image: linear-gradient(to bottom right, #42E6FF, #F11D7A);
+                background-size: 100px;
+                width: 30px;
+            }
+            .hamburger-menu.open .menu-item {
+                margin: 0 0 5px;
+            }
+            
+            .hamburger-menu .menu-item:nth-child(2), .hamburger-menu .menu-item:nth-child(3) {
+                background-position-y: 50px;
+            
+            }
+            .hamburger-menu.open .menu-item:first-child {
+            
+                transform: rotate(45deg);
+                transform-origin: 6px;
+            }
+            .hamburger-menu.open .menu-item:nth-child(2) {
+                opacity: 0;
+            }
+            .hamburger-menu.open .menu-item:nth-child(3) {
+                transform: rotate(-45deg);
+                transform-origin: 4px;
+            }
+
+            @media (max-width:750px) {
+                *{
+                    cursor: default;
+                }
+                #cursor{
+                    display:none
+                }
+                nav {
+                    height: 100vh;
+                    padding: 10px 2.5px;
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    top: 0;
+                    white-space: nowrap;
+                    text-align: left;
+                    font-size: 10px
+                }
+                body{
+                    z-index:99999;
+                }
+                .handletter {
+                    display: none
+                }
+
+                .desktop-nav {
+                    display: none
+                }
+                .hamburger-menu {
+                    display: inline-block;
+                    margin-right: 25px
+                }
+                .mob-logo {
+                    position: absolute;
+                    max-height: 40px;
+                    top:-25px;
+                    left: 0;
+                    margin-top: 16px;
+                    margin-left: 10px;
+                    display: inline-block
+                }
+                section#main {
+                    margin-top: 60px
+                }
+                p.credits {
+                    font-size: .8em
+                }
+                footer nav li a,
+                header nav li a {
+                    height: 30px!important;
+                    line-height: 30px!important
+                }
+                header .left {
+                    display: none
+                }
+                header a.active {
+                    background: 0 0
+                }
+                .simplebar-track.simplebar-vertical {
+                    width: 5px;
+                    right: 0
+                }
+                .card h1.form-title {
+                    font-size: 1.1em
+                }
+                .card p {
+                    font-size: .6em;
+                    margin-top: 10px
+                }
+                .card label {
+                    font-size: .8em
+                }
+                .card input {
+                    font-size: .8em;
+                    height: 40px;
+                    background-position: 6px 6px;
+                    text-indent: 28px
+                }
+                .card input[type=submit] {
+                    text-indent: 0
+                }
+                .card.question-card {
+                    width: 400px;
+                    padding: 40px
+                }
+                .card.question-card p {
+                    font-size: 1em
+                }
+                h1.title {
+                    font-size: 2em
+                }
+                .animated-box3.play-page {
+                    margin: auto;
+                    margin-top: 50px
+                }
+                .card.question-card input {
+                    text-indent: 0
+                }
+                h1.center {
+                    font-size: 1.5em;
+                    margin-top: 10px
+                }
+                #rules.card ul {
+                    margin-top: -25px
+                }
+                #rules.card li {
+                    font-size: 10px;
+                    margin-left: -25px
+                }
+                #rules.card {
+                    height: fit-content;
+                    width: 92vw;
+                    padding: 40px
+                }
+                .card.leaderboard {
+                    width: 92vw;
+                    padding-top: 8vh
+                }
+                .card.leaderboard #leader {
+                    font-size: 2em
+                }
+                .flex {
+                    padding-top: 3vh;
+                    display: block
+                }
+                .flex img {
+                    height: 50px;
+                    width: 50px
+                }
+                .arrow {
+                    float: right;
+                    width: 100%;
+                    right: 0
+                }
+                .arrows {
+                    margin: auto;
+                    margin-top: 20px;
+                    width: 100%
+                }
+                .arrow:nth-child(1) {
+                    margin-right: 50px
+                }
+                .arrow:nth-child(2) {
+                    margin-right: 10px
+                }
+                #myInput {
+                    font-size: .8em;
+                    height: 40px;
+                    background-position: 10px 12px;
+                    text-indent: 18px;
+                    background-size: 15px 15px
+                }
+                .animated-box.in {
+                    margin: auto;
+                    height: 40px;
+                    width: 90%
+                }
+                .animated-box:after {
+                    clip-path: polygon(0 100%, 2px 100%, 2px 2px, calc(100% - 2px) 2px, calc(100% - 2px) calc(100% - 2px), 2px calc(100% - 2px), 2px 100%, 100% 100%, 100% 0, 0 0)
+                }
+                #myTable {
+                    padding: 20px;
+                    padding-top: 90px
+                }
+                .card.leaderboard table th {
+                    font-size: 1.2em
+                }
+                .card.leaderboard table td {
+                    font-size: 1em
+                }
+            }
+
+            @media (min-width:750px) and (max-width:1112px) {
+                *{
+                    cursor: default;
+                }
+                #cursor{
+                    display:none
+                }
+                .desktop-nav {
+                    display: none
+                }
+                .hamburger-menu {
+                    display: inline-block
+                }
+                body{
+                    z-index:99999;
+                }
+
+                .mob-logo {
+                    position: absolute;
+                    max-height: 60px;
+                    height: 60px;
+                    left: 0;
+                    top: 0;
+                    margin-left: 30px;
+                    display: inline-block;
+                    margin-top: 16px
+                }
+
+                .handletter {
+                    display: none
+                }
+                .eight.columns {
+                    width: 90%
+                }
+                .eight.columns.right {
+                    top: 0
+                }
+                h1.center {
+                    font-size: 2em;
+                    margin-top: 20px
+                }
+                #rules.card li {
+                    font-size: 14px;
+                    margin-left: -25px
+                }
+                #rules.card {
+                    height: fit-content
+                }
+                .hamburger-menu {
+                    float: right;
+                    position: absolute;
+                    margin-right: 25px;
+                    margin-top: 15px;
+                    top:0;
+                    right: 0;
+                }
+            }
   
   
     body
         header
             .logo
-                a(href='/home')
+                a.handletter(href='/home')
                     img(src='/img/cync_logo-converted.png' cursor-class='arrow')
-            nav.navbar
-                ul
-                    li
-                        a(href='/home' cursor-class='arrow') Home
-                    li
-                        a(href='/events' cursor-class='arrow') Events
-                    li
-                        a(href='https://www.decypher.club/' target='_blank' cursor-class='arrow') Decypher
-                    li
-                        a(href='/login' cursor-class='arrow') Login
-                    li
-                        a(href='/register' cursor-class='arrow') Register
+            img.mob-logo(src='/img/cync_logo-converted.png' cursor-class='arrow')
+            #mobilenavdiv.mobile-menu-toggle.js-toggle-menu.hamburger-menu(onclick='navfunction()')
+                span.menu-item
+                span.menu-item
+                span.menu-item
+            nav.navbar.desktop-nav
+                if currentUser
+                    ul
+                        li
+                            a(href='/home' cursor-class='arrow') Home
+                        li
+                            a(href='/events' cursor-class='arrow') Events
+                        li
+                            a(href='/dashboard' cursor-class='arrow') Dashboard
+                        li
+                            a(href='/logout' cursor-class='arrow') Logout from #{currentUser.username}
+                else
+                    ul
+                        li
+                            a(href='/home' cursor-class='arrow') Home
+                        li
+                            a(href='/events' cursor-class='arrow') Events
+                        li
+                            a(href='/login' cursor-class='arrow') Login
+                        li
+                            a(href='/register' cursor-class='arrow') Register
+            nav#nav.mobile-nav.hidden
+                if currentUser
+                    ul
+                        li
+                            a(href='/home' cursor-class='arrow') Home
+                        li
+                            a(href='/events' cursor-class='arrow') Events
+                        li
+                            a(href='/dashboard' cursor-class='arrow') Dashboard
+                        li
+                            a(href='/logout' cursor-class='arrow') Logout
+                else
+                    ul
+                        li
+                            a(href='/home' cursor-class='arrow') Home
+                        li
+                            a(href='/events' cursor-class='arrow') Events
+                        li
+                            a(href='/login' cursor-class='arrow') Login
+                        li
+                            a(href='/register' cursor-class='arrow') Register
         #canvas
-        section
+        section#main
             #cursor
                 .cursor__circle
             .containerCard
@@ -639,7 +991,6 @@ html(lang='en')
                     a.card.card2(href='/participant/login', cursor-class='arrow')
                         .content
                             p Participant Login (For (c)rosshair participants)
-
         footer
             .imp-links
                 .left-footer

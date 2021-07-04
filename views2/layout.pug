@@ -1,32 +1,20 @@
 doctype html
 html(lang='en')
-  head
-    
+  head 
     meta(http-equiv='Content-Type' content='text/html; charset=UTF-8')
-    meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
-    meta(http-equiv='x-ua-compatible', content='ie=edge')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge')
+    title (c)ypher
     meta(name='description', content='This page is created for the online cryptic hunt - De(c)pher.')
-    title (C)YNC &middot; #{title}
-    //- link(rel='stylesheet', href='https://distracted-wescoff-b1d8d6.netlify.app/css/style.css')
+    meta(name='viewport' content='width=device-width, initial-scale=1')
     link(rel="shortcut icon" href="https://distracted-wescoff-b1d8d6.netlify.app/img/icon.ico?v=1" type="image/x-icon")
-    meta(name='theme-color', content='#f5f5f5')
-    if isLogs
-      meta(http-equiv="refresh" content="20;url=/admin/logs")
+    link(rel="stylesheet" href="/css/register-student.css")
   body
     include header
-    
-    section#main
-      .container
-        block content
-          
-    include footer
-    //- script(src='https://distracted-wescoff-b1d8d6.netlify.app/js/built.js')
-    script.
-      function navfunction() {
-        document.getElementsByClassName('js-toggle-menu')[0].classList.toggle('open');
-        document.getElementById("main").classList.toggle('temp-body')
-        document.getElementsByClassName("hidden")[0].classList.toggle("notHidden")
-      };
 
+    #canvas
+    section#main
+        block content
+        
+    include footer
 
 

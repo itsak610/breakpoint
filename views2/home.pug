@@ -11,22 +11,57 @@ html(lang='en')
     body
         header
             .logo
-                a(href='/home')
+                a.handletter(href='/home')
                     img(src='/img/cync_logo-converted.png' cursor-class='arrow')
-            nav.navbar
-                ul
-                    li
-                        a(href='/home' cursor-class='arrow') Home
-                    li
-                        a(href='/events' cursor-class='arrow') Events
-                    li
-                        a(href='https://www.decypher.club/' target='_blank' cursor-class='arrow') Decypher
-                    li
-                        a(href='/login' cursor-class='arrow') Login
-                    li
-                        a(href='/register' cursor-class='arrow') Register
+            img.mob-logo(src='/img/cync_logo-converted.png' cursor-class='arrow')
+            #mobilenavdiv.mobile-menu-toggle.js-toggle-menu.hamburger-menu(onclick='navfunction()')
+                span.menu-item
+                span.menu-item
+                span.menu-item
+            nav.navbar.desktop-nav
+                if currentUser
+                    ul
+                        li
+                            a(href='/home' cursor-class='arrow') Home
+                        li
+                            a(href='/events' cursor-class='arrow') Events
+                        li
+                            a(href='/dashboard' cursor-class='arrow') Dashboard
+                        li
+                            a(href='/logout' cursor-class='arrow') Logout from #{currentUser.username}
+                else
+                    ul
+                        li
+                            a(href='/home' cursor-class='arrow') Home
+                        li
+                            a(href='/events' cursor-class='arrow') Events
+                        li
+                            a(href='/login' cursor-class='arrow') Login
+                        li
+                            a(href='/register' cursor-class='arrow') Register
+            nav#nav.mobile-nav.hidden
+                if currentUser
+                    ul
+                        li
+                            a(href='/home' cursor-class='arrow') Home
+                        li
+                            a(href='/events' cursor-class='arrow') Events
+                        li
+                            a(href='/dashboard' cursor-class='arrow') Dashboard
+                        li
+                            a(href='/logout' cursor-class='arrow') Logout
+                else
+                    ul
+                        li
+                            a(href='/home' cursor-class='arrow') Home
+                        li
+                            a(href='/events' cursor-class='arrow') Events
+                        li
+                            a(href='/login' cursor-class='arrow') Login
+                        li
+                            a(href='/register' cursor-class='arrow') Register
         #canvas
-        section.landing
+        section#main.landing
             #cursor
                 .cursor__circle
             .left
@@ -129,3 +164,10 @@ html(lang='en')
                 p With &#x1F497; from (c)lub (c)ypher
         script(src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r77/three.min.js')
         script(type='module' src='/js/index.js')
+        script.
+            function navfunction() {
+                document.getElementsByClassName('js-toggle-menu')[0].classList.toggle('open');
+                document.getElementById("main").classList.toggle('temp-body')
+                document.getElementsByClassName("hidden")[0].classList.toggle("notHidden")
+            };
+

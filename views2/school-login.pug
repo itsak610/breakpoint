@@ -1,87 +1,20 @@
-html(lang='en')
-    head 
-        meta(http-equiv='Content-Type' content='text/html; charset=UTF-8')
-        meta(http-equiv='X-UA-Compatible' content='IE=edge')
-        title (c)ypher
-        meta(name='description', content='This page is created for the online cryptic hunt - De(c)pher.')
-        meta(name='viewport' content='width=device-width, initial-scale=1')
-        link(rel="shortcut icon" href="https://distracted-wescoff-b1d8d6.netlify.app/img/icon.ico?v=1" type="image/x-icon")
-        link(rel="stylesheet" href="/css/register-student.css")
-    body
-        header
-            .logo
-                a(href='index.html')
-                    img(src='/img/cync_logo-converted.png' cursor-class='arrow')
-            nav.navbar
-                ul
-                    li
-                        a(href='/home' cursor-class='arrow') Home
-                    li
-                        a(href='/events' cursor-class='arrow') Events
-                    li
-                        a(href='https://www.decypher.club/' target='_blank' cursor-class='arrow') Decypher
-                    li
-                        a(href='/login' cursor-class='arrow') Login
-                    li
-                        a(href='/register' cursor-class='arrow') Register
-        #canvas
-        section
-            #cursor
-                .cursor__circle
-            .container1
-                form.registerform(method='post' action='/school/login')
-                    h1.title School Log In
-                    if error
-                        p.error= error
-                    .form-group
-                        label(for='username') Username:
-                        input#username(type='text' name='username' placeholder='Username' maxlength='20' required)
-                    .form-group
-                        label(for='password') Password:
-                        input(type='password', name='password', placeholder='Password', required)
-                    p Not yet registered? 
-                        b 
-                            a(href='/register') Register Here
-                    input.btn(type='submit', value='Sign In')
-        footer
-            .imp-links
-                .left-footer
-                    h2
-                        | (c)ync will be held on July 27th. All offline events will be
-                        | conducted at the venue from 9:00 AM to 12 noon.
-                    br
-                    p
-                        | For any further queries, please contact Mr. Anurag Sehgal: +91
-                        | 7869119509
-                .right-footer
-                    h2 More Links
-                    .links
-                        .right1
-                            ul
-                                li
-                                    a(href='#') Events
-                                li
-                                    a(href='/register') Register
-                                li
-                                    a(href='#') Login
-                        .right2
-                            ul
-                                li
-                                    a(href='https://www.instagram.com/cypherdps/' target='_blank') Instagram
-                                li
-                                    a(href='#' target='_blank') Discord
-                                li
-                                    a(href='#' target='_blank') YouTube
-            .last
-                p With &#x1F497; from (c)lub (c)ypher
-        script(src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r77/three.min.js')
-        script(src='/js/index.js')    
-        script.
-            window.addEventListener("DOMContentLoaded", function(event) {
-                if(document.getElementById('username')) {
-                    document.getElementById('username').addEventListener('input', function(){
-                        this.value = this.value.replace(/\s+/g, '').toLowerCase();
-                    });
-                }
-            });
+extends layout
 
+block content
+    #cursor
+        .cursor__circle
+    .container1
+        form.registerform(method='post' action='/school/login')
+            h1.title School Log In
+            if error
+                p.error= error
+            .form-group
+                label(for='username') Username:
+                input#username(type='text' name='username' placeholder='Username' maxlength='20' required)
+            .form-group
+                label(for='password') Password:
+                input(type='password', name='password', placeholder='Password', required)
+            p Not yet registered? 
+                b 
+                    a(href='/register') Register Here
+            input.btn(type='submit', value='Sign In')

@@ -1,22 +1,41 @@
 footer
-    .separator
-    .container
-        //- each team in logs
-        //-     if team.username == currentUser.username
-        //-         if team.username == currentUser.level
-        //-             p #{team.answer}
-        h2.center Links
-        p.center
-            a(href='http://discord.com' target="_blank")
-                img#img1.footer-logo.gol(src="https://distracted-wescoff-b1d8d6.netlify.app/img/discord.svg", alt="disocrd")
-            a(href='http://clubcypher.club' target="_blank")
-                img#img1.footer-logo.gol(src="https://distracted-wescoff-b1d8d6.netlify.app/img/cypher.svg", alt="cypher")
-            a(href="https://www.facebook.com/cypherdps/" target="_blank")
-                img#img1.footer-logo.gol.fb(src="https://distracted-wescoff-b1d8d6.netlify.app/img/facebook.svg", alt="Facebook", height="300", width="300")
-            a(href="https://www.youtube.com/channel/UCSULXN5apeQSDa0sLYuwEnA" target="_blank")
-                img#img1.footer-logo.gol.fb(src="https://distracted-wescoff-b1d8d6.netlify.app/img/youtube.svg", alt="Youtube")
-            a(href="https://www.instagram.com/cypherdps/" target="_blank")
-                img#img1.footer-logo.gol(src="https://distracted-wescoff-b1d8d6.netlify.app/img/instagram.svg", alt="Instagram")
-        
-
-    
+    .imp-links
+        .left-footer
+            h2
+                | (c)ync will be held on July 27th. All offline events will be
+                | conducted at the venue from 9:00 AM to 12 noon.
+            br
+            p
+                | For any further queries, please contact Mr. Anurag Sehgal: +91
+                | 7869119509
+        .right-footer
+            h2 More Links
+            .links
+                .right1
+                    ul
+                        li
+                            a(href='#') Events
+                        li
+                            a(href='/register') Register
+                        li
+                            a(href='#') Login
+                .right2
+                    ul
+                        li
+                            a(href='https://www.instagram.com/cypherdps/' target='_blank') Instagram
+                        li
+                            a(href='#' target='_blank') Discord
+                        li
+                            a(href='#' target='_blank') YouTube
+    .last
+        p With &#x1F497; from (c)lub (c)ypher
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r77/three.min.js')
+    script(src='/js/index.js')    
+    script.
+        window.addEventListener("DOMContentLoaded", function(event) {
+            if(document.getElementById('username')) {
+                document.getElementById('username').addEventListener('input', function(){
+                    this.value = this.value.replace(/\s+/g, '').toLowerCase();
+                });
+            }
+        });
