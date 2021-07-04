@@ -214,10 +214,11 @@ h2.center {
   float: right;
 }
 p.error {
-  margin: -15px 0 20px 0;
+  margin-top: 50px;
   text-align: center;
   font-weight: 700;
-  color: #d41d76;
+  font-size: 20px;
+  color: red;
 }
 .separator {
   height: 3px;

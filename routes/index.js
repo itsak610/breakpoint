@@ -387,7 +387,7 @@ router.post('/student/register/click', function(req, res) {
     res.render('over', {title: "Event Over"});
   }
   if(req.body.password != req.body.passwordConfirm){
-    return res.render('student-register', { title: 'Student Register', error : 'The passwords dont match.' });
+    return res.render('student-register', { title: 'Student Register', error : 'The passwords dont match.', eventname: 'click' });
   }
   else{
       var query1 = User.find({ studentevent: 'click' })
@@ -453,7 +453,7 @@ router.post('/student/register/click', function(req, res) {
                 html: output,
             };
            if (err) {
-             return res.render('student-register', { title: 'Student Register', error : 'The Student has already been registered.' });
+             return res.render('student-register', { title: 'Student Register', error : 'The Student has already been registered.', eventname: 'click' });
            }
            else
                transporter.sendMail(mailOptions, function (err, info) {
@@ -540,7 +540,7 @@ router.post('/student/register/clipped', function(req, res) {
                     html: output,
                 };
                  if (err) {
-               return res.render('student-register', { title: 'Student Register', error : 'The Student has already been registered.' });
+               return res.render('student-register', { title: 'Student Register', error : 'The Student has already been registered.', eventname: 'clipped' });
              }
              else
                  transporter.sendMail(mailOptions, function (err, info) {
