@@ -7,18 +7,16 @@ html(lang='en')
         meta(name='description', content='This page is created for the online cryptic hunt - De(c)pher.')
         meta(name='viewport' content='width=device-width, initial-scale=1')
         link(rel="shortcut icon" href="https://distracted-wescoff-b1d8d6.netlify.app/img/icon.ico?v=1" type="image/x-icon")
-        link(rel="stylesheet" href="/css/register-school.css")
+        link(rel="stylesheet" href="/css/register-student.css")
     body
         header
             .logo
-                a(href='index.html')
+                a(href='/home')
                     img(src='/img/cync_logo-converted.png' cursor-class='arrow')
             nav.navbar
                 ul
                     li
                         a(href='#' cursor-class='arrow') Events
-                    li
-                        a(href='#' cursor-class='arrow') Team
                     li
                         a(href='#' cursor-class='arrow') Alumni
                     li
@@ -33,10 +31,11 @@ html(lang='en')
                 .cursor__circle
             .container1
                 form.registerform(method='post' action='/student/register')
+                    h1.title 
+                        | School Registeration
                     .form-group
                         label(for='username')
-                            | Username (Schoolname without spaces and special
-                            | characters)
+                            | Username
                         input#username(type='text' name='username' placeholder='eg. elonmusk' maxlength='20' required='required')
                     .form-group
                         label(for='teachername') Teacher In-Charge Name
@@ -57,8 +56,8 @@ html(lang='en')
                         label(for='passwordConfirm') Confirm Password
                         input(type='text' name='passwordConfirm' autocomplete='off' placeholder='eg. Tesla' required='required')
                     p.registerpage
-                        | Already registered ?
-                        a.register(href='/student/login' cursor-class='arrow') Login
+                        | Already registered ? 
+                        a.register(href='/school/login' cursor-class='arrow') Login
                     input.btn(type='submit' value='Register')
         footer
             .imp-links

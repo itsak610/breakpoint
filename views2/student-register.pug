@@ -11,14 +11,12 @@ html(lang='en')
     body
         header
             .logo
-                a(href='index.html')
+                a(href='/home')
                     img(src='/img/cync_logo-converted.png' cursor-class='arrow')
             nav.navbar
                 ul
                     li
                         a(href='#' cursor-class='arrow') Events
-                    li
-                        a(href='#' cursor-class='arrow') Team
                     li
                         a(href='#' cursor-class='arrow') Alumni
                     li
@@ -36,7 +34,7 @@ html(lang='en')
                     form.registerform(method='post' action='/student/register/click')
                         h1.title Register for (c)lick
                         .form-group
-                            label(for='username') Username (Name without spaces and special characters)
+                            label(for='username') Username
                             input#username(type='text' name='username' placeholder='eg. elonmusk' maxlength='20' required='required')
                         .form-group
                             label(for='name') Full Name
@@ -62,9 +60,10 @@ html(lang='en')
                         input.btn(type='submit' value='Register')
                 else
                     form.registerform(method='post' action='/student/register/clipped')
-                        h1.title Register for (c)lipped
+                        h1.title 
+                            | Register for (c)lipped
                         .form-group
-                            label(for='username') Username (Name without spaces and special characters)
+                            label(for='username') Username
                             input#username(type='text' name='username' placeholder='eg. elonmusk' maxlength='20' required='required')
                         .form-group
                             label(for='name') Full Name

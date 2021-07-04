@@ -250,6 +250,8 @@ h1.title {
   margin-top: 20vh;
   text-align: center;
   font-size: 3em;
+  width: 100%;
+
 }
 p.credits {
   text-align: center;

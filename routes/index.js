@@ -102,8 +102,12 @@ router.get('/', midWare, (req, res, next) => {
   return res.redirect('/home');
 });
 router.get('/home', midWare, (req, res, next) => {
-  return res.render('home', { title: 'De(c)ypher' });
+  return res.render('home', { title: '(c)ypher' });
 });
+
+router.get('/alumni', midWare, (req, res, next) => {
+    return res.render('alumni', { title: 'Alumni' });
+  });
 
 // Render login page
 router.get('/login', (req, res, next) => {
