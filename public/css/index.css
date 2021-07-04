@@ -250,6 +250,7 @@ header {
   justify-content: space-evenly;
   align-items: center;
   flex-flow: column;
+  margin-top: -5em;
 }
 
 .row {
@@ -582,6 +583,9 @@ footer h2 {
     body{
         z-index:99999;
     }
+    #cursor{
+        display: none;
+    }
     .handletter {
 		display: none
 	}
@@ -736,6 +740,87 @@ footer h2 {
 	.card.leaderboard table td {
 		font-size: 1em
 	}
+    .container-day,
+    .container-hour,
+    .container-minute,
+    .container-second {
+        width: 6em;
+        height: 6em;
+        margin-top: 30px;
+    }
+    .container-day:hover,
+    .container-hour:hover,
+    .container-minute:hover,
+    .container-second:hover {
+        transform: scale(1.2);
+    }
+    .text h1{
+        font-size: 35px;
+    }
+    .text p{
+        font-size: 14px;
+    }
+    .timer h3{
+        font-size:1.5vw
+    }
+    .timer{
+        margin-top: -14em;
+        justify-content: center;
+    }
+    .row{
+        flex-flow: column;
+    }
+    .right{
+        padding-right: 0;
+    }
+    .left{
+        padding-left: 50px;
+        width: 65%;
+        justify-content:unset;
+    }
+    .text h1{
+        margin-top:1em;
+    }
+    .btn-landing{
+        margin-top: 4em;
+    }
+    section.cync{
+        flex-flow: column;
+    }
+    .logo-p{
+        font-size: 100px;
+    }
+    .logo-text{
+        padding-top: 2em;
+        font-size:20px;
+        width: 100%;
+    }
+    .right-box p{
+        font-size: 14px;
+    }
+    .left-cync{
+        width: 100%;
+        padding-left: 0;
+    }
+    .right-cync{
+        margin-top: -12em;
+        width: 100%;
+        padding-right: 0;
+        text-align: center;
+    }
+    footer{
+        height: 25vh;
+    }
+    footer h2{
+        font-size:13px;
+    }
+    footer p{
+        font-size: 8px;
+    }
+    footer a{
+        font-size: 9px;
+    }
+
 }
 
 @media (min-width:750px) and (max-width:1112px) {
@@ -745,6 +830,9 @@ footer h2 {
 	.desktop-nav {
 		display: none
 	}
+    #cursor{
+        display: none;
+    }
 	.hamburger-menu {
 		display: inline-block
 	}
@@ -795,4 +883,51 @@ footer h2 {
         top:0;
         right: 0;
 	}
+    .container-day,
+    .container-hour,
+    .container-minute,
+    .container-second {
+        width: 6em;
+        height: 6em;
+    }
+    .container-day:hover,
+    .container-hour:hover,
+    .container-minute:hover,
+    .container-second:hover {
+        transform: scale(1.2);
+    }
+    .text h1{
+        font-size: 35px;
+    }
+    .text p{
+        font-size: 14px;
+    }
+    .timer h3{
+        font-size:1.5vw
+    }
+    .timer{
+        margin-top: -14em;
+        justify-content: center;
+    }
+    .row:nth-child(2){
+        margin-top: 4em;
+    }
+    .logo-p{
+        font-size: 200px;
+    }
+    .right-box p{
+        font-size: 14px;
+    }
+    footer{
+        height: 30vh;
+    }
+    footer h2{
+        font-size:16px;
+    }
+    footer p{
+        font-size: 10px;
+    }
+    footer a{
+        font-size: 12px;
+    }
 }
