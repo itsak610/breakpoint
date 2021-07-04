@@ -52,6 +52,11 @@ var UserSchema = new Schema({
         type: String,
         default: ''
     },
+    student: {
+        type: Boolean,
+        default: false
+    },
+
 
     //participant
     participantname: {
@@ -69,6 +74,10 @@ var UserSchema = new Schema({
     participantnumber: {
         type: String,
         default: ''
+    },
+    substitute:{
+        type: Boolean,
+        default: false
     },
     password1: {
         type: String,

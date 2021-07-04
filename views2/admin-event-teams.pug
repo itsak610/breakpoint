@@ -36,26 +36,36 @@ block content
 
   if eventOver
     .card.leaderboard
-      h1.form-title View Participants
-      .animated-box.in
-        input#myInput(type='text' onkeyup='searchBar()' placeholder='Search Name')
-      table#myTable
-        tr
-          th No.
-          th Participant
-          th School Name
-          th Event
-        each team, index in teams
-            if team.username != currentUser.username
-                tr
-                    td= (index+1)
-                    - var link1 = '/admin/schools/' + team.code + '/details';
-                    - var link2 = '/admin/participant/' + team.username;
-                    td
-                        a(href=link2) #{team.participantname}
-                    td
-                        a(href=link1) #{team.schoolname}
-                    td= team.participantevent
+        h1.form-title View Participants
+        .animated-box.in
+            input#myInput(type='text' onkeyup='searchBar()' placeholder='Search Name')
+        table#myTable
+            tr
+            th No.
+            th Participant
+            th School Name
+            th Event
+            each team, index in teams
+                if team.username != currentUser.username
+                    tr
+                        if team.type == 'Participant'
+                            td= (index+1)
+                            - var link1 = '/admin/schools/' + team.code + '/details';
+                            - var link2 = '/admin/participant/' + team.username;
+                            td
+                                a(href=link2) #{team.participantname}
+                            td
+                                a(href=link1) #{team.schoolname}
+                            td= team.participantevent
+                        else 
+                            td= (index+1)
+                            - var link1 = '/admin/schools/' + team.code + '/details';
+                            - var link2 = '/admin/student/' + team.username;
+                            td
+                                a(href=link2) #{team.studentname} - independent
+                            td
+                                a(href=link1) #{team.schoolname}
+                            td= team.studentevent
   else
     .card.leaderboard.animated-box4.in
       h1#leader.form-title View Participants

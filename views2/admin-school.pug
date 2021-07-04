@@ -50,6 +50,8 @@ block content
                     b #{team.schoolemail}
                 p School Code - 
                     b #{team.code}
+                p Account Created - 
+                    b #{team.time}
   else
     each team, index in leaderboard
         if team.username != currentUser.username
@@ -63,3 +65,5 @@ block content
                     b #{team.schoolemail}
                 p School Code - 
                     b #{team.code}
+                p Account Created - 
+                    b #{team.time}

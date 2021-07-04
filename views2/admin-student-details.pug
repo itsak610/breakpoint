@@ -9,24 +9,24 @@ block content
 
   if eventOver
     .card.leaderboard.animated-box4.in
-        h1.form-title.center Participant Details
+        h1.form-title.center Student Details
         br
         each team, index in teams
             if team.username != currentUser.username
-                p Participant Name - 
-                    b #{team.participantname}
-                p Participant Event - 
-                    b #{team.participantevent}
+                p Student Name - 
+                    b #{team.studentname}
+                p Student Event - 
+                    b #{team.studentevent}
                 p School Name - 
                     - var link1 = '/admin/schools/' + team.code + '/details';
                     a(href=link1)
                         b #{team.schoolname}
-                p Participant Email - 
-                    b #{team.participantemail}
-                p Participant Number - 
-                    b #{team.participantnumber}
-                p School Code - 
-                    b #{team.code}
+                p Student Email - 
+                    b #{team.studentemail}
+                p Student Number - 
+                    b #{team.studentnumber}
+                p Type - 
+                    b Independent
                 p Username - 
                     b #{team.username}
                 p Password - 
@@ -36,20 +36,20 @@ block content
   else
     each team, index in leaderboard
         if team.username != currentUser.username
-            p Participant Name - 
-                b #{team.participantname}
-            p Participant Event - 
-                b #{team.participantevent}
+            p Student Name - 
+                b #{team.studentname}
+            p Student Event - 
+                b #{team.studentevent}
             p School Name - 
                 - var link1 = '/admin/schools/' + team.code + '/details';
                 a(href=link1)
                     b #{team.schoolname}
-            p Participant Email - 
-                b #{team.participantemail}
-            p Participant Number - 
-                b #{team.participantnumber}
-            p School Code - 
-                b #{team.code}
+            p Student Email - 
+                b #{team.studentemail}
+            p Student Number - 
+                b #{team.studentnumber}
+            p Type - 
+                b Independent
             p Username - 
                 b #{team.username}
             p Password - 

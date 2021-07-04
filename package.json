@@ -20,6 +20,7 @@
     "express-rate-limit": "^5.2.6",
     "express-session": "^1.17.2",
     "express-subdomain": "^1.0.5",
+    "googleapis": "^80.1.0",
     "live-server": "^1.2.1",
     "mongodb": "^3.6.8",
     "mongoose": "^5.4.20",

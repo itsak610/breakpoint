@@ -52,7 +52,7 @@ block content
         each team, index in teams
             if team.username != currentUser.username
                 tr
-                    td= (index+1)
+                    td= (index)
                     - var link1 = '/admin/schools/' + team.code;
                     - var link2 = '/admin/schools/' + team.code + '/details';
                     td
@@ -79,7 +79,7 @@ block content
         each team, index in leaderboard
             if team.username != currentUser.username
                 tr
-                    td= (index+1)
+                    td= (index)
                     - var link1 = '/admin/schools/' + team.code;
                     - var link2 = '/admin/schools/' + team.code + '/details';
                     td
