@@ -444,7 +444,7 @@ select {
     transition:all 0.4s;
     width: 43vw;
     height: 64vh;
-    margin-top:-3vh;
+    margin-top:-7vh;
     background: rgba(255, 255, 255, 0.2);
 }
 
@@ -840,15 +840,16 @@ footer {
   @media (max-width:750px) {
       *{
           cursor: default;
-      }
-      nav {
+        }
+        nav {
+          overflow-x: hidden;
             padding: 0;
           height: 100vh;
           position: absolute;
           left: 0;
           right: 0;
           top: 0;
-          font-size: 10px
+          font-size: 10px;
       }
       
       .mobile-nav ul, #nav.mobile-nav{
