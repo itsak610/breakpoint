@@ -843,6 +843,16 @@ footer h2 {
     *{
         cursor: default;
     }
+    nav {
+		height: 100vh;
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		white-space: nowrap;
+		text-align: left;
+		font-size: 10px
+	}
 	.desktop-nav {
 		display: none
 	}

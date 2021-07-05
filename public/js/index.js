@@ -173,13 +173,13 @@ else if (page==='alumni'){
 
 // CURSOR
 
-const cursor = document.querySelector("#cursor");
-const cursorCircle = cursor.querySelector(".cursor__circle");
+var cursor = document.querySelector("#cursor");
+var cursorCircle = cursor.querySelector(".cursor__circle");
 
-const mouse = { x: -100, y: -100 };
-const pos = { x: 0, y: 0 };
-const speed = 1;
-const updateCoordinates = (e) => {
+var mouse = { x: -100, y: -100 };
+var pos = { x: 0, y: 0 };
+var speed = 1;
+var updateCoordinates = (e) => {
   mouse.x = e.clientX;
   mouse.y = e.clientY;
 };
@@ -191,26 +191,26 @@ function getAngle(diffX, diffY) {
 }
 
 function getSqueeze(diffX, diffY) {
-  const distance = Math.sqrt(Math.pow(diffX, 2) + Math.pow(diffY, 2));
-  const maxSqueeze = 0.15;
-  const accelerator = 1500;
+  var distance = Math.sqrt(Math.pow(diffX, 2) + Math.pow(diffY, 2));
+  var maxSqueeze = 0.15;
+  var accelerator = 1500;
   return Math.min(distance / accelerator, maxSqueeze);
 }
 
-const updateCursor = () => {
-  const diffX = Math.round(mouse.x - pos.x);
-  const diffY = Math.round(mouse.y - pos.y);
+var updateCursor = () => {
+  var diffX = Math.round(mouse.x - pos.x);
+  var diffY = Math.round(mouse.y - pos.y);
 
   pos.x += diffX * speed;
   pos.y += diffY * speed;
 
-  const angle = getAngle(diffX, diffY);
-  const squeeze = getSqueeze(diffX, diffY);
+  var angle = getAngle(diffX, diffY);
+  var squeeze = getSqueeze(diffX, diffY);
 
-  const scale =
+  var scale =
     "scale(" + ((1 + squeeze) * 2) / 3 + ", " + ((1 - squeeze) * 2) / 3 + ")";
-  const rotate = "rotate(" + angle + "deg)";
-  const translate = "translate3d(" + pos.x + "px ," + pos.y + "px, 0)";
+  var rotate = "rotate(" + angle + "deg)";
+  var translate = "translate3d(" + pos.x + "px ," + pos.y + "px, 0)";
 
   cursor.style.transform = translate;
   cursorCircle.style.transform = rotate + scale;
@@ -223,16 +223,16 @@ function loop() {
 
 requestAnimationFrame(loop);
 
-const cursorModifiers = document.querySelectorAll("[cursor-class]");
+var cursorModifiers = document.querySelectorAll("[cursor-class]");
 
 cursorModifiers.forEach((curosrModifier) => {
   curosrModifier.addEventListener("mouseenter", function () {
-    const className = this.getAttribute("cursor-class");
+    var className = this.getAttribute("cursor-class");
     cursor.classList.add(className);
   });
 
   curosrModifier.addEventListener("mouseleave", function () {
-    const className = this.getAttribute("cursor-class");
+    var className = this.getAttribute("cursor-class");
     cursor.classList.remove(className);
   });
 });
@@ -240,20 +240,20 @@ cursorModifiers.forEach((curosrModifier) => {
 if (page==='home'){
     // Timer
 
-    const countdown = () => {
-        const countDate = new Date("July 20,2021 00:00:00").getTime();
-        const now = new Date().getTime();
-        const gap = countDate - now;
+    var countdown = () => {
+        var countDate = new Date("July 20,2021 00:00:00").getTime();
+        var now = new Date().getTime();
+        var gap = countDate - now;
     
-        const second = 1000;
-        const minute = second * 60;
-        const hour = minute * 60;
-        const day = hour * 24;
+        var second = 1000;
+        var minute = second * 60;
+        var hour = minute * 60;
+        var day = hour * 24;
     
-        const textDay = Math.floor(gap / day);
-        const textHour = Math.floor((gap % day) / hour);
-        const textMinute = Math.floor((gap % hour) / minute);
-        const textSecond = Math.floor((gap % minute) / second);
+        var textDay = Math.floor(gap / day);
+        var textHour = Math.floor((gap % day) / hour);
+        var textMinute = Math.floor((gap % hour) / minute);
+        var textSecond = Math.floor((gap % minute) / second);
     
         document.querySelector(".day").innerText = textDay;
         document.querySelector(".hour").innerText = textHour;

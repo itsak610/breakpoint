@@ -1107,7 +1107,7 @@ footer {
         display:none
     }
     .blog-card {
-        height: 35vh;
+        height: 35vw;
     }
   
   }
@@ -1116,6 +1116,16 @@ footer {
       *{
           cursor: default;
       }
+      nav {
+		height: 100vh;
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		white-space: nowrap;
+		text-align: left;
+		font-size: 10px
+	}
       .desktop-nav {
           display: none
       }
@@ -1219,6 +1229,6 @@ footer {
           font-size: 12px;
       }
       .blog-card {
-        height: 35vh;
+        height: 35vw;
     }
   }
