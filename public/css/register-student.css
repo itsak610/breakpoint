@@ -275,9 +275,22 @@ p.credits {
 form {
   margin: 0;
   padding: 0;
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
 }
 form .form-group {
   margin-bottom: 20px;
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+
 }
 form label {
   text-align: left;
