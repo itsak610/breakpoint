@@ -124,7 +124,7 @@ router.get('/login', (req, res, next) => {
     return res.redirect('/dashboard');
   }
   else if (!req.user){
-    return res.render('login', { title: 'Login' });
+    return res.render('login-wait', { title: 'Login' });
   }
 });
 
