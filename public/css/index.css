@@ -583,6 +583,9 @@ footer h2 {
 		text-align: left;
 		font-size: 10px
 	}
+    #nav.mobile-nav{
+        width: 100%;
+      }
     body{
         z-index:99999;
     }
@@ -857,6 +860,9 @@ footer h2 {
 		text-align: left;
 		font-size: 10px
 	}
+    #nav.mobile-nav{
+        width: 100%;
+      }
 	.desktop-nav {
 		display: none
 	}
