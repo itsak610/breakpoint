@@ -258,73 +258,6 @@ html(lang='en')
             font-weight: 100;
             }
 
-            /*----------------------------------------------FOOTER----------------------------------------------*/
-
-            footer {
-            border-top: 1px solid #fff;
-            height: 50vh;
-            padding: 20px 50px;
-            display: flex;
-            align-items: center;
-            flex-flow: column;
-            background: #080808;
-            margin-top:15em;
-            }
-
-            footer h2 {
-            font-weight: 300;
-            }
-
-            .imp-links {
-            display: flex;
-            justify-content: space-evenly;
-            align-items: center;
-            flex-flow: row;
-            height: 80%;
-            width: 100%;
-            }
-
-            .left-footer {
-            padding: 20px;
-            width: 50%;
-            }
-
-            .left-footer p {
-            font-weight: 100;
-            }
-
-            .right-footer {
-            display: flex;
-            width: 50%;
-            flex-flow: column;
-            justify-content: space-evenly;
-            align-items: center;
-            }
-
-            .links {
-            width: 100%;
-            margin-top: 20px;
-            display: flex;
-            justify-content: space-evenly;
-            align-items: center;
-            flex-flow: row;
-            }
-
-            .links ul li {
-            margin-bottom: 20px;
-            font-size: 20px;
-            }
-
-            .links ul li a {
-            border-bottom: 1px solid transparent;
-            padding-bottom: 5px;
-            transition: 0.3s ease-in-out;
-            }
-
-            .links ul li a:hover {
-            border-bottom: 1px #fff solid;
-            }
-
             /* -------------------------------------------------CARD-CONTAINER------------------------------------------------- */
 
             .card-container {
@@ -611,11 +544,77 @@ html(lang='en')
             
             
             /*  ================  */
-              /*---------------------------------------------- Navbar ----------------------------------------------*/
+            /*----------------------------------------------FOOTER----------------------------------------------*/
+
+            footer {
+            border-top: 1px solid #fff;
+            height: 50vh;
+            padding: 20px 50px;
+            display: flex;
+            align-items: center;
+            flex-flow: column;
+            background: #080808;
+            margin-top:15em;
+            }
+
+            footer h2 {
+            font-weight: 300;
+            }
+
+            .imp-links {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            flex-flow: row;
+            height: 80%;
+            width: 100%;
+            }
+
+            .left-footer {
+            padding: 20px;
+            width: 50%;
+            }
+
+            .left-footer p {
+            font-weight: 100;
+            }
+
+            .right-footer {
+            display: flex;
+            width: 50%;
+            flex-flow: column;
+            justify-content: space-evenly;
+            align-items: center;
+            }
+
+            .links {
+            width: 100%;
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            flex-flow: row;
+            }
+
+            .links ul li {
+            margin-bottom: 20px;
+            font-size: 20px;
+            }
+
+            .links ul li a {
+            border-bottom: 1px solid transparent;
+            padding-bottom: 5px;
+            transition: 0.3s ease-in-out;
+            }
+
+            .links ul li a:hover {
+            border-bottom: 1px #fff solid;
+            }
+            /*---------------------------------------------- Navbar ----------------------------------------------*/
 
             #nav.mobile-nav{
                 margin:auto;
-                /* position: fixed; */
+                position: fixed;
                 font-size: 34px;
                 width: 100vw;
                 height: 100vh;
@@ -656,11 +655,12 @@ html(lang='en')
             }
             .hamburger-menu {
                 display: none;
-                height: 100px;
+                height: 50px;
                 padding: 35px 10px;
                 transition: all 0.4s ease-in-out;
                 z-index: 99999;
                 cursor: pointer;
+                padding-top: 40px;
             }
             .hamburger-menu .menu-item {
                 display: block;
@@ -696,9 +696,6 @@ html(lang='en')
                 *{
                     cursor: default;
                 }
-                #cursor{
-                    display:none
-                }
                 nav {
                     height: 100vh;
                     padding: 10px 2.5px;
@@ -712,6 +709,9 @@ html(lang='en')
                 }
                 body{
                     z-index:99999;
+                }
+                #cursor{
+                    display: none;
                 }
                 .handletter {
                     display: none
@@ -727,7 +727,7 @@ html(lang='en')
                 .mob-logo {
                     position: absolute;
                     max-height: 40px;
-                    top:-25px;
+                    top:1px;
                     left: 0;
                     margin-top: 16px;
                     margin-left: 10px;
@@ -754,6 +754,7 @@ html(lang='en')
                     width: 5px;
                     right: 0
                 }
+
                 .card h1.form-title {
                     font-size: 1.1em
                 }
@@ -862,17 +863,109 @@ html(lang='en')
                 .card.leaderboard table td {
                     font-size: 1em
                 }
+                .landing{
+                    flex-flow: column;
+                }
+                .container-day,
+                .container-hour,
+                .container-minute,
+                .container-second {
+                    width: 4em;
+                    height: 4em;
+                    margin-top: 60px;
+                }
+                .container-day:hover,
+                .container-hour:hover,
+                .container-minute:hover,
+                .container-second:hover {
+                    transform: scale(1.2);
+                }
+                .text h1{
+                    font-size: 35px;
+                }
+                .text p{
+                    font-size: 14px;
+                }
+                .timer h3{
+                    font-size:1.5vw
+                }
+                .timer{
+                    justify-content: center;
+                }
+                .row{
+                    flex-flow: row;
+                }
+                .text{
+                    padding: 30px;
+                }
+                .btn-landing{
+                    display: block;
+                }
+                .right{
+                    padding-right: 0;
+                    width: 100%;
+                }
+                .left{
+                    padding-left: 30px;
+                    width: 100%;
+                    justify-content:unset;
+                    text-align: center;
+                }
+                .text h1{
+                    margin-top:1em;
+                    text-align: center;
+                    width: 100%;
+                }
+                .btn-landing{
+                    margin-top: 4em;
+                }
+                section.cync{
+                    flex-flow: column;
+                }
+                .logo-p{
+                    font-size: 100px;
+                }
+                .logo-text{
+                    padding-top: 2em;
+                    font-size:20px;
+                    width: 100%;
+                }
+                .right-box p{
+                    font-size: 14px;
+                }
+                .left-cync{
+                    width: 100%;
+                    padding-left: 0;
+                }
+                .right-cync{
+                    width: 100%;
+                    padding-right: 0;
+                    text-align: center;
+                }
+                footer{
+                    height: 25vh;
+                }
+                footer h2{
+                    font-size:13px;
+                }
+                footer p{
+                    font-size: 8px;
+                }
+                footer a{
+                    font-size: 9px;
+                }
+
             }
 
             @media (min-width:750px) and (max-width:1112px) {
                 *{
                     cursor: default;
                 }
-                #cursor{
-                    display:none
-                }
                 .desktop-nav {
                     display: none
+                }
+                #cursor{
+                    display: none;
                 }
                 .hamburger-menu {
                     display: inline-block
@@ -901,6 +994,10 @@ html(lang='en')
                 .eight.columns.right {
                     top: 0
                 }
+                .card {
+                    width: 70vw;
+                    padding: 80px
+                }
                 h1.center {
                     font-size: 2em;
                     margin-top: 20px
@@ -919,6 +1016,53 @@ html(lang='en')
                     margin-top: 15px;
                     top:0;
                     right: 0;
+                }
+                .container-day,
+                .container-hour,
+                .container-minute,
+                .container-second {
+                    width: 6em;
+                    height: 6em;
+                }
+                .container-day:hover,
+                .container-hour:hover,
+                .container-minute:hover,
+                .container-second:hover {
+                    transform: scale(1.2);
+                }
+                .text h1{
+                    font-size: 35px;
+                }
+                .text p{
+                    font-size: 14px;
+                }
+                .timer h3{
+                    font-size:1.5vw
+                }
+                .timer{
+                    margin-top: -14em;
+                    justify-content: center;
+                }
+                .row:nth-child(2){
+                    margin-top: 4em;
+                }
+                .logo-p{
+                    font-size: 200px;
+                }
+                .right-box p{
+                    font-size: 14px;
+                }
+                footer{
+                    height: 30vh;
+                }
+                footer h2{
+                    font-size:16px;
+                }
+                footer p{
+                    font-size: 10px;
+                }
+                footer a{
+                    font-size: 12px;
                 }
             }
   
@@ -976,88 +1120,89 @@ html(lang='en')
                         li
                             a(href='/register' cursor-class='arrow') Register
         #canvas
-        section#main
-            #cursor
-                .cursor__circle
-            .containerCard
-                .row1
-                    a.card.card1(href='/school/login', cursor-class='arrow')
-                        .content
-                            p School Login
-                    a.card.card1(href='/student/login', cursor-class='arrow')
+        #main
+            section
+                #cursor
+                    .cursor__circle
+                .containerCard
+                    .row1
+                        a.card.card1(href='/school/login', cursor-class='arrow')
                             .content
-                                p Student Login
-                .row2
-                    a.card.card2(href='/participant/login', cursor-class='arrow')
-                        .content
-                            p Participant Login (For (c)rosshair participants)
-        footer
-            .imp-links
-                .left-footer
-                    h2
-                        | (c)ync will be held on July 27th. All offline events will be
-                        | conducted at the venue from 9:00 AM to 12 noon.
-                    br
-                    p
-                        | For any further queries, please contact Mr. Anurag Sehgal: +91
-                        | 7869119509
-                .right-footer
-                    h2 More Links
-                    .links
-                        .right1
-                            ul
-                                li
-                                    a(href='#') Events
-                                li
-                                    a(href='/register') Register
-                                li
-                                    a(href='#') Login
-                        .right2
-                            ul
-                                li
-                                    a(href='https://www.instagram.com/cypherdps/' target='_blank') Instagram
-                                li
-                                    a(href='#' target='_blank') Discord
-                                li
-                                    a(href='#' target='_blank') YouTube
-            .last
-                p With &#x1F497; from (c)lub (c)ypher
-        script(src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r77/three.min.js')
-        script(src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.4.1/vanilla-tilt.min.js")
-        script(src='/js/index.js')    
-        script.
-            window.addEventListener("DOMContentLoaded", function(event) {
-                if(document.getElementById('username')) {
-                    document.getElementById('username').addEventListener('input', function(){
-                        this.value = this.value.replace(/\s+/g, '').toLowerCase();
-                    });
-                }
-            });
-            const test = document.querySelector(".card-school");
+                                p School Login
+                        a.card.card1(href='/student/login', cursor-class='arrow')
+                                .content
+                                    p Student Login
+                    .row2
+                        a.card.card2(href='/participant/login', cursor-class='arrow')
+                            .content
+                                p Participant Login (For (c)rosshair participants)
+            footer
+                .imp-links
+                    .left-footer
+                        h2
+                            | (c)ync will be held on July 27th. All offline events will be
+                            | conducted at the venue from 9:00 AM to 12 noon.
+                        br
+                        p
+                            | For any further queries, please contact Mr. Anurag Sehgal: +91
+                            | 7869119509
+                    .right-footer
+                        h2 More Links
+                        .links
+                            .right1
+                                ul
+                                    li
+                                        a(href='#') Events
+                                    li
+                                        a(href='/register') Register
+                                    li
+                                        a(href='#') Login
+                            .right2
+                                ul
+                                    li
+                                        a(href='https://www.instagram.com/cypherdps/' target='_blank') Instagram
+                                    li
+                                        a(href='#' target='_blank') Discord
+                                    li
+                                        a(href='#' target='_blank') YouTube
+                .last
+                    p With &#x1F497; from (c)lub (c)ypher
+            script(src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r77/three.min.js')
+            script(src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.4.1/vanilla-tilt.min.js")
+            script(src='/js/index.js')    
+            script.
+                window.addEventListener("DOMContentLoaded", function(event) {
+                    if(document.getElementById('username')) {
+                        document.getElementById('username').addEventListener('input', function(){
+                            this.value = this.value.replace(/\s+/g, '').toLowerCase();
+                        });
+                    }
+                });
+                const test = document.querySelector(".card-school");
 
-            const h2 = document.querySelector(".firstcard");
+                const h2 = document.querySelector(".firstcard");
 
-            const card = document.querySelector(".card");
+                const card = document.querySelector(".card");
 
-            const info = document.querySelector(".info");
+                const info = document.querySelector(".info");
 
-            const cross = document.querySelector(".cross");
+                const cross = document.querySelector(".cross");
 
-            card.addEventListener("click", function (e) {
-                card.classList.toggle("is-flipped");
-            });
+                card.addEventListener("click", function (e) {
+                    card.classList.toggle("is-flipped");
+                });
 
-            card.addEventListener("click", function (e) {
-                card.classList.toggle("is-flipped");
-            });
+                card.addEventListener("click", function (e) {
+                    card.classList.toggle("is-flipped");
+                });
 
-            VanillaTilt.init(document.querySelectorAll(".card"),{
-                max: 10,
-                speed: 600,
-                scale: 1,
-                transition: true,
-                easing: "cubic-bezier(0.6,.98,.52,.99)",
-                perspective: 600,
-                glare: true
-            });
+                VanillaTilt.init(document.querySelectorAll(".card"),{
+                    max: 10,
+                    speed: 600,
+                    scale: 1,
+                    transition: true,
+                    easing: "cubic-bezier(0.6,.98,.52,.99)",
+                    perspective: 600,
+                    glare: true
+                });
 

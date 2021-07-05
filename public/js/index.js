@@ -265,7 +265,7 @@ if (page==='home'){
 
   function navfunction() {
 	document.getElementsByClassName('js-toggle-menu')[0].classList.toggle('open');
-	document.getElementById("main").classList.toggle('temp-body')
+	document.querySelector('#main').classList.toggle('temp-body')
 	document.getElementsByClassName("hidden")[0].classList.toggle("notHidden")
   };
 
