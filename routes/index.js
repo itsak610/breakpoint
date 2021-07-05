@@ -109,6 +109,10 @@ router.get('/alumni', midWare, (req, res, next) => {
     return res.render('alumni', { title: 'Alumni' });
   });
 
+router.get('/events', midWare, (req, res, next) => {
+    return res.render('events', { title: 'Events' });
+});
+
 // Render login page
 router.get('/login', (req, res, next) => {
 
@@ -215,6 +219,7 @@ router.post('/school/register', function(req, res) {
     return res.render('school-register', { title: 'School Register', error : 'The passwords dont match.' });
   }
   else{
+    var verifyid = makeid(64);
     User.register(new User({
       username : req.body.username,
       schoolname : req.body.schoolname,
@@ -222,7 +227,7 @@ router.post('/school/register', function(req, res) {
       teachername : req.body.teachername,
       teachernumber : req.body.teachernumber,
       schoolemail: req.body.schoolemail,
-      verification: makeid(64),
+      verification: verifyid,
       code: makeid(8),
       time: new Date(),
     }), req.body.password, function(err, user) {
@@ -241,8 +246,9 @@ router.post('/school/register', function(req, res) {
                             <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Here are your credentials -</p>
                             <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Username: <b>${req.body.username}</b></p>
                             <p style="font-family: Arial, Helvetica, sans-serif;padding-top:5px;color:#eee;">Password: <b>${req.body.password}</b></p>
+                            <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;"><a style="text-decoration:none;color:red;" href="https://clubcypher.club/verify/${verifyid}">Click here to verify your account.</a>.</p>
                             <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;">You can use these credentials to login <a style="text-decoration:none;color:red;" href="https://clubcypher.club/login">HERE</a>.</p>
-                        </div>
+                    </div>
                     </div>
                 </div>
             </body>
@@ -393,6 +399,7 @@ router.post('/student/register/click', function(req, res) {
       var query1 = User.find({ studentevent: 'click' })
       query1.countDocuments(function (err, count) {
            var count_part = count;
+           var verifyid = makeid(64);
            User.register(new User({
              username : 'clickparticipant' + count_part,
              schoolname : req.body.schoolname,
@@ -401,7 +408,7 @@ router.post('/student/register/click', function(req, res) {
              studentevent : 'click',
              studentemail : req.body.email,
              studentnumber: req.body.phonenumber,
-             verification: makeid(64),
+             verification: verifyid,
              password1: req.body.password,
              student: true,
              time: new Date(),
@@ -421,6 +428,7 @@ router.post('/student/register/click', function(req, res) {
                                 <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Here are your credentials -</p>
                                 <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Username: <b>clickparticipant${count_part}</b></p>
                                 <p style="font-family: Arial, Helvetica, sans-serif;padding-top:5px;color:#eee;">Password: <b>${req.body.password}</b></p>
+                                <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;"><a style="text-decoration:none;color:red;" href="https://clubcypher.club/verify/${verifyid}">Click here to verify your account.</a>.</p>
                                 <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;">You can use these credentials to login <a style="text-decoration:none;color:red;" href="https://clubcypher.club/login">HERE</a>.</p>
                             </div>
                         </div>
@@ -508,6 +516,7 @@ router.post('/student/register/clipped', function(req, res) {
                                     <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Here are your credentials -</p>
                                     <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Username: <b>clickparticipant${count_part}</b></p>
                                     <p style="font-family: Arial, Helvetica, sans-serif;padding-top:5px;color:#eee;">Password: <b>${req.body.password}</b></p>
+                                    <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;"><a style="text-decoration:none;color:red;" href="https://clubcypher.club/verify/${verifyid}">Click here to verify your account.</a>.</p>
                                     <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;">You can use these credentials to login <a style="text-decoration:none;color:red;" href="https://clubcypher.club/login">HERE</a>.</p>
                                 </div>
                             </div>
@@ -656,6 +665,7 @@ router.post('/school/participant/register/crosshair', function(req, res) {
     res.render('over', {title: "Event Over"});
   }
   else{
+    var verifyid1 = makeid(64);
     User.register(new User({
       username : (req.user.username) + '03' + '01',
       password1 : (req.user.code) + '03' + '01',
@@ -666,7 +676,7 @@ router.post('/school/participant/register/crosshair', function(req, res) {
       participantevent : "crosshair",
       participantemail : req.body.email1,
       participantnumber: req.body.number1,
-      verification: makeid(64),
+      verification: verifyid1,
       time: new Date(),
     }), ((req.user.code) + '03' + '01'), function(err, user) {
 
@@ -685,6 +695,7 @@ router.post('/school/participant/register/crosshair', function(req, res) {
                             <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Here are your credentials -</p>
                             <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Username: <b>${(req.user.username) + '03' + '01'}</b></p>
                             <p style="font-family: Arial, Helvetica, sans-serif;padding-top:5px;color:#eee;">Password: <b>${(req.user.code) + '03' + '01'}</b></p>
+                            <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;"><a style="text-decoration:none;color:red;" href="https://clubcypher.club/verify/${verifyid1}">Click here to verify your account.</a>.</p>
                             <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;">You can use these credentials to login <a style="text-decoration:none;color:red;" href="https://clubcypher.club/login">HERE</a>.</p>
                         </div>
                     </div>
@@ -729,6 +740,7 @@ router.post('/school/participant/register/crosshair', function(req, res) {
           });
       }
     )
+    var verifyid2 = makeid(64);
     User.register(new User({
       username : (req.user.username) + '03' + '02',
       password1 : (req.user.code) + '03' + '02',
@@ -739,7 +751,7 @@ router.post('/school/participant/register/crosshair', function(req, res) {
       participantevent : "crosshair",
       participantemail : req.body.email2,
       participantnumber: req.body.number2,
-      verification: makeid(64),
+      verification: verifyid2,
       time: new Date(),
     }), ((req.user.code) + '03' + '02'), function(err,user){
         var output = 
@@ -757,6 +769,7 @@ router.post('/school/participant/register/crosshair', function(req, res) {
                             <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Here are your credentials -</p>
                             <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Username: <b>${(req.user.username) + '03' + '02'}</b></p>
                             <p style="font-family: Arial, Helvetica, sans-serif;padding-top:5px;color:#eee;">Password: <b>${(req.user.code) + '03' + '02'}</b></p>
+                            <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;"><a style="text-decoration:none;color:red;" href="https://clubcypher.club/verify/${verifyid2}">Click here to verify your account.</a>.</p>
                             <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;">You can use these credentials to login <a style="text-decoration:none;color:red;" href="https://clubcypher.club/login">HERE</a>.</p>
                         </div>
                     </div>
@@ -800,6 +813,7 @@ router.post('/school/participant/register/crosshair', function(req, res) {
                   return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully. Credentials sent to your email.' });
             });
     });
+    var verifyid3 = makeid(64);
     User.register(new User({
       username : (req.user.username) + '03' + '03',
       password1 : (req.user.code) + '03' + '03',
@@ -810,7 +824,7 @@ router.post('/school/participant/register/crosshair', function(req, res) {
       participantevent : "crosshair",
       participantemail : req.body.email3,
       participantnumber: req.body.number3,
-      verification: makeid(64),
+      verification: verifyid3,
       time: new Date(),
     }), ((req.user.code) + '03' + '03'), function(err,user){;
         var output = 
@@ -828,6 +842,7 @@ router.post('/school/participant/register/crosshair', function(req, res) {
                             <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Here are your credentials -</p>
                             <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Username: <b>${(req.user.username) + '03' + '03'}</b></p>
                             <p style="font-family: Arial, Helvetica, sans-serif;padding-top:5px;color:#eee;">Password: <b>${(req.user.code) + '03' + '03'}</b></p>
+                            <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;"><a style="text-decoration:none;color:red;" href="https://clubcypher.club/verify/${verifyid3}">Click here to verify your account.</a>.</p>
                             <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;">You can use these credentials to login <a style="text-decoration:none;color:red;" href="https://clubcypher.club/login">HERE</a>.</p>
                         </div>
                     </div>
@@ -871,6 +886,7 @@ router.post('/school/participant/register/crosshair', function(req, res) {
                   return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully. Credentials sent to your email.' });
             });
     });
+    var verifyid4 = makeid(64);
     User.register(new User({
       username : (req.user.username) + '03' + '04',
       password1 : (req.user.code) + '03' + '04',
@@ -881,7 +897,7 @@ router.post('/school/participant/register/crosshair', function(req, res) {
       participantevent : "crosshair",
       participantemail : req.body.email4,
       participantnumber: req.body.number4,
-      verification: makeid(64),
+      verification: verifyid4,
       time: new Date(),
     }), ((req.user.code) + '03' + '04'), function(err,user){;
         var output = 
@@ -899,6 +915,7 @@ router.post('/school/participant/register/crosshair', function(req, res) {
                             <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Here are your credentials -</p>
                             <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Username: <b>${(req.user.username) + '03' + '04'}</b></p>
                             <p style="font-family: Arial, Helvetica, sans-serif;padding-top:5px;color:#eee;">Password: <b>${(req.user.code) + '03' + '04'}</b></p>
+                            <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;"><a style="text-decoration:none;color:red;" href="https://clubcypher.club/verify/${verifyid4}">Click here to verify your account.</a>.</p>
                             <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;">You can use these credentials to login <a style="text-decoration:none;color:red;" href="https://clubcypher.club/login">HERE</a>.</p>
                         </div>
                     </div>
@@ -942,6 +959,7 @@ router.post('/school/participant/register/crosshair', function(req, res) {
                   return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully. Credentials sent to your email.' });
             });
     });
+    var verifyid5 = makeid(64);
     User.register(new User({
       username : (req.user.username) + '03' + '05',
       password1 : (req.user.code) + '03' + '05',
@@ -952,7 +970,7 @@ router.post('/school/participant/register/crosshair', function(req, res) {
       participantevent : "crosshair",
       participantemail : req.body.email5,
       participantnumber: req.body.number5,
-      verification: makeid(64),
+      verification: verifyid5,
       time: new Date(),
     }), ((req.user.code) + '03' + '05'), function(err,user){;
         var output = 
@@ -970,6 +988,7 @@ router.post('/school/participant/register/crosshair', function(req, res) {
                             <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Here are your credentials -</p>
                             <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Username: <b>${(req.user.username) + '03' + '05'}</b></p>
                             <p style="font-family: Arial, Helvetica, sans-serif;padding-top:5px;color:#eee;">Password: <b>${(req.user.code) + '03' + '05'}</b></p>
+                            <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;"><a style="text-decoration:none;color:red;" href="https://clubcypher.club/verify/${verifyid5}">Click here to verify your account.</a>.</p>
                             <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;">You can use these credentials to login <a style="text-decoration:none;color:red;" href="https://clubcypher.club/login">HERE</a>.</p>
                         </div>
                     </div>
@@ -1013,6 +1032,7 @@ router.post('/school/participant/register/crosshair', function(req, res) {
                   return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully. Credentials sent to your email.' });
             });
     });
+    var verifyid6 = makeid(64);
     User.register(new User({
         username : (req.user.username) + '03' + '06',
         password1 : (req.user.code) + '03' + '06',
@@ -1023,7 +1043,7 @@ router.post('/school/participant/register/crosshair', function(req, res) {
         participantevent : "crosshair",
         participantemail : req.body.email6,
         participantnumber: req.body.number6,
-        verification: makeid(64),
+        verification: verifyid6,
         substitute: true,
         time: new Date(),
     }), ((req.user.code) + '03' + '06'), function(err,user){;
@@ -1042,6 +1062,7 @@ router.post('/school/participant/register/crosshair', function(req, res) {
                             <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Here are your credentials -</p>
                             <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Username: <b>${(req.user.username) + '03' + '06'}</b></p>
                             <p style="font-family: Arial, Helvetica, sans-serif;padding-top:5px;color:#eee;">Password: <b>${(req.user.code) + '03' + '06'}</b></p>
+                            <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;"><a style="text-decoration:none;color:red;" href="https://clubcypher.club/verify/${verifyid6}">Click here to verify your account.</a>.</p>
                             <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;">You can use these credentials to login <a style="text-decoration:none;color:red;" href="https://clubcypher.club/login">HERE</a>.</p>
                         </div>
                     </div>

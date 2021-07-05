@@ -214,12 +214,7 @@ header {
   display: table;
   clear: both;
 }
-.left {
-  text-align: left;
-}
-.right {
-  text-align: right;
-}
+
 .center {
   text-align: center;
 }
@@ -1052,16 +1047,6 @@ footer {
       .btn-landing{
           display: block;
       }
-      .right{
-          padding-right: 0;
-          width: 100%;
-      }
-      .left{
-          padding-left: 30px;
-          width: 100%;
-          justify-content:unset;
-          text-align: center;
-      }
       .text h1{
           margin-top:1em;
           text-align: center;
@@ -1257,3 +1242,240 @@ footer {
         height: 35vw;
     }
   }
+
+  /*----------------------------------------------EVENTS----------------------------------------------*/
+  
+  section {
+    padding: 50px 0;
+  }
+  
+  .left {
+    display: flex;
+    flex-flow: row;
+    height: 150px;
+    padding: 150px;
+    text-align: left;
+  }
+  
+  .right {
+    display: flex;
+    flex-flow: row;
+    height: 150px;
+    padding: 150px;
+    text-align: right;
+  }
+  
+  .imgContainer {
+    display: flex;
+    height: 100%;
+    width: auto;
+  }
+  
+  .imgContainer img {
+    height: 100%;
+    width: auto;
+  }
+  
+  .left img {
+    margin-right: 40px;
+  }
+  
+  .right img {
+    margin-left: 40px;
+  }
+  
+  .textContainer {
+    display: flex;
+    justify-content: space-evenly;
+    flex-flow: column;
+  }
+  
+  .left .textContainer {
+    align-items: flex-start;
+    width: 100%;
+
+  }
+  
+  .right .textContainer {
+    align-items: flex-end;
+  }
+  
+  .textContainer h2 {
+    font-weight: 300;
+    font-size: 30px;
+  }
+  
+  .textContainer p {
+    font-size: 20px;
+    font-weight: 100;
+    line-height: 25px;
+  }
+  
+  .left-text {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-evenly;
+    height: 100%;
+    width: 90%;
+  }
+  
+  .right-text {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-evenly;
+    height: 100%;
+    width: 90%;
+  }
+    
+  @media only screen and (max-width: 1112px) {
+    .textContainer h2 {
+      font-size: 25px;
+    }
+  
+    .textContainer p {
+      font-size: 15px;
+    }
+  }
+  
+  @media only screen and (max-width: 750px) {
+    .left {
+      display: flex;
+      flex-flow: column;
+      height: 300px;
+      padding: 50px;
+      text-align: center;
+    }
+  
+    .right {
+      display: flex;
+      flex-flow: column-reverse;
+      height: 300px;
+      padding: 50px;
+      text-align: center;
+    }
+  
+    .left img {
+      margin-right: 0;
+    }
+  
+    .right img {
+      margin-left: 0;
+    }
+  
+    .left-text {
+      display: flex;
+      flex-flow: column;
+      justify-content: space-evenly;
+      height: 100%;
+      width: 100%;
+    }
+  
+    .right-text {
+      display: flex;
+      flex-flow: column;
+      justify-content: space-evenly;
+      height: 100%;
+      width: 100%;
+    }
+  
+    .textContainer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  
+    .textContainer h2 {
+      font-size: 20px;
+      align-items: center;
+      justify-content: center;
+    }
+  
+    .textContainer p {
+      font-size: 15px;
+      align-items: center;
+      justify-content: center;
+    }
+  
+    .imgContainer {
+      display: flex;
+      height: 50%;
+      justify-content: center;
+      align-items: center;
+      width: auto;
+      margin-bottom: 20px;
+    }
+  }
+  
+  @media only screen and (max-width: 480px) {
+    .left {
+      display: flex;
+      flex-flow: column;
+      height: 300px;
+      padding: 50px;
+      text-align: center;
+    }
+  
+    .right {
+      display: flex;
+      flex-flow: column-reverse;
+      height: 300px;
+      padding: 50px;
+      text-align: center;
+    }
+  
+    .right:nth-child(0) {
+      padding-top: 50px;
+    }
+  
+    .left img {
+      margin-right: 0;
+    }
+  
+    .right img {
+      margin-left: 0;
+    }
+  
+    .left-text {
+      display: flex;
+      flex-flow: column;
+      justify-content: space-evenly;
+      height: 100%;
+      width: 100%;
+    }
+  
+    .right-text {
+      display: flex;
+      flex-flow: column;
+      justify-content: space-evenly;
+      height: 100%;
+      width: 100%;
+    }
+  
+    .textContainer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  
+    .textContainer h2 {
+      font-size: 15px;
+      align-items: center;
+      justify-content: center;
+    }
+  
+    .textContainer p {
+      font-size: 10px;
+      align-items: center;
+      justify-content: center;
+    }
+  
+    .imgContainer {
+      display: flex;
+      height: 50%;
+      justify-content: center;
+      align-items: center;
+      width: auto;
+      margin-bottom: 15px;
+    }
+  }
+  
