@@ -750,7 +750,7 @@ footer h2 {
     .container-hour,
     .container-minute,
     .container-second{        
-        margin-left: 60px;
+        margin-left: 30px;
     }
     .container-day:hover,
     .container-hour:hover,
