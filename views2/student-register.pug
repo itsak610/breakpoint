@@ -10,9 +10,6 @@ block content
                 if error
                     p.error= error
                 .form-group
-                    label(for='username') Username
-                    input#username(type='text' name='username' placeholder='eg. elonmusk' maxlength='20' required='required')
-                .form-group
                     label(for='name') Full Name
                     input(type='text' name='name' placeholder='eg. Elon Musk' maxlength='20' required='required')
                 .form-group
@@ -38,9 +35,6 @@ block content
             form.registerform(method='post' action='/student/register/clipped')
                 h1.title 
                     | Register for (c)lipped
-                .form-group
-                    label(for='username') Username
-                    input#username(type='text' name='username' placeholder='eg. elonmusk' maxlength='20' required='required')
                 .form-group
                     label(for='name') Full Name
                     input(type='text' name='name' placeholder='eg. Elon Musk' maxlength='20' required='required')
