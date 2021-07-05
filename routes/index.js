@@ -84,7 +84,7 @@ router.post('/event-status', (req, res) => {
   }
 });
 
-router.get('/over', midWare, (req, res) => {
+router.get('/over', (req, res) => {
   if(!eventIsOn){
     return res.render('over', { title: 'Event Over'});
   }
@@ -98,18 +98,18 @@ router.get('/over', midWare, (req, res) => {
 
 // -------------------------------------------------------- Normal Routes -------------------------------------------------------- //
 
-router.get('/', midWare, (req, res, next) => {
+router.get('/', (req, res, next) => {
   return res.redirect('/home');
 });
-router.get('/home', midWare, (req, res, next) => {
+router.get('/home', (req, res, next) => {
   return res.render('home', { title: '(c)ypher' });
 });
 
-router.get('/alumni', midWare, (req, res, next) => {
+router.get('/alumni', (req, res, next) => {
     return res.render('alumni', { title: 'Alumni' });
   });
 
-router.get('/events', midWare, (req, res, next) => {
+router.get('/events', (req, res, next) => {
     return res.render('events', { title: 'Events' });
 });
 
