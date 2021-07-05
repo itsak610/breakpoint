@@ -495,7 +495,7 @@ select {
 }
 .blog-card:hover .card-info {
     opacity: 1;
-    bottom: 10vw;
+    bottom: 2vw;
 }
 .blog-card:hover .color-overlay {
     background: rgba(64, 64, 70,0.8);
