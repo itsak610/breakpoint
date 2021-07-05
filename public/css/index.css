@@ -573,7 +573,6 @@ footer h2 {
     }
 	nav {
 		height: 100vh;
-		padding: 10px 2.5px;
 		position: absolute;
 		left: 0;
 		right: 0;
@@ -747,7 +746,11 @@ footer h2 {
     .container-second {
         width: 4em;
         height: 4em;
-        margin-top: 60px;
+    }
+    .container-hour,
+    .container-minute,
+    .container-second{        
+        margin-left: 60px;
     }
     .container-day:hover,
     .container-hour:hover,
@@ -766,9 +769,12 @@ footer h2 {
     }
     .timer{
         justify-content: center;
+        flex-flow: row;
     }
     .row{
         flex-flow: row;
+        width: fit-content;
+        justify-content: center;
     }
     .text{
         padding: 30px;
@@ -783,6 +789,7 @@ footer h2 {
     .left{
         padding-left: 30px;
         width: 100%;
+        margin-top: 6em;
         justify-content:unset;
         text-align: center;
     }
