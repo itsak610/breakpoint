@@ -138,6 +138,7 @@ a {
 
 /*----------------------------------------------HEADER----------------------------------------------*/
 header {
+    position: absolute;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -1260,9 +1261,9 @@ footer {
   }
 
 /*----------------------------------------------EVENTS----------------------------------------------*/
-/* .event{
-    padding-top: 20vh;
-} */
+.event{
+    padding-top:15vh
+}
 section.events{
     height: 100vh;
     width: 100%;
@@ -1271,8 +1272,11 @@ section.events{
     justify-content: space-evenly;
     align-content: center;
     align-items: center;
-    padding-top:15em;
+    
 }  
+section.events:nth-child(2), section.events:nth-child(3), section.events:nth-child(4){
+    padding-top:35vw;
+}
 .events h2{
     padding-top: 50px;
     font-weight: 300;
