@@ -704,7 +704,7 @@ footer {
     align-items: center;
     flex-flow: column;
     background: #080808;
-    margin-top:15em;
+    margin-top:7em;
   }
   
   footer h2 {
@@ -847,6 +847,7 @@ footer {
           cursor: default;
       }
       nav {
+            padding: 0;
           height: 100vh;
           position: absolute;
           left: 0;
@@ -1111,6 +1112,9 @@ footer {
     .title-content{
         margin: 80px 0 0 0; 
     }
+    .card-container{
+        flex-flow: column;
+    }
   
   }
   
@@ -1120,6 +1124,7 @@ footer {
       }
       nav {
 		height: 100vh;
+        padding: 0;
 		position: absolute;
 		left: 0;
 		right: 0;
