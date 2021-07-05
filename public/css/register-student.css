@@ -58,6 +58,13 @@ a {
   opacity: 0.5;
   /* margin-left:-10vh; */
 }
+td a:hover{
+    color:#0098DB;
+}
+
+section a:hover{
+    color:#0098DB;
+}
 
 /*----------------------------------------------CURSOR----------------------------------------------*/
 
@@ -800,7 +807,7 @@ footer {
       text-align: center;
     }
     .mobile-nav ul li a:hover{
-        color: #F11D7A;
+        color: #7AD7F0;
     }
     .hidden{
       display: none;
@@ -828,7 +835,7 @@ footer {
       height: 2px;
       margin: 0 0 7px;
       transition: all 0.3s ease-in-out;
-      background-image: linear-gradient(to bottom right, #42E6FF, #F11D7A);
+      background: #a9a9a9;
       background-size: 100px;
       width: 30px;
     }
