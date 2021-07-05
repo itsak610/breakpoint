@@ -1385,7 +1385,12 @@ router.get('/admin/schools/:id', (req, res, next) => {
             var query2 = { type: 'Participant' }
             var query3 = { code: req.params.id }
             User.find().find(query2).find(query3).exec(function(err, teams3) {
-                return res.render('admin-participants', { teams: teams3, eventOver: true, title: 'View Participants' });
+                if(teams3.length==0){
+                    return res.render('error')
+                }
+                else{
+                    return res.render('admin-participants', { teams: teams3, eventOver: true, title: 'View Participants' });
+                }
             });
         }
     }
@@ -1402,7 +1407,12 @@ router.get('/admin/schools/:id/details', (req, res, next) => {
             var query2 = { type: 'School' }
             var query3 = { code: req.params.id }
             User.find().find(query2).find(query3).exec(function(err, teams3) {
-                return res.render('admin-school', { teams: teams3, eventOver: true, title: 'School Details' });
+                if(teams3.length==0){
+                    return res.render('error')
+                }
+                else{
+                    return res.render('admin-school', { teams: teams3, eventOver: true, title: 'School Details' });
+                }
             });
         }
     }
@@ -1473,7 +1483,12 @@ router.get('/admin/student/:id', (req, res, next) => {
             var query2 = { type: 'Student' }
             var query3 = { username: req.params.id }
             User.find().find(query2).find(query3).exec(function(err, teams3) {
-                return res.render('admin-student-details', { teams: teams3, eventOver: true, title: 'Student Details' });
+                if(teams3.length==0){
+                    return res.render('error')
+                }
+                else{
+                    return res.render('admin-student-details', { teams: teams3, eventOver: true, title: 'Student Details' });
+                }
             });
         }
     }
