@@ -64,6 +64,12 @@ block content
                 br
                 br
                 a(href="/school/teams") Manage your teams here
+                if currentUser.verified == false 
+                    b.warning You are not verified yet! We have sent a verification email on your registered email address, follow the steps in the email to verify your account.
+                    br
+                    br
+                    b.warning NOTE : You will not be registered for the event until you have a verified account.
+
     else if currentUser.type == 'Participant'
         .dashContainer 
             .dashCard(cursor-class='extender')
@@ -77,6 +83,12 @@ block content
                     p Events - (c)lipped
                 if currentUser.studentevent == 'crosshair'
                     p Events - (c)rosshair
+                if currentUser.verified == false 
+                    b.warning You are not verified yet! We have sent a verification email on your registered email address, follow the steps in the email to verify your account.
+                    br
+                    br
+                    b.warning NOTE : You will not be registered for the event until you have a verified account.
+
     else
 
         .dashContainer 
@@ -91,13 +103,14 @@ block content
                     p Events - (c)lipped
                 if currentUser.studentevent == 'crosshair'
                     p Events - (c)rosshair
+                if currentUser.verified == false 
+                    b.warning You are not verified yet! We have sent a verification email on your registered email address, follow the steps in the email to verify your account.
+                    br
+                    br
+                    b.warning NOTE : You will not be registered for the event until you have a verified account.
+
     br
     br
     br
-    if currentUser.verified == false 
-        b.warning You are not verified yet! We have sent a verification email on your registered email address, follow the steps in the email to verify your account.
-        br
-        br
-        b.warning NOTE : You will not be registered for the event until you have a verified account.
     script.
         document.getElementById("dashboardnav").classList.toggle("active");
