@@ -853,412 +853,6 @@ footer {
       transform-origin: 4px;
     }
   
-  @media (max-width:750px) {
-      *{
-          cursor: default;
-        }
-        nav {
-          overflow-x: hidden;
-            padding: 0;
-          height: 100vh;
-          position: absolute;
-          left: 0;
-          right: 0;
-          top: 0;
-          font-size: 10px;
-      }
-      
-      .mobile-nav ul, #nav.mobile-nav{
-        overflow-x: hidden;
-      }
-      body{
-          z-index:99999;
-      }
-      #cursor{
-          display: none;
-      }
-      .handletter {
-          display: none
-      }
-  
-      .desktop-nav {
-          display: none
-      }
-      .hamburger-menu {
-          display: inline-block;
-          margin-right: 25px
-      }
-      .mob-logo {
-          position: absolute;
-          max-height: 40px;
-          top:1px;
-          left: 0;
-          margin-top: 16px;
-          margin-left: 10px;
-          display: inline-block
-      }
-      section#main {
-          margin-top: 60px
-      }
-      p.credits {
-          font-size: .8em
-      }
-      footer nav li a,
-      header nav li a {
-          height: 30px!important;
-          line-height: 30px!important
-      }
-      header .left {
-          display: none
-      }
-      header a.active {
-          background: 0 0
-      }
-      .simplebar-track.simplebar-vertical {
-          width: 5px;
-          right: 0
-      }
-      .card h1.form-title {
-          font-size: 1.1em
-      }
-      .card p {
-          font-size: .6em;
-          margin-top: 10px
-      }
-      .card label {
-          font-size: .8em
-      }
-      .card input {
-          font-size: .8em;
-          height: 40px;
-          background-position: 6px 6px;
-          text-indent: 28px
-      }
-      .card input[type=submit] {
-          text-indent: 0
-      }
-      .card.question-card {
-          width: 400px;
-          padding: 40px
-      }
-      .card.question-card p {
-          font-size: 1em
-      }
-      h1.title {
-          font-size: 2em
-      }
-      .animated-box3.play-page {
-          margin: auto;
-          margin-top: 50px
-      }
-      .card.question-card input {
-          text-indent: 0
-      }
-      h1.center {
-          font-size: 1.5em;
-          margin-top: 10px
-      }
-      #rules.card ul {
-          margin-top: -25px
-      }
-      #rules.card li {
-          font-size: 10px;
-          margin-left: -25px
-      }
-      #rules.card {
-          height: fit-content;
-          width: 92vw;
-          padding: 40px
-      }
-      .card.leaderboard {
-          width: 92vw;
-          padding-top: 8vh
-      }
-      .card.leaderboard #leader {
-          font-size: 2em
-      }
-      .flex {
-          padding-top: 3vh;
-          display: block
-      }
-      .flex img {
-          height: 50px;
-          width: 50px
-      }
-      .arrow {
-          float: right;
-          width: 100%;
-          right: 0
-      }
-      .arrows {
-          margin: auto;
-          margin-top: 20px;
-          width: 100%
-      }
-      .arrow:nth-child(1) {
-          margin-right: 50px
-      }
-      .arrow:nth-child(2) {
-          margin-right: 10px
-      }
-      #myInput {
-          font-size: .8em;
-          height: 40px;
-          background-position: 10px 12px;
-          text-indent: 18px;
-          background-size: 15px 15px
-      }
-      .animated-box.in {
-          margin: auto;
-          height: 40px;
-          width: 90%
-      }
-      .animated-box:after {
-          clip-path: polygon(0 100%, 2px 100%, 2px 2px, calc(100% - 2px) 2px, calc(100% - 2px) calc(100% - 2px), 2px calc(100% - 2px), 2px 100%, 100% 100%, 100% 0, 0 0)
-      }
-      #myTable {
-          padding: 20px;
-          padding-top: 90px
-      }
-      .card.leaderboard table th {
-          font-size: 1.2em
-      }
-      .card.leaderboard table td {
-          font-size: 1em
-      }
-      .landing{
-          flex-flow: column;
-      }
-      .container-day,
-      .container-hour,
-      .container-minute,
-      .container-second {
-          width: 4em;
-          height: 4em;
-          margin-top: 60px;
-      }
-      .container-day:hover,
-      .container-hour:hover,
-      .container-minute:hover,
-      .container-second:hover {
-          transform: scale(1.2);
-      }
-      .text h1{
-          font-size: 35px;
-      }
-      .text p{
-          font-size: 14px;
-      }
-      .timer h3{
-          font-size:1.5vw
-      }
-      .timer{
-          justify-content: center;
-      }
-      .row{
-          flex-flow: row;
-      }
-      .text{
-          padding: 30px;
-      }
-      .btn-landing{
-          display: block;
-      }
-      .text h1{
-          margin-top:1em;
-          text-align: center;
-          width: 100%;
-      }
-      .btn-landing{
-          margin-top: 4em;
-      }
-      section.cync{
-          flex-flow: column;
-      }
-      .logo-p{
-          font-size: 100px;
-      }
-      .logo-text{
-          padding-top: 2em;
-          font-size:20px;
-          width: 100%;
-      }
-      .right-box p{
-          font-size: 14px;
-      }
-      .left-cync{
-          width: 100%;
-          padding-left: 0;
-      }
-      .right-cync{
-          width: 100%;
-          padding-right: 0;
-          text-align: center;
-      }
-
-      form input,
-      select,
-      textarea {
-        width: 77vw;
-      }
-
-      footer{
-          height: 25vh;
-      }
-      footer h2{
-          font-size:13px;
-      }
-      footer p{
-          font-size: 8px;
-      }
-      footer a{
-          font-size: 9px;
-      }
-      .card-info{
-        display:none
-    }
-    .blog-card {
-        height: 35vw;
-    }
-    .title-content{
-        margin: 80px 0 0 0; 
-    }
-    .card-container{
-        flex-flow: column;
-    }
-  
-  }
-  
-  @media (min-width:750px) and (max-width:1112px) {
-      *{
-          cursor: default;
-      }
-      .mobile-nav ul, #nav.mobile-nav{
-        overflow-x: hidden;
-      }
-      nav {
-		height: 100vh;
-        padding: 0;
-		position: absolute;
-		left: 0;
-		right: 0;
-		top: 0;
-		font-size: 10px
-	}
-
-      .desktop-nav {
-          display: none
-      }
-      .card-info{
-        display:none
-    }
-      #cursor{
-          display: none;
-      }
-      .hamburger-menu {
-          display: inline-block
-      }
-      body{
-          z-index:99999;
-      }
-  
-      .mob-logo {
-          position: absolute;
-          max-height: 60px;
-          height: 60px;
-          left: 0;
-          top: 0;
-          margin-left: 30px;
-          display: inline-block;
-          margin-top: 16px
-      }
-  
-      .handletter {
-          display: none
-      }
-      .eight.columns {
-          width: 90%
-      }
-      .eight.columns.right {
-          top: 0
-      }
-      h1.center {
-          font-size: 2em;
-          margin-top: 20px
-      }
-      #rules.card li {
-          font-size: 14px;
-          margin-left: -25px
-      }
-      #rules.card {
-          height: fit-content
-      }
-      .hamburger-menu {
-          float: right;
-          position: absolute;
-          margin-right: 25px;
-          margin-top: 15px;
-          top:0;
-          right: 0;
-      }
-      .container-day,
-      .container-hour,
-      .container-minute,
-      .container-second {
-          width: 6em;
-          height: 6em;
-      }
-      .container-day:hover,
-      .container-hour:hover,
-      .container-minute:hover,
-      .container-second:hover {
-          transform: scale(1.2);
-      }
-      .text h1{
-          font-size: 35px;
-      }
-      .text p{
-          font-size: 14px;
-      }
-      .timer h3{
-          font-size:1.5vw
-      }
-      .timer{
-          margin-top: -14em;
-          justify-content: center;
-      }
-      .row:nth-child(2){
-          margin-top: 4em;
-      }
-      .logo-p{
-          font-size: 200px;
-      }
-      .right-box p{
-          font-size: 14px;
-      }
-
-      form input,
-      select,
-      textarea {
-        width: 50vw;
-      }
-
-      footer{
-          height: 30vh;
-      }
-      footer h2{
-          font-size:16px;
-      }
-      footer p{
-          font-size: 10px;
-      }
-      footer a{
-          font-size: 12px;
-      }
-      .blog-card {
-        height: 35vw;
-    }
-  }
 
 /*----------------------------------------------EVENTS----------------------------------------------*/
 .event{
@@ -1322,4 +916,451 @@ section.events:nth-child(2), section.events:nth-child(3), section.events:nth-chi
 .imgContainer img{
     height: 12vh;
     width: auto;
+}
+
+/*----------------------------------------------Media Queries----------------------------------------------*/
+@media (max-width:750px) {
+    *{
+        cursor: default;
+      }
+      nav {
+        overflow-x: hidden;
+          padding: 0;
+        height: 100vh;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        font-size: 10px;
+    }
+    
+    .mobile-nav ul, #nav.mobile-nav{
+      overflow-x: hidden;
+    }
+    body{
+        z-index:99999;
+    }
+    #cursor{
+        display: none;
+    }
+    .handletter {
+        display: none
+    }
+
+    .desktop-nav {
+        display: none
+    }
+    .hamburger-menu {
+        display: inline-block;
+        margin-right: 25px
+    }
+    .mob-logo {
+        position: absolute;
+        max-height: 40px;
+        top:1px;
+        left: 0;
+        margin-top: 16px;
+        margin-left: 10px;
+        display: inline-block
+    }
+    section#main {
+        margin-top: 60px
+    }
+    p.credits {
+        font-size: .8em
+    }
+    footer nav li a,
+    header nav li a {
+        height: 30px!important;
+        line-height: 30px!important
+    }
+    header .left {
+        display: none
+    }
+    header a.active {
+        background: 0 0
+    }
+    .simplebar-track.simplebar-vertical {
+        width: 5px;
+        right: 0
+    }
+    .card h1.form-title {
+        font-size: 1.1em
+    }
+    .card p {
+        font-size: .6em;
+        margin-top: 10px
+    }
+    .card label {
+        font-size: .8em
+    }
+    .card input {
+        font-size: .8em;
+        height: 40px;
+        background-position: 6px 6px;
+        text-indent: 28px
+    }
+    .card input[type=submit] {
+        text-indent: 0
+    }
+    .card.question-card {
+        width: 400px;
+        padding: 40px
+    }
+    .card.question-card p {
+        font-size: 1em
+    }
+    h1.title {
+        font-size: 2em
+    }
+    .animated-box3.play-page {
+        margin: auto;
+        margin-top: 50px
+    }
+    .card.question-card input {
+        text-indent: 0
+    }
+    h1.center {
+        font-size: 1.5em;
+        margin-top: 10px
+    }
+    #rules.card ul {
+        margin-top: -25px
+    }
+    #rules.card li {
+        font-size: 10px;
+        margin-left: -25px
+    }
+    #rules.card {
+        height: fit-content;
+        width: 92vw;
+        padding: 40px
+    }
+    .card.leaderboard {
+        width: 92vw;
+        padding-top: 8vh
+    }
+    .card.leaderboard #leader {
+        font-size: 2em
+    }
+    .flex {
+        padding-top: 3vh;
+        display: block
+    }
+    .flex img {
+        height: 50px;
+        width: 50px
+    }
+    .arrow {
+        float: right;
+        width: 100%;
+        right: 0
+    }
+    .arrows {
+        margin: auto;
+        margin-top: 20px;
+        width: 100%
+    }
+    .arrow:nth-child(1) {
+        margin-right: 50px
+    }
+    .arrow:nth-child(2) {
+        margin-right: 10px
+    }
+    #myInput {
+        font-size: .8em;
+        height: 40px;
+        background-position: 10px 12px;
+        text-indent: 18px;
+        background-size: 15px 15px
+    }
+    .animated-box.in {
+        margin: auto;
+        height: 40px;
+        width: 90%
+    }
+    .animated-box:after {
+        clip-path: polygon(0 100%, 2px 100%, 2px 2px, calc(100% - 2px) 2px, calc(100% - 2px) calc(100% - 2px), 2px calc(100% - 2px), 2px 100%, 100% 100%, 100% 0, 0 0)
+    }
+    #myTable {
+        padding: 20px;
+        padding-top: 90px
+    }
+    .card.leaderboard table th {
+        font-size: 1.2em
+    }
+    .card.leaderboard table td {
+        font-size: 1em
+    }
+    .landing{
+        flex-flow: column;
+    }
+    .container-day,
+    .container-hour,
+    .container-minute,
+    .container-second {
+        width: 4em;
+        height: 4em;
+        margin-top: 60px;
+    }
+    .container-day:hover,
+    .container-hour:hover,
+    .container-minute:hover,
+    .container-second:hover {
+        transform: scale(1.2);
+    }
+    .text h1{
+        font-size: 35px;
+    }
+    .text p{
+        font-size: 14px;
+    }
+    .timer h3{
+        font-size:1.5vw
+    }
+    .timer{
+        justify-content: center;
+    }
+    .row{
+        flex-flow: row;
+    }
+    .text{
+        padding: 30px;
+    }
+    .btn-landing{
+        display: block;
+    }
+    .text h1{
+        margin-top:1em;
+        text-align: center;
+        width: 100%;
+    }
+    .btn-landing{
+        margin-top: 4em;
+    }
+    section.cync{
+        flex-flow: column;
+    }
+    .logo-p{
+        font-size: 100px;
+    }
+    .logo-text{
+        padding-top: 2em;
+        font-size:20px;
+        width: 100%;
+    }
+    .right-box p{
+        font-size: 14px;
+    }
+    .left-cync{
+        width: 100%;
+        padding-left: 0;
+    }
+    .right-cync{
+        width: 100%;
+        padding-right: 0;
+        text-align: center;
+    }
+
+    form input,
+    select,
+    textarea {
+      width: 77vw;
+    }
+
+    footer{
+        height: 25vh;
+    }
+    footer h2{
+        font-size:13px;
+    }
+    footer p{
+        font-size: 8px;
+    }
+    footer a{
+        font-size: 9px;
+    }
+    .card-info{
+      display:none
+  }
+  .blog-card {
+      height: 35vw;
+  }
+  .title-content{
+      margin: 80px 0 0 0; 
+  }
+  .card-container{
+      flex-flow: column;
+  }
+    section.events:nth-child(2), section.events:nth-child(3), section.events:nth-child(4){
+        padding-top:60vh;
+    }
+    .event{
+        padding-top:40vw;
+    }
+    .events h2{
+        font-size: 6vh;
+    }
+    .events p{
+        font-size: 3vw;
+        width: 100%;
+        line-height: 2vh;
+    }
+    .events ul li{
+        font-size: 3vw;
+        width: 100%;
+        line-height: 3vh;
+        list-style-type: circle;
+    }
+}
+
+@media (min-width:750px) and (max-width:1112px) {
+    *{
+        cursor: default;
+    }
+    .mobile-nav ul, #nav.mobile-nav{
+      overflow-x: hidden;
+    }
+    nav {
+      height: 100vh;
+      padding: 0;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      font-size: 10px
+  }
+
+    .desktop-nav {
+        display: none
+    }
+    .card-info{
+      display:none
+  }
+    #cursor{
+        display: none;
+    }
+    .hamburger-menu {
+        display: inline-block
+    }
+    body{
+        z-index:99999;
+    }
+
+    .mob-logo {
+        position: absolute;
+        max-height: 60px;
+        height: 60px;
+        left: 0;
+        top: 0;
+        margin-left: 30px;
+        display: inline-block;
+        margin-top: 16px
+    }
+
+    .handletter {
+        display: none
+    }
+    .eight.columns {
+        width: 90%
+    }
+    .eight.columns.right {
+        top: 0
+    }
+    h1.center {
+        font-size: 2em;
+        margin-top: 20px
+    }
+    #rules.card li {
+        font-size: 14px;
+        margin-left: -25px
+    }
+    #rules.card {
+        height: fit-content
+    }
+    .hamburger-menu {
+        float: right;
+        position: absolute;
+        margin-right: 25px;
+        margin-top: 15px;
+        top:0;
+        right: 0;
+    }
+    .container-day,
+    .container-hour,
+    .container-minute,
+    .container-second {
+        width: 6em;
+        height: 6em;
+    }
+    .container-day:hover,
+    .container-hour:hover,
+    .container-minute:hover,
+    .container-second:hover {
+        transform: scale(1.2);
+    }
+    .text h1{
+        font-size: 35px;
+    }
+    .text p{
+        font-size: 14px;
+    }
+    .timer h3{
+        font-size:1.5vw
+    }
+    .timer{
+        margin-top: -14em;
+        justify-content: center;
+    }
+    .row:nth-child(2){
+        margin-top: 4em;
+    }
+    .logo-p{
+        font-size: 200px;
+    }
+    .right-box p{
+        font-size: 14px;
+    }
+
+    form input,
+    select,
+    textarea {
+      width: 50vw;
+    }
+
+    footer{
+        height: 30vh;
+    }
+    footer h2{
+        font-size:16px;
+    }
+    footer p{
+        font-size: 10px;
+    }
+    footer a{
+        font-size: 12px;
+    }
+    .blog-card {
+      height: 35vw;
+  }
+    section.events:nth-child(2), section.events:nth-child(3), section.events:nth-child(4){
+        padding-top:60vh;
+    }
+    .event{
+        padding-top:40vw;
+    }
+    .events h2{
+        font-size: 6vh;
+    }
+    .events p{
+        font-size: 2vw;
+        width: 75%;
+        line-height: 4vh;
+    }
+    .events ul li{
+        font-size: 2vw;
+        width: 75%;
+        line-height: 4vh;
+        list-style-type: circle;
+    }
 }
