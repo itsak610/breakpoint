@@ -848,7 +848,6 @@ footer {
       }
       nav {
           height: 100vh;
-          padding: 10px 2.5px;
           position: absolute;
           left: 0;
           right: 0;
@@ -1108,6 +1107,9 @@ footer {
     }
     .blog-card {
         height: 35vw;
+    }
+    .title-content{
+        margin: 80px 0 0 0; 
     }
   
   }
