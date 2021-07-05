@@ -239,7 +239,7 @@ if (page==='home'){
     // Timer
 
     var countdown = () => {
-        var countDate = new Date("July 20,2021 00:00:00").getTime();
+        var countDate = new Date("August 02,2021 00:00:00").getTime();
         var now = new Date().getTime();
         var gap = countDate - now;
     
