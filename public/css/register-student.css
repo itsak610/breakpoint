@@ -1286,7 +1286,7 @@ section.events:nth-child(2), section.events:nth-child(3), section.events:nth-chi
     font-size: 3vh;
 }
 .events p{
-    font-size: 3vh;
+    font-size: 1.3vw;
     width: 70%;
     line-height: 4.3vh;
     text-align: center;
@@ -1299,7 +1299,7 @@ section.events:nth-child(2), section.events:nth-child(3), section.events:nth-chi
     align-items: center;
 }
 .events ul li{
-    font-size: 3vh;
+    font-size: 1.3vw;
     width: 70%;
     line-height: 4.3vh;
     list-style-type: circle;
