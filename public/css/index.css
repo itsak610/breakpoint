@@ -572,6 +572,7 @@ footer h2 {
         cursor: default;
     }
 	nav {
+        padding: 0;
 		height: 100vh;
 		position: absolute;
 		left: 0;
@@ -844,6 +845,7 @@ footer h2 {
         cursor: default;
     }
     nav {
+        padding: 0;
 		height: 100vh;
 		position: absolute;
 		left: 0;
