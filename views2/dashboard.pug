@@ -20,7 +20,7 @@ block content
             border:1px solid #fff;
             border-radius:15px;
             width:50%;
-            height:250px;
+            height:fit-content;
             display:flex;
             align-items:center;
             justify-content:space-evenly;
@@ -63,7 +63,10 @@ block content
                 a(href="/school/participant/register") Add your teams here
                 br
                 br
-                //- a(href="/school/teams") Manage your teams here
+                a(href="/school/teams") Manage your teams here
+                br
+                br
+                br
                 if currentUser.verified == false 
                     b.warning You are not verified yet! We have sent a verification email on your registered email address, follow the steps in the email to verify your account.
                     br
@@ -108,9 +111,3 @@ block content
                     br
                     br
                     b.warning NOTE : You will not be registered for the event until you have a verified account.
-
-    br
-    br
-    br
-    script.
-        document.getElementById("dashboardnav").classList.toggle("active");

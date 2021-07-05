@@ -124,7 +124,7 @@ router.get('/login', (req, res, next) => {
     return res.redirect('/dashboard');
   }
   else if (!req.user){
-    return res.render('login-wait', { title: 'Login' });
+    return res.render('login', { title: 'Login' });
   }
 });
 
@@ -157,7 +157,7 @@ router.get('/school/login', (req, res, next) => {
     }
   }
   else{
-    return res.render('login-wait', { title: 'School Login' });
+    return res.render('school-login', { title: 'School Login' });
   }
 });
 
@@ -228,6 +228,7 @@ router.post('/school/register', function(req, res) {
       teachernumber : req.body.teachernumber,
       schoolemail: req.body.schoolemail,
       verification: verifyid,
+      password1: req.body.password,
       code: makeid(8),
       time: new Date(),
     }), req.body.password, function(err, user) {
@@ -310,7 +311,7 @@ router.get('/student/login', (req, res, next) => {
     }
   }
   else if (!req.user){
-    return res.render('login-wait', { title: 'Student Login' });
+    return res.render('student-login', { title: 'Student Login' });
   }
 });
 
@@ -582,7 +583,7 @@ router.get('/participant/login', (req, res, next) => {
         }
   }
   else if (!req.user){
-    return res.render('login-wait', { title: 'Participant Login' });
+    return res.render('participant-login', { title: 'Participant Login' });
   }
 });
 
