@@ -157,7 +157,7 @@ router.get('/school/login', (req, res, next) => {
     }
   }
   else{
-    return res.render('school-login', { title: 'School Login' });
+    return res.render('login-wait', { title: 'School Login' });
   }
 });
 
@@ -310,7 +310,7 @@ router.get('/student/login', (req, res, next) => {
     }
   }
   else if (!req.user){
-    return res.render('student-login', { title: 'Student Login' });
+    return res.render('login-wait', { title: 'Student Login' });
   }
 });
 
@@ -582,7 +582,7 @@ router.get('/participant/login', (req, res, next) => {
         }
   }
   else if (!req.user){
-    return res.render('participant-login', { title: 'Participant Login' });
+    return res.render('login-wait', { title: 'Participant Login' });
   }
 });
 
