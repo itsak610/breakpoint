@@ -849,6 +849,7 @@ footer {
       nav {
             padding: 0;
           height: 100vh;
+          width: 100%;
           position: absolute;
           left: 0;
           right: 0;
@@ -1124,6 +1125,7 @@ footer {
       }
       nav {
 		height: 100vh;
+        width: 100%;
         padding: 0;
 		position: absolute;
 		left: 0;
