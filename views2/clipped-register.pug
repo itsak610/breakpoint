@@ -24,3 +24,11 @@ block content
                 label(for='phonenumber') Phone Number
                 input(type='number' name='phonenumber' placeholder='eg. 9876543210' maxlength='10' required='required')
             input.btn(type='submit' value='Register')
+    script.
+        window.addEventListener("DOMContentLoaded", function(event) {
+            if(document.getElementById('username')) {
+                document.getElementById('username').addEventListener('input', function(){
+                    this.value = this.value.replace(/\s+/g, '').toLowerCase();
+                });
+            }
+        });

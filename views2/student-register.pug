@@ -65,3 +65,11 @@ block content
                     | Already registered ? 
                     a.register(href='/student/login' cursor-class='arrow') Login
                 input.btn(type='submit' value='Register')
+    script.
+        window.addEventListener("DOMContentLoaded", function(event) {
+            if(document.getElementById('username')) {
+                document.getElementById('username').addEventListener('input', function(){
+                    this.value = this.value.replace(/\s+/g, '').toLowerCase();
+                });
+            }
+        });
