@@ -10,7 +10,30 @@ html(lang='en')
             @import url("https://fonts.googleapis.com/css2?family=Barlow:wght@100;300;400;500;700&display=swap");
 
             /*----------------------------------------------GLOBAL----------------------------------------------*/
-
+            html {
+                overflow: hidden;
+                width: 100%;
+            }
+            
+            body {
+                height: 100%;
+                width: 100%;
+                position: fixed;
+                /* prevent overscroll bounce*/
+                background-color: lightgreen;
+                overflow-y: scroll;
+                -webkit-overflow-scrolling: touch;
+                /* iOS velocity scrolling */
+            }
+              header > *{
+                -webkit-tap-highlight-color:transparent;
+                -webkit-tap-highlight-color:transparent;
+                -moz-user-select: none;
+                -khtml-user-select: none;
+                -webkit-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
             * {
             margin: 0;
             padding: 0;
@@ -134,6 +157,7 @@ html(lang='en')
             /*----------------------------------------------HEADER----------------------------------------------*/
             header {
             display: flex;
+            position:absolute;
             justify-content: space-between;
             align-items: center;
             height: 100px;
@@ -178,7 +202,7 @@ html(lang='en')
 
             section {
             height: 100vh;
-            width: 100vw;
+            width: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -187,30 +211,27 @@ html(lang='en')
             .containerCard {
             position: absolute;
             height: 100%;
+            width:100%;
             display: flex;
             align-items: center;
             flex-flow: column;
-            justify-content: space-evenly;
             }
 
             .row1 {
             display: flex;
-            padding: 10px 50px;
             flex-flow: row;
             height: 40%;
-            width: 100vw;
+            width: 100%;
             align-items: flex-end;
             justify-content: space-evenly;
             }
 
             .row2 {
             display: flex;
-            padding: 10px 50px;
             flex-flow: row;
-            width: 100vw;
+            width: 100%;
             height: 30%;
             align-items: center;
-            padding: 30px;
             justify-content: space-evenly;
             }
 
@@ -264,7 +285,7 @@ html(lang='en')
 
             .card-container {
                 height: 100vh;
-                width: 100vw;
+                width: 100%;
                 display: flex;
                 color: #fff;
                 justify-content: space-evenly;
@@ -717,7 +738,7 @@ html(lang='en')
                     height:35vw;
                 }
                 .card2{
-                    height:15vw;
+                    height:22vw;
                 }
                 body{
                     z-index:99999;
@@ -1166,7 +1187,7 @@ html(lang='en')
                         a.card.card2(href='/participant/login', cursor-class='arrow')
                             .content
                                 p Participant Login (For (c)rosshair participants)
-            footer#main
+            footer
                 .imp-links
                     .left-footer
                         h2

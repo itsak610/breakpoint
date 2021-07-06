@@ -12,8 +12,31 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Barlow:wght@100;300;400;500;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans&display=swap");
-
-* {
+html {
+    overflow: hidden;
+    width: 100%;
+  }
+  
+  body {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    /* prevent overscroll bounce*/
+    background-color: lightgreen;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    /* iOS velocity scrolling */
+  }
+  header > *{
+    -webkit-tap-highlight-color:transparent;
+    -webkit-tap-highlight-color:transparent;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  * {
   padding: 0;
   margin: 0;
   font-family: "Barlow", sans-serif;
@@ -202,6 +225,7 @@ section {
 
 header {
   display: flex;
+  position:absolute;
   justify-content: space-between;
   align-items: center;
   height: 100px;
@@ -246,7 +270,6 @@ header {
 .timer {
   padding: 20px;
   height: 100%;
-  width: 100%;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -255,7 +278,7 @@ header {
 }
 
 .row {
-  width: 100%;
+  width: 50vw;
   display: flex;
   flex-flow: row;
   justify-content: space-evenly;

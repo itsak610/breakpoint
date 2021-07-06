@@ -1,7 +1,33 @@
 @import url("https://fonts.googleapis.com/css2?family=Barlow:wght@100;300;400;500;700&display=swap");
 
 /*----------------------------------------------GLOBAL----------------------------------------------*/
-
+html {
+    overflow: hidden;
+    width: 100%;
+  }
+  
+  body {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    /* prevent overscroll bounce*/
+    background-color: lightgreen;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    /* iOS velocity scrolling */
+  }
+  header > *{
+    -webkit-tap-highlight-color:transparent;
+    -webkit-tap-highlight-color:transparent;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  #main{
+      width: 100%;
+  }
 * {
   margin: 0;
   padding: 0;
@@ -191,8 +217,7 @@ header {
 .container1 {
   display: flex;
   justify-content: center;
-  width: 100vw;
-  padding: 100px 0;
+  width: 100%;
 }
 
 @import url(https://fonts.googleapis.com/css2?family=Comfortaa&display=swap);
@@ -435,7 +460,7 @@ select {
 
 .card-container {
     height: 100vh;
-    width: 100vw;
+    width: 100%;
     display: flex;
     color: #fff;
     justify-content: space-evenly;
@@ -1191,8 +1216,10 @@ section.events:nth-child(2), section.events:nth-child(3), section.events:nth-chi
       display:none
   }
   .blog-card {
-      height: 35vw;
-  }
+    height: 50vw;
+    width: 60vw;
+    margin-top: 10vw;
+}
   .title-content{
       margin: 80px 0 0 0; 
   }
@@ -1348,8 +1375,10 @@ section.events:nth-child(2), section.events:nth-child(3), section.events:nth-chi
         font-size: 12px;
     }
     .blog-card {
-      height: 35vw;
-  }
+        height: 50vw;
+        width: 60vw;
+        margin-top: 10vw;
+    }
     section.events:nth-child(2), section.events:nth-child(3), section.events:nth-child(4){
         padding-top:60vh;
     }
