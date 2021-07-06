@@ -985,4 +985,12 @@ footer h2 {
     footer a{
         font-size: 12px;
     }
+    .right{
+        width: 30vw;
+        padding-right: 30px;
+    }
+    .row{
+        width: 30vw;
+    }
+
 }
