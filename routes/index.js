@@ -216,7 +216,7 @@ router.post('/school/register', function(req, res) {
     res.render('over', {title: "Event Over"});
   }
   if(req.body.password != req.body.passwordConfirm){
-    return res.render('school-register', { title: 'School Register', error : 'The passwords dont match.', errorcode='red' });
+    return res.render('school-register', { title: 'School Register', error : 'The passwords dont match.', errorcode:'red' });
   }
   else{
     var verifyid = makeid(64);
@@ -280,14 +280,14 @@ router.post('/school/register', function(req, res) {
             html: output,
         };
 if (err) {
-      return res.render('school-register', { title: 'School Register', error : 'The School has already been registered.', errorcode='red' });
+      return res.render('school-register', { title: 'School Register', error : 'The School has already been registered.', errorcode:'red' });
     }
     else
         transporter.sendMail(mailOptions, function (err, info) {
           if(err)
-            return res.render('school-register', { title: 'School Register', error : 'School registered successfully.', errorcode='blue' });
+            return res.render('school-register', { title: 'School Register', error : 'School registered successfully.', errorcode:'blue' });
           else 
-            return res.render('school-register', { title: 'School Register', error : 'School registered successfully. Credentials sent to your email.', errorcode='blue' });
+            return res.render('school-register', { title: 'School Register', error : 'School registered successfully. Credentials sent to your email.', errorcode:'blue' });
         });
     });
   }
@@ -394,7 +394,7 @@ router.post('/student/register/click', function(req, res) {
     res.render('over', {title: "Event Over"});
   }
   if(req.body.password != req.body.passwordConfirm){
-    return res.render('student-register', { title: 'Student Register', error : 'The passwords dont match.', errorcode='red', eventname: 'click' });
+    return res.render('student-register', { title: 'Student Register', error : 'The passwords dont match.', errorcode:'red', eventname: 'click' });
   }
   else{
       var query1 = User.find({ studentevent: 'click' })
@@ -462,14 +462,14 @@ router.post('/student/register/click', function(req, res) {
                 html: output,
             };
            if (err) {
-             return res.render('student-register', { title: 'Student Register', error : 'The Student has already been registered.', errorcode='red', eventname: 'click' });
+             return res.render('student-register', { title: 'Student Register', error : 'The Student has already been registered.', errorcode:'red', eventname: 'click' });
            }
            else
                transporter.sendMail(mailOptions, function (err, info) {
                  if(err)
-                   return res.render('student-register', { title: 'Student Register', error : 'Student registered successfully.', errorcode='blue', eventname: 'click' });
+                   return res.render('student-register', { title: 'Student Register', error : 'Student registered successfully.', errorcode:'blue', eventname: 'click' });
                  else 
-                   return res.render('student-register', { title: 'Student Register', error : 'Student registered successfully. Credentials sent to your email.', errorcode='blue', eventname: 'click' });
+                   return res.render('student-register', { title: 'Student Register', error : 'Student registered successfully. Credentials sent to your email.', errorcode:'blue', eventname: 'click' });
                });
            }
            );
@@ -483,7 +483,7 @@ router.post('/student/register/clipped', function(req, res) {
       res.render('over', {title: "Event Over"});
     }
     if(req.body.password != req.body.passwordConfirm){
-      return res.render('student-register', { title: 'Student Register', error : 'The passwords dont match.', errorcode='red', eventname: 'clipped' });
+      return res.render('student-register', { title: 'Student Register', error : 'The passwords dont match.', errorcode:'red', eventname: 'clipped' });
     }
     else{
         var query1 = User.find({ studentevent: 'clipped' })
@@ -550,14 +550,14 @@ router.post('/student/register/clipped', function(req, res) {
                     html: output,
                 };
                  if (err) {
-               return res.render('student-register', { title: 'Student Register', error : 'The Student has already been registered.', errorcode='red', eventname: 'clipped' });
+               return res.render('student-register', { title: 'Student Register', error : 'The Student has already been registered.', errorcode:'red', eventname: 'clipped' });
              }
              else
                  transporter.sendMail(mailOptions, function (err, info) {
                    if(err)
-                     return res.render('student-register', { title: 'Student Register', error : 'Student registered successfully.', errorcode='blue', eventname: 'clipped' });
+                     return res.render('student-register', { title: 'Student Register', error : 'Student registered successfully.', errorcode:'blue', eventname: 'clipped' });
                    else 
-                     return res.render('student-register', { title: 'Student Register', error : 'Student registered successfully. Credentials sent to your email.', errorcode='blue', eventname: 'clipped' });
+                     return res.render('student-register', { title: 'Student Register', error : 'Student registered successfully. Credentials sent to your email.', errorcode:'blue', eventname: 'clipped' });
                  });
              }
              );
@@ -699,7 +699,7 @@ router.post('/school/participant/register/click', function(req, res) {
       res.render('over', {title: "Event Over"});
     }
     if(req.body.password != req.body.passwordConfirm){
-      return res.render('click-register', { title: '(c)lick Register', error : 'The passwords dont match.', errorcode='red'});
+      return res.render('click-register', { title: '(c)lick Register', error : 'The passwords dont match.', errorcode:'red'});
     }
     else{
         var query1 = User.find({ participantevent: 'click' })
@@ -767,14 +767,14 @@ router.post('/school/participant/register/click', function(req, res) {
                     html: output,
                 };
                  if (err) {
-               return res.render('click-register', { title: '(c)lick Register', error : 'The Student has already been registered.', errorcode='red'});
+               return res.render('click-register', { title: '(c)lick Register', error : 'The Student has already been registered.', errorcode:'red'});
              }
              else
                  transporter.sendMail(mailOptions, function (err, info) {
                    if(err)
-                     return res.render('click-register', { title: '(c)lick Register', error : 'Student registered successfully.', errorcode='blue'});
+                     return res.render('click-register', { title: '(c)lick Register', error : 'Student registered successfully.', errorcode:'blue'});
                    else 
-                     return res.render('click-register', { title: '(c)lick Register', error : 'Student registered successfully. Their credentials have been sent to their emails.', errorcode='blue'});
+                     return res.render('click-register', { title: '(c)lick Register', error : 'Student registered successfully. Their credentials have been sent to their emails.', errorcode:'blue'});
                  });
              }
              );
@@ -787,7 +787,7 @@ router.post('/school/participant/register/click', function(req, res) {
       res.render('over', {title: "Event Over"});
     }
     if(req.body.password != req.body.passwordConfirm){
-        return res.render('clipped-register', { title: '(c)lipped Register', error : 'The passwords dont match.', errorcode='red'});
+        return res.render('clipped-register', { title: '(c)lipped Register', error : 'The passwords dont match.', errorcode:'red'});
     }
     else{
         var query1 = User.find({ participantevent: 'clipped' })
@@ -855,14 +855,14 @@ router.post('/school/participant/register/click', function(req, res) {
                     html: output,
                 };
                  if (err) {
-               return res.render('clipped-register', { title: '(c)lipped Register', error : 'The Student has already been registered.', errorcode='red', eventname: 'clipped' });
+               return res.render('clipped-register', { title: '(c)lipped Register', error : 'The Student has already been registered.', errorcode:'red', eventname: 'clipped' });
              }
              else
                  transporter.sendMail(mailOptions, function (err, info) {
                    if(err)
-                     return res.render('clipped-register', { title: '(c)lipped Register', error : 'Student registered successfully.', errorcode='blue', eventname: 'clipped' });
+                     return res.render('clipped-register', { title: '(c)lipped Register', error : 'Student registered successfully.', errorcode:'blue', eventname: 'clipped' });
                    else 
-                     return res.render('clipped-register', { title: '(c)lipped Register', error : 'Student registered successfully. Their credentials have been sent to their emails.', errorcode='blue', eventname: 'clipped' });
+                     return res.render('clipped-register', { title: '(c)lipped Register', error : 'Student registered successfully. Their credentials have been sent to their emails.', errorcode:'blue', eventname: 'clipped' });
                  });
              }
              );
@@ -939,14 +939,14 @@ router.post('/school/participant/register/crosshair', function(req, res) {
         };
 
       if (err) {
-        return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'The Team has already been registered.', errorcode='red' });
+        return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'The Team has already been registered.', errorcode:'red' });
       }
       else
           transporter.sendMail(mailOptions, function (err, info) {
             if(err)
-              return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully.', errorcode='blue' });
+              return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully.', errorcode:'blue' });
             else 
-              return res.render('crosshair-register', { title: '(c)crosshair Register', error : 'Team registered successfully. Credentials sent to your email.', errorcode='blue' });
+              return res.render('crosshair-register', { title: '(c)crosshair Register', error : 'Team registered successfully. Credentials sent to your email.', errorcode:'blue' });
           });
       }
     )
@@ -1013,14 +1013,14 @@ router.post('/school/participant/register/crosshair', function(req, res) {
         };
 
         if (err) {
-            return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'The Team has already been registered.', errorcode='red' });
+            return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'The Team has already been registered.', errorcode:'red' });
           }
           else
               transporter.sendMail(mailOptions, function (err, info) {
                 if(err)
-                  return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully.', errorcode='blue' });
+                  return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully.', errorcode:'blue' });
                 else 
-                  return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully. Credentials sent to your email.', errorcode='blue' });
+                  return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully. Credentials sent to your email.', errorcode:'blue' });
             });
     });
     var verifyid3 = makeid(64);
@@ -1086,14 +1086,14 @@ router.post('/school/participant/register/crosshair', function(req, res) {
         };
 
         if (err) {
-            return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'The Team has already been registered.', errorcode='red' });
+            return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'The Team has already been registered.', errorcode:'red' });
           }
           else
               transporter.sendMail(mailOptions, function (err, info) {
                 if(err)
-                  return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully.', errorcode='blue' });
+                  return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully.', errorcode:'blue' });
                 else 
-                  return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully. Credentials sent to your email.', errorcode='blue' });
+                  return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully. Credentials sent to your email.', errorcode:'blue' });
             });
     });
     var verifyid4 = makeid(64);
@@ -1159,14 +1159,14 @@ router.post('/school/participant/register/crosshair', function(req, res) {
         };
 
         if (err) {
-            return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'The Team has already been registered.', errorcode='red' });
+            return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'The Team has already been registered.', errorcode:'red' });
           }
           else
               transporter.sendMail(mailOptions, function (err, info) {
                 if(err)
-                  return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully.', errorcode='blue' });
+                  return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully.', errorcode:'blue' });
                 else 
-                  return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully. Credentials sent to your email.', errorcode='blue' });
+                  return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully. Credentials sent to your email.', errorcode:'blue' });
             });
     });
     var verifyid5 = makeid(64);
@@ -1232,14 +1232,14 @@ router.post('/school/participant/register/crosshair', function(req, res) {
         };
 
         if (err) {
-            return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'The Team has already been registered.', errorcode='red' });
+            return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'The Team has already been registered.', errorcode:'red' });
           }
           else
               transporter.sendMail(mailOptions, function (err, info) {
                 if(err)
-                  return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully.', errorcode='blue' });
+                  return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully.', errorcode:'blue' });
                 else 
-                  return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully. Credentials sent to your email.', errorcode='blue' });
+                  return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully. Credentials sent to your email.', errorcode:'blue' });
             });
     });
     var verifyid6 = makeid(64);
@@ -1306,14 +1306,14 @@ router.post('/school/participant/register/crosshair', function(req, res) {
         };
 
         if (err) {
-            return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'The Team has already been registered.', errorcode='red' });
+            return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'The Team has already been registered.', errorcode:'red' });
           }
           else
               transporter.sendMail(mailOptions, function (err, info) {
                 if(err)
-                  return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully.', errorcode='blue' });
+                  return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully.', errorcode:'blue' });
                 else 
-                  return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully. Credentials sent to your email.', errorcode='blue' });
+                  return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully. Credentials sent to your email.', errorcode:'blue' });
             });
     });
   }
