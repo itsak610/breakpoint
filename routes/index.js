@@ -774,7 +774,7 @@ router.post('/school/participant/register/click', function(req, res) {
                    if(err)
                      return res.render('click-register', { title: '(c)lick Register', error : 'Student registered successfully.', errorcode:'blue'});
                    else 
-                     return res.render('click-register', { title: '(c)lick Register', error : 'Student registered successfully. Their credentials have been sent to their emails.', errorcode:'blue'});
+                     return res.render('click-register', { title: '(c)lick Register', error : 'Student registered successfully. Their credentials have been sent to their email. You can register multiple students.', errorcode:'blue'});
                  });
              }
              );
@@ -862,7 +862,7 @@ router.post('/school/participant/register/click', function(req, res) {
                    if(err)
                      return res.render('clipped-register', { title: '(c)lipped Register', error : 'Student registered successfully.', errorcode:'blue', eventname: 'clipped' });
                    else 
-                     return res.render('clipped-register', { title: '(c)lipped Register', error : 'Student registered successfully. Their credentials have been sent to their emails.', errorcode:'blue', eventname: 'clipped' });
+                     return res.render('clipped-register', { title: '(c)lipped Register', error : 'Student registered successfully. Their credentials have been sent to their email. You can register multiple students.', errorcode:'blue', eventname: 'clipped' });
                  });
              }
              );
