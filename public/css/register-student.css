@@ -912,6 +912,30 @@ section.events:nth-child(2), section.events:nth-child(3), section.events:nth-chi
     width: 100%;
     font-size: 3vh;
 }
+
+.events h2.first{
+    color: transparent;
+    background: linear-gradient( #f44f59 33% , #c271eb , #13c0e7);
+    background-clip: text;
+    -webkit-background-clip: text;
+}
+.events h2.second{
+    color: transparent;
+    background: linear-gradient(to bottom, #fa4454 33%, #ffb3bc);
+    background-clip: text;
+    -webkit-background-clip: text;}
+.events h2.third{
+    color: transparent;
+    background: linear-gradient( to right, #fface6, #f9fca5);
+    background-clip: text;
+    -webkit-background-clip: text;
+}
+.events h2.fourth{
+    color: transparent;
+    background: linear-gradient(  to right, #fc6eff, #52f1ff);
+    background-clip: text;
+    -webkit-background-clip: text;
+}
 .events p{
     font-size: 1.3vw;
     width: 70%;
