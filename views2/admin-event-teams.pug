@@ -9,15 +9,14 @@ block content
     @media (min-width:750px){.container{width:100%}.column,.columns{margin-left:4%}.column:first-child,.columns:first-child{margin-left:0}.one.column,.one.columns{width:4.66666666667%}.two.columns{width:13.3333333333%}.three.columns{width:22%}.four.columns{width:30.6666666667%}.five.columns{width:39.3333333333%}.six.columns{width:48%}.seven.columns{width:56.6666666667%}.eight.columns{width:65.3333333333%}.nine.columns{width:74%}.ten.columns{width:82.6666666667%}.eleven.columns{width:91.3333333333%}.twelve.columns{width:100%;margin-left:0}}@media (min-width:500px){.sphere path{stroke-width:.4px}}@media (max-width:750px){header{padding-top:0;height:6vh}nav{height:100vh;padding:10px 2.5px;position:absolute;left:0;right:0;top:0;white-space:nowrap;text-align:left;z-index:9000;font-size:10px}.desktop-nav{display:none}.hamburger-menu{display:inline-block;margin-right:25px}.mob-logo{position:absolute;max-height:80px;left:0;margin-top:16px;margin-left:10px;display:inline-block}section#main{margin-top:60px}p.credits{font-size:.8em}footer nav li a,header nav li a{height:30px!important;line-height:30px!important}header .left{display:none}header a.active{background:0 0}.simplebar-track.simplebar-vertical{width:5px;right:0}.card{width:92vw;padding:40px;top:10vh}.card h1.form-title{font-size:1.1em}.card p{font-size:.6em;margin-top:10px}.card label{font-size:.8em}.card input{font-size:.8em;height:40px;background-position:6px 6px;text-indent:28px}.card input[type=submit]{text-indent:0}.card.question-card{width:400px;padding:40px}.card.question-card p{font-size:1em}h1.title{font-size:2em}.animated-box3.play-page{margin:auto;margin-top:50px}.card.question-card input{text-indent:0}h1.center{font-size:1.5em;margin-top:10px;width:100%}#rules.card ul{margin-top:-25px}#rules.card li{font-size:10px;margin-left:-25px}#rules.card{height:fit-content;width:92vw;padding:40px}.card.leaderboard{width:92vw;padding-top:8vh}.card.leaderboard #leader{font-size:2em}.flex{padding-top:3vh;display:block}.flex img{height:50px;width:50px}.arrow{float:right;width:100%;right:0}.arrows{margin:auto;margin-top:20px;width:100%}.arrow:nth-child(1){margin-right:50px}.arrow:nth-child(2){margin-right:10px}#myInput{font-size:.8em;height:40px;background-position:10px 12px;text-indent:18px;background-size:15px 15px}.animated-box.in{margin:auto;height:40px;width:90%}.animated-box:after{clip-path:polygon(0 100%,2px 100%,2px 2px,calc(100% - 2px) 2px,calc(100% - 2px) calc(100% - 2px),2px calc(100% - 2px),2px 100%,100% 100%,100% 0,0 0)}#myTable{padding:20px;padding-top:90px}.card.leaderboard table th{font-size:0.8em}.card.leaderboard table td{font-size:0.6em}}@media (min-width:750px) and (max-width:1112px){.desktop-nav{display:none}.hamburger-menu{display:inline-block}nav{z-index:9000}#nav.mobile-nav{position:absolute}.mob-logo{position:absolute;max-height:100px;height:80px;left:0;top:0;margin-left:50px;display:inline-block;margin-top:16px}header{height:15vh}.handletter{display:none}.eight.columns{width:90%}.eight.columns.right{top:0}.card{width:70vw;padding:80px}h1.center{font-size:2em;margin-top:20px}#rules.card li{font-size:14px;margin-left:-25px}#rules.card{height:fit-content}}@media (max-width:1200px){#youfunction{display:none;}}
     @media (min-width:750px) and (max-width:1112px){.card.leaderboard table th{font-size:1.2em}.card.leaderboard table td{font-size:0.9em}}
     #main{padding-top:20vh}
-  if eventOver
-    .card.leaderboard
-      h1.center Event Teams
-      .animated-box.in
-        input#myInput(type='text' onkeyup='searchBar()' placeholder='Search Name')
-      if teams.length == 1
+  .card.leaderboard
+    h1.center Event Teams
+    .animated-box.in
+      input#myInput(type='text' onkeyup='searchBar()' placeholder='Search Name')
+    if teams.length == 0
         br
         br
-      else
+    else
         table#myTable
             tr
                 th No.
@@ -45,46 +44,6 @@ block content
                             td
                                 a(href=link1) #{team.schoolname}
                             td= team.studentevent
-  else
-    .card.leaderboard.animated-box4.in
-      h1.title Your Teams
-      .flex
-        .animated-box.in
-          input#myInput(type='text' onkeyup='searchBar()' placeholder='Search Name')
-        #youfunction
-          img.you(src="/img/you.png" alt='you' onclick="you()")
-          p(onclick="you()") You
-        .arrows
-          img.arrow(src="https://distracted-wescoff-b1d8d6.netlify.app/img/left.png" alt='left' onclick="nested2()")
-          img.arrow(src="https://distracted-wescoff-b1d8d6.netlify.app/img/right.png" alt='right' onclick="nested1()")
-      table#myTable
-        tr
-            th No.
-            th Participant
-            th School Name
-            th Event
-        each team, index in teams
-            if team.username != currentUser.username
-                tr
-                    if team.type == 'Participant'
-                        td= (index+1)
-                        - var link1 = '/admin/schools/' + team.code + '/details';
-                        - var link2 = '/admin/participant/' + team.username;
-                        td
-                            a(href=link2) #{team.participantname}
-                        td
-                            a(href=link1) #{team.schoolname}
-                        td= team.participantevent
-                    else 
-                        td= (index+1)
-                        - var link1 = '/admin/schools/' + team.code + '/details';
-                        - var link2 = '/admin/student/' + team.username;
-                        td
-                            a(href=link2) #{team.studentname} - independent
-                        td
-                            a(href=link1) #{team.schoolname}
-                        td= team.studentevent
-
   script.
     var path = window.location.pathname;
     var page = path.split("/").pop();
