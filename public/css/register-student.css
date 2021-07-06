@@ -278,6 +278,29 @@ p.error2 {
     font-size: 20px;
     color: #0098DB;
   }
+  .errorcontainer{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+p.error3{
+    width: 70%;
+    margin-top: 50px;
+    text-align: center;
+    font-weight: 400;
+    font-size: 40px;
+    color: #0098DB;
+    letter-spacing: 1px;
+}
+p.error4{
+    padding: 40px;
+    width: 60%;
+    text-align: center;
+    font-weight: 650;
+    font-size: 20px;
+    color: red;
+    letter-spacing: 1px;
+}
 .separator {
   height: 3px;
   width: 100%;
@@ -307,7 +330,7 @@ p.error2 {
   margin-bottom: 0;
 }
 h1.title {
-  margin-top: 20vh;
+  margin-top: 10vh;
   text-align: center;
   font-size: 3em;
   width: 100%;
@@ -997,7 +1020,9 @@ section.events:nth-child(2), section.events:nth-child(3), section.events:nth-chi
         top: 0;
         font-size: 10px;
     }
-    
+    p.error3{
+        font-size: 20px;
+    }
     .mobile-nav ul, #nav.mobile-nav{
       overflow-x: hidden;
     }
@@ -1301,7 +1326,9 @@ section.events:nth-child(2), section.events:nth-child(3), section.events:nth-chi
       top: 0;
       font-size: 10px
   }
-
+    p.error3{
+        font-size: 27px;
+    }
     .desktop-nav {
         display: none
     }

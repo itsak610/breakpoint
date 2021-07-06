@@ -624,23 +624,23 @@ router.post('/participant/login', (req, res, next) => {
   })(req, res, next);
 });
 
-router.get('/school/participant/register', (req, res, next) => {
-  if(!eventIsOn){
-    res.render('over', {title: "Event Over"});
-  }
-  var currentUserType = req.user.type;
-  if (!req.user) {
-    return res.redirect('/login');
-  }
-  else{
-    if(currentUserType=="School"){
-        return res.render('event-register', { title: 'Event Register' });
-    }
-    else{
-      return res.redirect('/dashboard')
-    }
-  }
-});
+// router.get('/school/participant/register', (req, res, next) => {
+//   if(!eventIsOn){
+//     res.render('over', {title: "Event Over"});
+//   }
+//   var currentUserType = req.user.type;
+//   if (!req.user) {
+//     return res.redirect('/login');
+//   }
+//   else{
+//     if(currentUserType=="School"){
+//         return res.render('event-register', { title: 'Event Register' });
+//     }
+//     else{
+//       return res.redirect('/dashboard')
+//     }
+//   }
+// });
 
 router.get('/school/participant/register/crosshair', (req, res, next) => {
     if(!eventIsOn){
@@ -659,216 +659,216 @@ router.get('/school/participant/register/crosshair', (req, res, next) => {
       }
     }
   });
-router.get('/school/participant/register/click', (req, res, next) => {
-    if(!eventIsOn){
-      res.render('over', {title: "Event Over"});
-    }
-    var currentUserType = req.user.type;
-    if (!req.user) {
-      return res.redirect('/login');
-    }
-    else{
-      if(currentUserType=="School"){
-        return res.render('click-register', { title: '(c)lick Register' });
-      }
-      else{
-        return res.redirect('/dashboard')
-      }
-    }
-  });
-router.get('/school/participant/register/clipped', (req, res, next) => {
-  if(!eventIsOn){
-    res.render('over', {title: "Event Over"});
-  }
-  var currentUserType = req.user.type;
-  if (!req.user) {
-    return res.redirect('/login');
-  }
-  else{
-    if(currentUserType=="School"){
-      return res.render('clipped-register', { title: '(c)lipped Register' });
-    }
-    else{
-      return res.redirect('/dashboard')
-    }
-  }
-});
-router.post('/school/participant/register/click', function(req, res) {
+// router.get('/school/participant/register/click', (req, res, next) => {
+//     if(!eventIsOn){
+//       res.render('over', {title: "Event Over"});
+//     }
+//     var currentUserType = req.user.type;
+//     if (!req.user) {
+//       return res.redirect('/login');
+//     }
+//     else{
+//       if(currentUserType=="School"){
+//         return res.render('click-register', { title: '(c)lick Register' });
+//       }
+//       else{
+//         return res.redirect('/dashboard')
+//       }
+//     }
+//   });
+// router.get('/school/participant/register/clipped', (req, res, next) => {
+//   if(!eventIsOn){
+//     res.render('over', {title: "Event Over"});
+//   }
+//   var currentUserType = req.user.type;
+//   if (!req.user) {
+//     return res.redirect('/login');
+//   }
+//   else{
+//     if(currentUserType=="School"){
+//       return res.render('clipped-register', { title: '(c)lipped Register' });
+//     }
+//     else{
+//       return res.redirect('/dashboard')
+//     }
+//   }
+// });
+// router.post('/school/participant/register/click', function(req, res) {
     
-    if(!eventIsOn){
-      res.render('over', {title: "Event Over"});
-    }
-    if(req.body.password != req.body.passwordConfirm){
-      return res.render('click-register', { title: '(c)lick Register', error : 'The passwords dont match.', errorcode:'red'});
-    }
-    else{
-        var query1 = User.find({ participantevent: 'click' })
-        var verifyid = makeid(64);
-        query1.countDocuments(function (err, count) {
-             var count_part = count;
-             User.register(new User({
-                username : 'clickparticipant' + req.user.code + count_part,
-                password1 : (req.user.code) + 'click' + count_part,
-                schoolname : req.user.schoolname,
-                type : "Participant",
-                participantname : req.body.name,
-                participantevent : 'click',
-                participantemail : req.body.email,
-                participantnumber: req.body.phonenumber,
-                code : req.user.code,
-                verification: verifyid,
-               time: new Date(),
-             }), ((req.user.code) + 'click' + count_part), function(err, user) {
-                var output = 
-                `
-                <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-                <html xmlns=3D"https://www.w3.org/1999/xhtml" xmlns:v=3D"urn:schemas-micros=oft-com:vml">
-                    <head>
-                        <title>Registeration Details</title>
-                    </head>
-                    <body style="background:transparent">
-                        <div style="display:flex;align-items:center;justify-content:center;font-size:3vw;">
-                            <div style="align-items:center;justify-content:center;width:fit-content;height:max-content;background:#050B18;border-radius:10px">
-                                <div style="padding:60px">
-                                    <p style="font-family: Arial, Helvetica, sans-serif;padding-top:25px;color:#eee;">Thank you for registering for (c)ync!</p>
-                                    <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Here are your credentials -</p>
-                                    <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Username: <b>${'clickparticipant' + req.user.code + count_part}</b></p>
-                                    <p style="font-family: Arial, Helvetica, sans-serif;padding-top:5px;color:#eee;">Password: <b>${(req.user.code) + 'click' + count_part}</b></p>
-                                    <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;"><a style="text-decoration:none;color:red;" href="https://www.clubcypher.club/verify/${verifyid}">Click here to verify your account.</a></p>
-                                    <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;">You can use these credentials to login <a style="text-decoration:none;color:red;" href="https://www.clubcypher.club/login">HERE</a>.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </body>
-                </html>
-                `
+//     if(!eventIsOn){
+//       res.render('over', {title: "Event Over"});
+//     }
+//     if(req.body.password != req.body.passwordConfirm){
+//       return res.render('click-register', { title: '(c)lick Register', error : 'The passwords dont match.', errorcode:'red'});
+//     }
+//     else{
+//         var query1 = User.find({ participantevent: 'click' })
+//         var verifyid = makeid(64);
+//         query1.countDocuments(function (err, count) {
+//              var count_part = count;
+//              User.register(new User({
+//                 username : 'clickparticipant' + req.user.code + count_part,
+//                 password1 : (req.user.code) + 'click' + count_part,
+//                 schoolname : req.user.schoolname,
+//                 type : "Participant",
+//                 participantname : req.body.name,
+//                 participantevent : 'click',
+//                 participantemail : req.body.email,
+//                 participantnumber: req.body.phonenumber,
+//                 code : req.user.code,
+//                 verification: verifyid,
+//                time: new Date(),
+//              }), ((req.user.code) + 'click' + count_part), function(err, user) {
+//                 var output = 
+//                 `
+//                 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+//                 <html xmlns=3D"https://www.w3.org/1999/xhtml" xmlns:v=3D"urn:schemas-micros=oft-com:vml">
+//                     <head>
+//                         <title>Registeration Details</title>
+//                     </head>
+//                     <body style="background:transparent">
+//                         <div style="display:flex;align-items:center;justify-content:center;font-size:3vw;">
+//                             <div style="align-items:center;justify-content:center;width:fit-content;height:max-content;background:#050B18;border-radius:10px">
+//                                 <div style="padding:60px">
+//                                     <p style="font-family: Arial, Helvetica, sans-serif;padding-top:25px;color:#eee;">Thank you for registering for (c)ync!</p>
+//                                     <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Here are your credentials -</p>
+//                                     <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Username: <b>${'clickparticipant' + req.user.code + count_part}</b></p>
+//                                     <p style="font-family: Arial, Helvetica, sans-serif;padding-top:5px;color:#eee;">Password: <b>${(req.user.code) + 'click' + count_part}</b></p>
+//                                     <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;"><a style="text-decoration:none;color:red;" href="https://www.clubcypher.club/verify/${verifyid}">Click here to verify your account.</a></p>
+//                                     <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;">You can use these credentials to login <a style="text-decoration:none;color:red;" href="https://www.clubcypher.club/login">HERE</a>.</p>
+//                                 </div>
+//                             </div>
+//                         </div>
+//                     </body>
+//                 </html>
+//                 `
     
-                var da_mail = `${req.body.email}`
+//                 var da_mail = `${req.body.email}`
     
-                const accessToken = oAuth2Client.getAccessToken();
+//                 const accessToken = oAuth2Client.getAccessToken();
     
-                const transporter = nodemailer.createTransport({
-                    service: 'gmail',
-                    auth: {
-                        type: 'OAuth2',
-                        user: 'clubcypher.bot@gmail.com',
-                        clientId: CLIENT_ID,
-                        clientSecret: CLEINT_SECRET,
-                        refreshToken: REFRESH_TOKEN,
-                        accessToken: accessToken,
-                    },
-                });
+//                 const transporter = nodemailer.createTransport({
+//                     service: 'gmail',
+//                     auth: {
+//                         type: 'OAuth2',
+//                         user: 'clubcypher.bot@gmail.com',
+//                         clientId: CLIENT_ID,
+//                         clientSecret: CLEINT_SECRET,
+//                         refreshToken: REFRESH_TOKEN,
+//                         accessToken: accessToken,
+//                     },
+//                 });
                 
-                var mailOptions = {
-                    from: '"Club Cypher" <clubcypher.bot@gmail.com>',
-                    to: da_mail,
-                    subject: "Registeration Details",
-                    text: output,
-                    html: output,
-                };
-                 if (err) {
-               return res.render('click-register', { title: '(c)lick Register', error : 'The Student has already been registered.', errorcode:'red'});
-             }
-             else
-                 transporter.sendMail(mailOptions, function (err, info) {
-                   if(err)
-                     return res.render('click-register', { title: '(c)lick Register', error : 'Student registered successfully.', errorcode:'blue'});
-                   else 
-                     return res.render('click-register', { title: '(c)lick Register', error : 'Student registered successfully. Their credentials have been sent to their email. You can register multiple students.', errorcode:'blue'});
-                 });
-             }
-             );
-        });
-    }
-  });
-  router.post('/school/participant/register/clipped', function(req, res) {
+//                 var mailOptions = {
+//                     from: '"Club Cypher" <clubcypher.bot@gmail.com>',
+//                     to: da_mail,
+//                     subject: "Registeration Details",
+//                     text: output,
+//                     html: output,
+//                 };
+//                  if (err) {
+//                return res.render('click-register', { title: '(c)lick Register', error : 'The Student has already been registered.', errorcode:'red'});
+//              }
+//              else
+//                  transporter.sendMail(mailOptions, function (err, info) {
+//                    if(err)
+//                      return res.render('click-register', { title: '(c)lick Register', error : 'Student registered successfully.', errorcode:'blue'});
+//                    else 
+//                      return res.render('click-register', { title: '(c)lick Register', error : 'Student registered successfully. Their credentials have been sent to their email. You can register multiple students.', errorcode:'blue'});
+//                  });
+//              }
+//              );
+//         });
+//     }
+//   });
+//   router.post('/school/participant/register/clipped', function(req, res) {
     
-    if(!eventIsOn){
-      res.render('over', {title: "Event Over"});
-    }
-    if(req.body.password != req.body.passwordConfirm){
-        return res.render('clipped-register', { title: '(c)lipped Register', error : 'The passwords dont match.', errorcode:'red'});
-    }
-    else{
-        var query1 = User.find({ participantevent: 'clipped' })
-        var verifyid = makeid(64);
-        query1.countDocuments(function (err, count) {
-             var count_part = count;
-             User.register(new User({
-                username : 'clippedparticipant' + req.user.code + count_part,
-                password1 : (req.user.code) + 'clipped' + count_part,
-                schoolname : req.user.schoolname,
-                type : "Participant",
-                participantname : req.body.name,
-                participantevent : 'clipped',
-                participantemail : req.body.email,
-                participantnumber: req.body.phonenumber,
-                code : req.user.code,
-                verification: verifyid,
-               time: new Date(),
-             }), ((req.user.code) + 'clipped' + count_part), function(err, user) {
-                var output = 
-                `
-                <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-                <html xmlns=3D"https://www.w3.org/1999/xhtml" xmlns:v=3D"urn:schemas-micros=oft-com:vml">
-                    <head>
-                        <title>Registeration Details</title>
-                    </head>
-                    <body style="background:transparent">
-                        <div style="display:flex;align-items:center;justify-content:center;font-size:3vw;">
-                            <div style="align-items:center;justify-content:center;width:fit-content;height:max-content;background:#050B18;border-radius:10px">
-                                <div style="padding:60px">
-                                    <p style="font-family: Arial, Helvetica, sans-serif;padding-top:25px;color:#eee;">Thank you for registering for (c)ync!</p>
-                                    <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Here are your credentials -</p>
-                                    <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Username: <b>${'clippedparticipant' + req.user.code + count_part}</b></p>
-                                    <p style="font-family: Arial, Helvetica, sans-serif;padding-top:5px;color:#eee;">Password: <b>${(req.user.code) + 'clipped' + count_part}</b></p>
-                                    <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;"><a style="text-decoration:none;color:red;" href="https://www.clubcypher.club/verify/${verifyid}">Click here to verify your account.</a></p>
-                                    <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;">You can use these credentials to login <a style="text-decoration:none;color:red;" href="https://www.clubcypher.club/login">HERE</a>.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </body>
-                </html>
-                `
+//     if(!eventIsOn){
+//       res.render('over', {title: "Event Over"});
+//     }
+//     if(req.body.password != req.body.passwordConfirm){
+//         return res.render('clipped-register', { title: '(c)lipped Register', error : 'The passwords dont match.', errorcode:'red'});
+//     }
+//     else{
+//         var query1 = User.find({ participantevent: 'clipped' })
+//         var verifyid = makeid(64);
+//         query1.countDocuments(function (err, count) {
+//              var count_part = count;
+//              User.register(new User({
+//                 username : 'clippedparticipant' + req.user.code + count_part,
+//                 password1 : (req.user.code) + 'clipped' + count_part,
+//                 schoolname : req.user.schoolname,
+//                 type : "Participant",
+//                 participantname : req.body.name,
+//                 participantevent : 'clipped',
+//                 participantemail : req.body.email,
+//                 participantnumber: req.body.phonenumber,
+//                 code : req.user.code,
+//                 verification: verifyid,
+//                time: new Date(),
+//              }), ((req.user.code) + 'clipped' + count_part), function(err, user) {
+//                 var output = 
+//                 `
+//                 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+//                 <html xmlns=3D"https://www.w3.org/1999/xhtml" xmlns:v=3D"urn:schemas-micros=oft-com:vml">
+//                     <head>
+//                         <title>Registeration Details</title>
+//                     </head>
+//                     <body style="background:transparent">
+//                         <div style="display:flex;align-items:center;justify-content:center;font-size:3vw;">
+//                             <div style="align-items:center;justify-content:center;width:fit-content;height:max-content;background:#050B18;border-radius:10px">
+//                                 <div style="padding:60px">
+//                                     <p style="font-family: Arial, Helvetica, sans-serif;padding-top:25px;color:#eee;">Thank you for registering for (c)ync!</p>
+//                                     <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Here are your credentials -</p>
+//                                     <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Username: <b>${'clippedparticipant' + req.user.code + count_part}</b></p>
+//                                     <p style="font-family: Arial, Helvetica, sans-serif;padding-top:5px;color:#eee;">Password: <b>${(req.user.code) + 'clipped' + count_part}</b></p>
+//                                     <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;"><a style="text-decoration:none;color:red;" href="https://www.clubcypher.club/verify/${verifyid}">Click here to verify your account.</a></p>
+//                                     <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;">You can use these credentials to login <a style="text-decoration:none;color:red;" href="https://www.clubcypher.club/login">HERE</a>.</p>
+//                                 </div>
+//                             </div>
+//                         </div>
+//                     </body>
+//                 </html>
+//                 `
     
-                var da_mail = `${req.body.email}`
+//                 var da_mail = `${req.body.email}`
     
-                const accessToken = oAuth2Client.getAccessToken();
+//                 const accessToken = oAuth2Client.getAccessToken();
     
-                const transporter = nodemailer.createTransport({
-                    service: 'gmail',
-                    auth: {
-                        type: 'OAuth2',
-                        user: 'clubcypher.bot@gmail.com',
-                        clientId: CLIENT_ID,
-                        clientSecret: CLEINT_SECRET,
-                        refreshToken: REFRESH_TOKEN,
-                        accessToken: accessToken,
-                    },
-                });
+//                 const transporter = nodemailer.createTransport({
+//                     service: 'gmail',
+//                     auth: {
+//                         type: 'OAuth2',
+//                         user: 'clubcypher.bot@gmail.com',
+//                         clientId: CLIENT_ID,
+//                         clientSecret: CLEINT_SECRET,
+//                         refreshToken: REFRESH_TOKEN,
+//                         accessToken: accessToken,
+//                     },
+//                 });
                 
-                var mailOptions = {
-                    from: '"Club Cypher" <clubcypher.bot@gmail.com>',
-                    to: da_mail,
-                    subject: "Registeration Details",
-                    text: output,
-                    html: output,
-                };
-                 if (err) {
-               return res.render('clipped-register', { title: '(c)lipped Register', error : 'The Student has already been registered.', errorcode:'red', eventname: 'clipped' });
-             }
-             else
-                 transporter.sendMail(mailOptions, function (err, info) {
-                   if(err)
-                     return res.render('clipped-register', { title: '(c)lipped Register', error : 'Student registered successfully.', errorcode:'blue', eventname: 'clipped' });
-                   else 
-                     return res.render('clipped-register', { title: '(c)lipped Register', error : 'Student registered successfully. Their credentials have been sent to their email. You can register multiple students.', errorcode:'blue', eventname: 'clipped' });
-                 });
-             }
-             );
-        });
-    }
-  });
+//                 var mailOptions = {
+//                     from: '"Club Cypher" <clubcypher.bot@gmail.com>',
+//                     to: da_mail,
+//                     subject: "Registeration Details",
+//                     text: output,
+//                     html: output,
+//                 };
+//                  if (err) {
+//                return res.render('clipped-register', { title: '(c)lipped Register', error : 'The Student has already been registered.', errorcode:'red', eventname: 'clipped' });
+//              }
+//              else
+//                  transporter.sendMail(mailOptions, function (err, info) {
+//                    if(err)
+//                      return res.render('clipped-register', { title: '(c)lipped Register', error : 'Student registered successfully.', errorcode:'blue', eventname: 'clipped' });
+//                    else 
+//                      return res.render('clipped-register', { title: '(c)lipped Register', error : 'Student registered successfully. Their credentials have been sent to their email. You can register multiple students.', errorcode:'blue', eventname: 'clipped' });
+//                  });
+//              }
+//              );
+//         });
+//     }
+//   });
 
 router.post('/school/participant/register/crosshair', function(req, res) {
   if(!eventIsOn){

@@ -1,34 +1,64 @@
 extends layout
 
 block content
+
     #cursor
         .cursor__circle
-    .container1
-        form.registerform(method='post' action='/student/register/click')
-            h1.title
-                | Register a student from your school
-                br
-                | for (c)lick
-            if error
-                if errorcode == 'red'
-                    p.error1= error
-                else
-                    p.error2= error
-            .form-group
-                label(for='name') Full Name
-                input(type='text' name='name' placeholder='eg. Elon Musk' maxlength='20' required='required')
-            .form-group
-                label(for='email') Email Address
-                input(type='email' name='email' placeholder='eg. elon_musk@gmail.com' maxlength='40' required='required')
-            .form-group
-                label(for='phonenumber') Phone Number
-                input(type='number' name='phonenumber' placeholder='eg. 9876543210' maxlength='10' required='required')
-            input.btn(type='submit' value='Register')
-    script.
+    .errorcontainer
+        p.error3 NOTE: For the events (c)lick and (c)lipped, students can register themselves individually on the register page.
+    h1.title Register your school for (c)rosshair
+    if error
+        if errorcode == 'red'
+            p.error1= error
+        else
+            p.error2= error
+    form.registerform(method='post', action='/school/participant/register/crosshair')
+      .form-group
+        label(for='name1') Participant 1
+        input(type='text', name='name1', placeholder='Name', maxlength='30', required)
+        input(type='text', name='number1', placeholder='Number', maxlength='10', required)
+        input(type='email', name='email1', placeholder='Email Address', required)
+      .form-group
+        label(for='name2') Participant 2
+        input(type='text', name='name2', placeholder='Name', maxlength='30')
+        input(type='text', name='number2', placeholder='Number', maxlength='10')
+        input(type='email', name='email2', placeholder='Email Address')
+      .form-group
+        label(for='name3') Participant 3
+        input(type='text', name='name3', placeholder='Name', maxlength='30')
+        input(type='text', name='number3', placeholder='Number', maxlength='10')
+        input(type='email', name='email3', placeholder='Email Address')
+      .form-group
+        label(for='name4') Participant 4
+        input(type='text', name='name4', placeholder='Name', maxlength='30', required)
+        input(type='text', name='number4', placeholder='Number', maxlength='10', required)
+        input(type='email', name='email4', placeholder='Email Address', required)
+      .form-group
+        label(for='name5') Participant 5
+        input(type='text', name='name5', placeholder='Name', maxlength='30', required)
+        input(type='text', name='number5', placeholder='Number', maxlength='10', required)
+        input(type='email', name='email5', placeholder='Email Address', required)
+      .form-group
+        label(for='name6') Substitute (if any)
+        input(type='text', name='name6', placeholder='Name', maxlength='30')
+        input(type='text', name='number6', placeholder='Number', maxlength='10')
+        input(type='email', name='email6', placeholder='Email Address')
+
+      .errorcontainer
+        p.error4 NOTE: The students will recieve their credentials on the emails they're registered with. Please make sure they have access to the emails entered.
+
+      input(type='submit', value='Register')
+      script.
+        document.getElementById("registernav").classList.toggle("active");
+        function navfunction() {
+          document.getElementsByClassName('js-toggle-menu')[0].classList.toggle('open');
+          document.getElementById("main").classList.toggle('temp-body')
+          document.getElementsByClassName("hidden")[0].classList.toggle("notHidden")
+        };
         window.addEventListener("DOMContentLoaded", function(event) {
-            if(document.getElementById('username')) {
-                document.getElementById('username').addEventListener('input', function(){
-                    this.value = this.value.replace(/\s+/g, '').toLowerCase();
-                });
-            }
+          if(document.getElementById('username')) {
+            document.getElementById('username').addEventListener('input', function(){
+              this.value = this.value.replace(/\s+/g, '').toLowerCase();
+            });
+          }
         });
