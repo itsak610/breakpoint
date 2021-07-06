@@ -8,7 +8,10 @@ block content
             form.registerform(method='post' action='/student/register/click')
                 h1.title Register for (c)lick
                 if error
-                    p.error= error
+                    if errorcode == 'red'
+                        p.error1= error
+                    else
+                        p.error2= error
                 .form-group
                     label(for='name') Full Name
                     input(type='text' name='name' placeholder='eg. Elon Musk' maxlength='20' required='required')
@@ -35,6 +38,11 @@ block content
             form.registerform(method='post' action='/student/register/clipped')
                 h1.title 
                     | Register for (c)lipped
+                if error
+                    if errorcode == 'red'
+                        p.error1= error
+                    else
+                        p.error2= error
                 .form-group
                     label(for='name') Full Name
                     input(type='text' name='name' placeholder='eg. Elon Musk' maxlength='20' required='required')

@@ -8,7 +8,10 @@ block content
             h1.title 
                 | School Registeration
             if error
-                p.error= error
+                if errorcode == 'red'
+                    p.error1= error
+                else
+                    p.error2= error
             .form-group
                 label(for='username')
                     | Username

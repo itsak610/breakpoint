@@ -7,7 +7,10 @@ block content
         form.registerform(method='post' action='/student/login')
             h1.title Student Login
             if error
-                p.error= error
+                if errorcode == 'red'
+                    p.error1= error
+                else
+                    p.error2= error
             .form-group
                 label(for='username') Username:
                 input#username(type='text' name='username' placeholder='Username' maxlength='20' required)

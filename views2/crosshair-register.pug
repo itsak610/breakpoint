@@ -10,7 +10,10 @@ block content
                 br
                 | for (c)lick
             if error
-                p.error= error
+                if errorcode == 'red'
+                    p.error1= error
+                else
+                    p.error2= error
             .form-group
                 label(for='name') Full Name
                 input(type='text' name='name' placeholder='eg. Elon Musk' maxlength='20' required='required')
