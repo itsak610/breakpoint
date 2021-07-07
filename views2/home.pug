@@ -60,6 +60,10 @@ html(lang='en')
                             a(href='/login' cursor-class='arrow') Login
                         li
                             a(href='/register' cursor-class='arrow') Register
+        .loader
+            .loadcontainer
+                .side
+                    img(src='/img/cypher.png' alt='cypher')
         #canvas
         #main
             section.landing
@@ -154,7 +158,7 @@ html(lang='en')
                                         a(href='https://www.youtube.com/channel/UCSULXN5apeQSDa0sLYuwEnA' target='_blank') YouTube
                 .last
                     p With &#x1F497; from (c)lub (c)ypher
-            script(src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r77/three.min.js')
+            script(src='/js/three.min.js')
             script(type='module' src='/js/index.js')
             script.
                 function navfunction() {

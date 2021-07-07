@@ -1,6 +1,6 @@
 var path = window.location.pathname;
 var page = path.split("/").pop();
-console.log(page)
+
 
 if (page!='alumni'){
     // BACKGROUND
@@ -15,7 +15,7 @@ if (page!='alumni'){
     renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 
     renderer.setPixelRatio(window.devicePixelRatio ? window.devicePixelRatio : 1);
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize((window.innerWidth - (13)), window.innerHeight);
     renderer.autoClear = false;
     renderer.setClearColor(0x000000, 0.0);
     document.getElementById("canvas").appendChild(renderer.domElement);
@@ -24,7 +24,7 @@ if (page!='alumni'){
 
     camera = new THREE.PerspectiveCamera(
         95,
-        window.innerWidth / window.innerHeight,
+        (window.innerWidth - (13)) / window.innerHeight,
         1,
         1000
     );
@@ -71,9 +71,9 @@ if (page!='alumni'){
     }
 
     function onWindowResize() {
-    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.aspect = (window.innerWidth - (13)) / window.innerHeight;
     camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize((window.innerWidth - (13)), window.innerHeight);
     }
 
     function animate() {
@@ -98,7 +98,7 @@ else if (page==='alumni'){
         renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     
         renderer.setPixelRatio(window.devicePixelRatio ? window.devicePixelRatio : 1);
-        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setSize((window.innerWidth - (13)), window.innerHeight);
         renderer.autoClear = false;
         renderer.setClearColor(0x000000, 0.0);
         document.getElementById("canvas").appendChild(renderer.domElement);
@@ -107,7 +107,7 @@ else if (page==='alumni'){
     
         camera = new THREE.PerspectiveCamera(
             95,
-            window.innerWidth / window.innerHeight,
+            (window.innerWidth - (13)) / window.innerHeight,
             1,
             1000
         );
@@ -154,9 +154,9 @@ else if (page==='alumni'){
         }
     
         function onWindowResize() {
-        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.aspect = (window.innerWidth - (13)) / window.innerHeight;
         camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setSize((window.innerWidth - (13)), window.innerHeight);
         }
     
         function animate() {
@@ -266,5 +266,17 @@ if (page==='home'){
 	document.querySelector('#main').classList.toggle('temp-body')
 	document.getElementsByClassName("hidden")[0].classList.toggle("notHidden")
   };
-
-  
+function hideit() {
+    loader.style.display = 'none'
+}
+var loader = document.querySelector(".loader");
+var side = document.querySelector(".side");
+function loadFunction() {
+    loader.className += " hidden"; // class "loader hidden"
+}
+window.addEventListener("load", function() {
+    side.className += " outro"
+    setTimeout(loadFunction, 500);
+    setTimeout(hideit, 1000);
+    
+});
