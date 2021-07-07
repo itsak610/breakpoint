@@ -920,7 +920,9 @@ footer {
   
 
 /*----------------------------------------------EVENTS----------------------------------------------*/
-
+section.invite{
+    margin-top: 0;
+}
 section.events{
     height: 100vh;
     width: 100%;
@@ -932,7 +934,10 @@ section.events{
     letter-spacing: 1px;
     
 }  
-section.events:nth-child(2), section.events:nth-child(3), section.events:nth-child(4){
+section.events:nth-child(2){
+    padding-top:15vh;
+}
+section.events:nth-child(3), section.events:nth-child(4), section.events:nth-child(5){
     padding-top:40vh;
 }
 .events h2{
@@ -1007,6 +1012,7 @@ section.events:nth-child(2), section.events:nth-child(3), section.events:nth-chi
 
 /*----------------------------------------------Media Queries----------------------------------------------*/
 @media (max-width:750px) {
+ 
     *{
         cursor: default;
       }
@@ -1285,7 +1291,7 @@ section.events:nth-child(2), section.events:nth-child(3), section.events:nth-chi
   .card-container{
       flex-flow: column;
   }
-    section.events:nth-child(2), section.events:nth-child(3), section.events:nth-child(4){
+    section.events:nth-child(3), section.events:nth-child(4), section.events:nth-child(5){
         padding-top:60vh;
     }
     .event{
@@ -1445,7 +1451,7 @@ section.events:nth-child(2), section.events:nth-child(3), section.events:nth-chi
     .blog-card:nth-child(2){
         margin-top: 10vw;
     }
-    section.events:nth-child(2), section.events:nth-child(3), section.events:nth-child(4){
+    section.events:nth-child(3), section.events:nth-child(4), section.events:nth-child(5){
         padding-top:60vh;
     }
     .event{
@@ -1594,4 +1600,18 @@ section.events:nth-child(2), section.events:nth-child(3), section.events:nth-chi
         margin-top: 100vh;
         display: none;
     }
+}
+@media (max-width:750px) {
+    .side > * {
+        height: 12px;
+        width: 12px;
+        margin:10px;
+    }   
+}
+@media (min-width:750px) and (max-width:1112px) {
+    .side > * {
+        height: 16px;
+        width: 16px;
+        margin:12px;
+    }   
 }

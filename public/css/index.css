@@ -1072,8 +1072,8 @@ footer h2 {
     position: relative;
     max-width: 100%;
     max-height: 100%;
-    width: 200px;
-    height: 200px;
+    width: 300px;
+    height: 300px;
     margin:20px;
 }
 .two{
@@ -1126,4 +1126,16 @@ footer h2 {
         margin-top: 100vh;
         display: none;
     }
+}
+@media (max-width:750px) {
+    .side > * {
+        height: 200px;
+        width: 200px;
+    }   
+}
+@media (min-width:750px) and (max-width:1112px) {
+    .side > * {
+        height: 200px;
+        width: 200px;
+    }   
 }
