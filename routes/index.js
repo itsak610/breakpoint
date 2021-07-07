@@ -219,77 +219,84 @@ router.post('/school/register', function(req, res) {
     return res.render('school-register', { title: 'School Register', error : 'The passwords dont match.', errorcode:'red' });
   }
   else{
-    var verifyid = makeid(64);
-    User.register(new User({
-      username : req.body.username,
-      schoolname : req.body.schoolname,
-      type : "School",
-      teachername : req.body.teachername,
-      teachernumber : req.body.teachernumber,
-      schoolemail: req.body.schoolemail,
-      verification: verifyid,
-      password1: req.body.password,
-      code: makeid(8),
-      time: new Date(),
-    }), req.body.password, function(err, user) {
-        var output = 
-        `
-        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-        <html xmlns=3D"https://www.w3.org/1999/xhtml" xmlns:v=3D"urn:schemas-micros=oft-com:vml">
-            <head>
-                <title>Registeration Details</title>
-            </head>
-            <body style="background:transparent">
-                <div style="display:flex;align-items:center;justify-content:center;font-size:3vw;">
-                    <div style="align-items:center;justify-content:center;width:fit-content;height:max-content;background:#050B18;border-radius:10px">
-                        <div style="padding:60px">
-                            <p style="font-family: Arial, Helvetica, sans-serif;padding-top:25px;color:#eee;">Thank you for registering for (c)ync!</p>
-                            <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Here are your credentials -</p>
-                            <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Username: <b>${req.body.username}</b></p>
-                            <p style="font-family: Arial, Helvetica, sans-serif;padding-top:5px;color:#eee;">Password: <b>${req.body.password}</b></p>
-                            <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;"><a style="text-decoration:none;color:red;" href="https://www.clubcypher.club/verify/${verifyid}">Click here to verify your account.</a></p>
-                            <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;">You can use these credentials to login <a style="text-decoration:none;color:red;" href="https://www.clubcypher.club/login">HERE</a>.</p>
-                    </div>
-                    </div>
-                </div>
-            </body>
-        </html>
-        `
+      User.findOne({schoolemail: req.body.schoolemail}, function(err, user) {
+        if(!user){
+            var verifyid = makeid(64);
+            User.register(new User({
+            username : req.body.username,
+            schoolname : req.body.schoolname,
+            type : "School",
+            teachername : req.body.teachername,
+            teachernumber : req.body.teachernumber,
+            schoolemail: req.body.schoolemail,
+            verification: verifyid,
+            password1: req.body.password,
+            code: makeid(8),
+            time: new Date(),
+            }), req.body.password, function(err, user) {
+                var output = 
+                `
+                <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+                <html xmlns=3D"https://www.w3.org/1999/xhtml" xmlns:v=3D"urn:schemas-micros=oft-com:vml">
+                    <head>
+                        <title>Registeration Details</title>
+                    </head>
+                    <body style="background:transparent">
+                        <div style="display:flex;align-items:center;justify-content:center;font-size:3vw;">
+                            <div style="align-items:center;justify-content:center;width:fit-content;height:max-content;background:#050B18;border-radius:10px">
+                                <div style="padding:60px">
+                                    <p style="font-family: Arial, Helvetica, sans-serif;padding-top:25px;color:#eee;">Thank you for registering for (c)ync!</p>
+                                    <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Here are your credentials -</p>
+                                    <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Username: <b>${req.body.username}</b></p>
+                                    <p style="font-family: Arial, Helvetica, sans-serif;padding-top:5px;color:#eee;">Password: <b>${req.body.password}</b></p>
+                                    <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;"><a style="text-decoration:none;color:red;" href="https://www.clubcypher.club/verify/${verifyid}">Click here to verify your account.</a></p>
+                                    <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;">You can use these credentials to login <a style="text-decoration:none;color:red;" href="https://www.clubcypher.club/login">HERE</a>.</p>
+                            </div>
+                            </div>
+                        </div>
+                    </body>
+                </html>
+                `
 
-        var da_mail = `${req.body.schoolemail}`
+                var da_mail = `${req.body.schoolemail}`
 
-        const accessToken = oAuth2Client.getAccessToken();
+                const accessToken = oAuth2Client.getAccessToken();
 
-        const transporter = nodemailer.createTransport({
-            service: 'gmail',
-            auth: {
-                type: 'OAuth2',
-                user: 'clubcypher.bot@gmail.com',
-                clientId: CLIENT_ID,
-                clientSecret: CLEINT_SECRET,
-                refreshToken: REFRESH_TOKEN,
-                accessToken: accessToken,
-            },
-        });
-        
-        var mailOptions = {
-            from: '"Club Cypher" <clubcypher.bot@gmail.com>',
-            to: da_mail,
-            subject: "Registeration Details",
-            text: output,
-            html: output,
-        };
-if (err) {
-      return res.render('school-register', { title: 'School Register', error : 'The School has already been registered.', errorcode:'red' });
-    }
-    else
-        transporter.sendMail(mailOptions, function (err, info) {
-          if(err)
-            return res.render('school-register', { title: 'School Register', error : 'School registered successfully.', errorcode:'blue' });
-          else 
-            return res.render('school-register', { title: 'School Register', error : 'School registered successfully. Credentials sent to your email.', errorcode:'blue' });
-        });
-    });
+                const transporter = nodemailer.createTransport({
+                    service: 'gmail',
+                    auth: {
+                        type: 'OAuth2',
+                        user: 'clubcypher.bot@gmail.com',
+                        clientId: CLIENT_ID,
+                        clientSecret: CLEINT_SECRET,
+                        refreshToken: REFRESH_TOKEN,
+                        accessToken: accessToken,
+                    },
+                });
+                
+                var mailOptions = {
+                    from: '"Club Cypher" <clubcypher.bot@gmail.com>',
+                    to: da_mail,
+                    subject: "Registeration Details",
+                    text: output,
+                    html: output,
+                };
+        if (err) {
+            return res.render('school-register', { title: 'School Register', error : 'The School has already been registered.', errorcode:'red' });
+            }
+            else
+                transporter.sendMail(mailOptions, function (err, info) {
+                if(err)
+                    return res.render('school-register', { title: 'School Register', error : 'School registered successfully.', errorcode:'blue' });
+                else 
+                    return res.render('school-register', { title: 'School Register', error : 'School registered successfully. Credentials sent to your email.', errorcode:'blue' });
+                });
+            });
+        }
+        else{
+            return res.render('school-register', { title: 'School Register', error : 'The email has already been registered.', errorcode:'red' });
+        }
+    })
   }
 });
 
@@ -397,84 +404,92 @@ router.post('/student/register/click', function(req, res) {
     return res.render('student-register', { title: 'Student Register', error : 'The passwords dont match.', errorcode:'red', eventname: 'click' });
   }
   else{
-      var query1 = User.find({ studentevent: 'click' })
-      query1.countDocuments(function (err, count) {
-           var count_part = count;
-           var verifyid = makeid(64);
-           User.register(new User({
-             username : 'clickparticipant' + count_part,
-             schoolname : req.body.schoolname,
-             type : "Student",
-             studentname : req.body.name,
-             studentevent : 'click',
-             studentemail : req.body.email,
-             studentnumber: req.body.phonenumber,
-             verification: verifyid,
-             password1: req.body.password,
-             student: true,
-             time: new Date(),
-           }), req.body.password, function(err, user) {
-            var output = 
-            `
-            <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-            <html xmlns=3D"https://www.w3.org/1999/xhtml" xmlns:v=3D"urn:schemas-micros=oft-com:vml">
-                <head>
-                    <title>Registeration Details</title>
-                </head>
-                <body style="background:transparent">
-                    <div style="display:flex;align-items:center;justify-content:center;font-size:3vw;">
-                        <div style="align-items:center;justify-content:center;width:fit-content;height:max-content;background:#050B18;border-radius:10px">
-                            <div style="padding:60px">
-                                <p style="font-family: Arial, Helvetica, sans-serif;padding-top:25px;color:#eee;">Thank you for registering for (c)ync!</p>
-                                <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Here are your credentials -</p>
-                                <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Username: <b>clickparticipant${count_part}</b></p>
-                                <p style="font-family: Arial, Helvetica, sans-serif;padding-top:5px;color:#eee;">Password: <b>${req.body.password}</b></p>
-                                <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;"><a style="text-decoration:none;color:red;" href="https://www.clubcypher.club/verify/${verifyid}">Click here to verify your account.</a></p>
-                                <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;">You can use these credentials to login <a style="text-decoration:none;color:red;" href="https://www.clubcypher.club/login">HERE</a>.</p>
+    User.findOne({studentemail: req.body.email}, function(err, user) {
+        if(!user){
+            var query1 = User.find({ studentevent: 'click' })
+            query1.countDocuments(function (err, count) {
+                var count_part = count;
+                var verifyid = makeid(64);
+                User.register(new User({
+                    username : 'clickparticipant' + count_part,
+                    schoolname : req.body.schoolname,
+                    type : "Student",
+                    studentname : req.body.name,
+                    studentevent : 'click',
+                    studentemail : req.body.email,
+                    studentnumber: req.body.phonenumber,
+                    verification: verifyid,
+                    password1: req.body.password,
+                    student: true,
+                    time: new Date(),
+                }), req.body.password, function(err, user) {
+                    var output = 
+                    `
+                    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+                    <html xmlns=3D"https://www.w3.org/1999/xhtml" xmlns:v=3D"urn:schemas-micros=oft-com:vml">
+                        <head>
+                            <title>Registeration Details</title>
+                        </head>
+                        <body style="background:transparent">
+                            <div style="display:flex;align-items:center;justify-content:center;font-size:3vw;">
+                                <div style="align-items:center;justify-content:center;width:fit-content;height:max-content;background:#050B18;border-radius:10px">
+                                    <div style="padding:60px">
+                                        <p style="font-family: Arial, Helvetica, sans-serif;padding-top:25px;color:#eee;">Thank you for registering for (c)ync!</p>
+                                        <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Here are your credentials -</p>
+                                        <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Username: <b>clickparticipant${count_part}</b></p>
+                                        <p style="font-family: Arial, Helvetica, sans-serif;padding-top:5px;color:#eee;">Password: <b>${req.body.password}</b></p>
+                                        <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;"><a style="text-decoration:none;color:red;" href="https://www.clubcypher.club/verify/${verifyid}">Click here to verify your account.</a></p>
+                                        <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;">You can use these credentials to login <a style="text-decoration:none;color:red;" href="https://www.clubcypher.club/login">HERE</a>.</p>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </body>
-            </html>
-            `
+                        </body>
+                    </html>
+                    `
 
-            var da_mail = `${req.body.email}`
+                    var da_mail = `${req.body.email}`
 
-            const accessToken = oAuth2Client.getAccessToken();
+                    const accessToken = oAuth2Client.getAccessToken();
 
-            const transporter = nodemailer.createTransport({
-                service: 'gmail',
-                auth: {
-                    type: 'OAuth2',
-                    user: 'clubcypher.bot@gmail.com',
-                    clientId: CLIENT_ID,
-                    clientSecret: CLEINT_SECRET,
-                    refreshToken: REFRESH_TOKEN,
-                    accessToken: accessToken,
-                },
+                    const transporter = nodemailer.createTransport({
+                        service: 'gmail',
+                        auth: {
+                            type: 'OAuth2',
+                            user: 'clubcypher.bot@gmail.com',
+                            clientId: CLIENT_ID,
+                            clientSecret: CLEINT_SECRET,
+                            refreshToken: REFRESH_TOKEN,
+                            accessToken: accessToken,
+                        },
+                    });
+                    
+                    var mailOptions = {
+                        from: '"Club Cypher" <clubcypher.bot@gmail.com>',
+                        to: da_mail,
+                        subject: "Registeration Details",
+                        text: output,
+                        html: output,
+                    };
+                if (err) {
+                    return res.render('student-register', { title: 'Student Register', error : 'The Student has already been registered.', errorcode:'red', eventname: 'click' });
+                }
+                else
+                    transporter.sendMail(mailOptions, function (err, info) {
+                        if(err)
+                        return res.render('student-register', { title: 'Student Register', error : 'Student registered successfully.', errorcode:'blue', eventname: 'click' });
+                        else 
+                        return res.render('student-register', { title: 'Student Register', error : 'Student registered successfully. Credentials sent to your email.', errorcode:'blue', eventname: 'click' });
+                    });
+                }
+                );
             });
-            
-            var mailOptions = {
-                from: '"Club Cypher" <clubcypher.bot@gmail.com>',
-                to: da_mail,
-                subject: "Registeration Details",
-                text: output,
-                html: output,
-            };
-           if (err) {
-             return res.render('student-register', { title: 'Student Register', error : 'The Student has already been registered.', errorcode:'red', eventname: 'click' });
-           }
-           else
-               transporter.sendMail(mailOptions, function (err, info) {
-                 if(err)
-                   return res.render('student-register', { title: 'Student Register', error : 'Student registered successfully.', errorcode:'blue', eventname: 'click' });
-                 else 
-                   return res.render('student-register', { title: 'Student Register', error : 'Student registered successfully. Credentials sent to your email.', errorcode:'blue', eventname: 'click' });
-               });
-           }
-           );
-      });
+    }
+    else{
+        return res.render('student-register', { title: 'Student Register', error : 'The email is already registered.', errorcode:'red', eventname: 'click' });
+    }
+    })
   }
+
 });
 
 router.post('/student/register/clipped', function(req, res) {
@@ -486,82 +501,89 @@ router.post('/student/register/clipped', function(req, res) {
       return res.render('student-register', { title: 'Student Register', error : 'The passwords dont match.', errorcode:'red', eventname: 'clipped' });
     }
     else{
-        var query1 = User.find({ studentevent: 'clipped' })
-        query1.countDocuments(function (err, count) {
-             var count_part = count;
-             User.register(new User({
-               username : 'clippedparticipant' + count_part,
-               schoolname : req.body.schoolname,
-               type : "Student",
-               studentname : req.body.name,
-               studentevent : 'clipped',
-               studentemail : req.body.email,
-               studentnumber: req.body.phonenumber,
-               verification: makeid(64),
-               password1: req.body.password,
-               student: true,
-               time: new Date(),
-             }), req.body.password, function(err, user) {
-                var output = 
-                `
-                <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-                <html xmlns=3D"https://www.w3.org/1999/xhtml" xmlns:v=3D"urn:schemas-micros=oft-com:vml">
-                    <head>
-                        <title>Registeration Details</title>
-                    </head>
-                    <body style="background:transparent">
-                        <div style="display:flex;align-items:center;justify-content:center;font-size:3vw;">
-                            <div style="align-items:center;justify-content:center;width:fit-content;height:max-content;background:#050B18;border-radius:10px">
-                                <div style="padding:60px">
-                                    <p style="font-family: Arial, Helvetica, sans-serif;padding-top:25px;color:#eee;">Thank you for registering for (c)ync!</p>
-                                    <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Here are your credentials -</p>
-                                    <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Username: <b>clickparticipant${count_part}</b></p>
-                                    <p style="font-family: Arial, Helvetica, sans-serif;padding-top:5px;color:#eee;">Password: <b>${req.body.password}</b></p>
-                                    <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;"><a style="text-decoration:none;color:red;" href="https://www.clubcypher.club/verify/${verifyid}">Click here to verify your account.</a></p>
-                                    <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;">You can use these credentials to login <a style="text-decoration:none;color:red;" href="https://www.clubcypher.club/login">HERE</a>.</p>
+        User.findOne({studentemail: req.body.email}, function(err, user) {
+            if(!user){
+                var query1 = User.find({ studentevent: 'clipped' })
+                query1.countDocuments(function (err, count) {
+                    var count_part = count;
+                    User.register(new User({
+                    username : 'clippedparticipant' + count_part,
+                    schoolname : req.body.schoolname,
+                    type : "Student",
+                    studentname : req.body.name,
+                    studentevent : 'clipped',
+                    studentemail : req.body.email,
+                    studentnumber: req.body.phonenumber,
+                    verification: makeid(64),
+                    password1: req.body.password,
+                    student: true,
+                    time: new Date(),
+                    }), req.body.password, function(err, user) {
+                        var output = 
+                        `
+                        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+                        <html xmlns=3D"https://www.w3.org/1999/xhtml" xmlns:v=3D"urn:schemas-micros=oft-com:vml">
+                            <head>
+                                <title>Registeration Details</title>
+                            </head>
+                            <body style="background:transparent">
+                                <div style="display:flex;align-items:center;justify-content:center;font-size:3vw;">
+                                    <div style="align-items:center;justify-content:center;width:fit-content;height:max-content;background:#050B18;border-radius:10px">
+                                        <div style="padding:60px">
+                                            <p style="font-family: Arial, Helvetica, sans-serif;padding-top:25px;color:#eee;">Thank you for registering for (c)ync!</p>
+                                            <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Here are your credentials -</p>
+                                            <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Username: <b>clickparticipant${count_part}</b></p>
+                                            <p style="font-family: Arial, Helvetica, sans-serif;padding-top:5px;color:#eee;">Password: <b>${req.body.password}</b></p>
+                                            <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;"><a style="text-decoration:none;color:red;" href="https://www.clubcypher.club/verify/${verifyid}">Click here to verify your account.</a></p>
+                                            <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;">You can use these credentials to login <a style="text-decoration:none;color:red;" href="https://www.clubcypher.club/login">HERE</a>.</p>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    </body>
-                </html>
-                `
-    
-                var da_mail = `${req.body.email}`
-    
-                const accessToken = oAuth2Client.getAccessToken();
-    
-                const transporter = nodemailer.createTransport({
-                    service: 'gmail',
-                    auth: {
-                        type: 'OAuth2',
-                        user: 'clubcypher.bot@gmail.com',
-                        clientId: CLIENT_ID,
-                        clientSecret: CLEINT_SECRET,
-                        refreshToken: REFRESH_TOKEN,
-                        accessToken: accessToken,
-                    },
+                            </body>
+                        </html>
+                        `
+            
+                        var da_mail = `${req.body.email}`
+            
+                        const accessToken = oAuth2Client.getAccessToken();
+            
+                        const transporter = nodemailer.createTransport({
+                            service: 'gmail',
+                            auth: {
+                                type: 'OAuth2',
+                                user: 'clubcypher.bot@gmail.com',
+                                clientId: CLIENT_ID,
+                                clientSecret: CLEINT_SECRET,
+                                refreshToken: REFRESH_TOKEN,
+                                accessToken: accessToken,
+                            },
+                        });
+                        
+                        var mailOptions = {
+                            from: '"Club Cypher" <clubcypher.bot@gmail.com>',
+                            to: da_mail,
+                            subject: "Registeration Details",
+                            text: output,
+                            html: output,
+                        };
+                        if (err) {
+                    return res.render('student-register', { title: 'Student Register', error : 'The Student has already been registered.', errorcode:'red', eventname: 'clipped' });
+                    }
+                    else
+                        transporter.sendMail(mailOptions, function (err, info) {
+                        if(err)
+                            return res.render('student-register', { title: 'Student Register', error : 'Student registered successfully.', errorcode:'blue', eventname: 'clipped' });
+                        else 
+                            return res.render('student-register', { title: 'Student Register', error : 'Student registered successfully. Credentials sent to your email.', errorcode:'blue', eventname: 'clipped' });
+                        });
+                    }
+                    );
                 });
-                
-                var mailOptions = {
-                    from: '"Club Cypher" <clubcypher.bot@gmail.com>',
-                    to: da_mail,
-                    subject: "Registeration Details",
-                    text: output,
-                    html: output,
-                };
-                 if (err) {
-               return res.render('student-register', { title: 'Student Register', error : 'The Student has already been registered.', errorcode:'red', eventname: 'clipped' });
-             }
-             else
-                 transporter.sendMail(mailOptions, function (err, info) {
-                   if(err)
-                     return res.render('student-register', { title: 'Student Register', error : 'Student registered successfully.', errorcode:'blue', eventname: 'clipped' });
-                   else 
-                     return res.render('student-register', { title: 'Student Register', error : 'Student registered successfully. Credentials sent to your email.', errorcode:'blue', eventname: 'clipped' });
-                 });
-             }
-             );
-        });
+            }
+            else{
+                return res.render('student-register', { title: 'Student Register', error : 'The passwords dont match.', errorcode:'red', eventname: 'clipped' });
+            }
+        })
     }
   });
   
