@@ -1529,7 +1529,7 @@ section.events:nth-child(3), section.events:nth-child(4), section.events:nth-chi
     background: #080808;
     width: 100vw;
     height: 100vh;
-    position: absolute;
+    position: fixed;
     display: flex;
 }
 
