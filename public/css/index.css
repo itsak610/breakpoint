@@ -800,6 +800,7 @@ footer h2 {
     .timer{
         justify-content: center;
         flex-flow: row;
+        margin-top:-3em;
     }
     .row{
         flex-flow: row;
@@ -829,7 +830,7 @@ footer h2 {
         width: 100%;
     }
     .btn-landing{
-        margin-top: 4em;
+        margin-top: 2em;
     }
     section.cync{
         flex-flow: column;
