@@ -5,9 +5,12 @@ html(lang='en')
         title (c)ypher
         meta(name='description', content='This website is created by and for the tech club of DPS Bhopal - Team (c)ypher.')
         meta(name='viewport' content='width=device-width, initial-scale=1')
-        link(rel="shortcut icon" href="/img/cypher.png?v=1" type="image/x-icon")        
+        link(rel="shortcut icon" href="https://static.clubcypher.club/img/cypher.png?v=1" type="image/x-icon")        
         style.
-            @import url("https://fonts.googleapis.com/css2?family=Barlow:wght@100;300;400;500;700&display=swap");
+            @font-face {
+                font-family: 'Barlow';
+                src: url(https://static.clubcypher.club/font/Barlow.ttf) format("truetype");
+            }
 
             /*----------------------------------------------GLOBAL----------------------------------------------*/
             html {
@@ -40,7 +43,7 @@ html(lang='en')
             * {
             margin: 0;
             padding: 0;
-            font-family: "Barlow", sans-serif;
+            font-family: "Barlow";
             cursor: none;
             }
             body {
@@ -298,7 +301,6 @@ html(lang='en')
             
             /*-------------------------------------------------CARD-------------------------------------------------*/
             
-            @import url(//fonts.googleapis.com/css?family=Abril+Fatface|Droid+Serif:400,700,400italic,700italic);
             
             .blog-card {
                 position: relative;
@@ -1259,8 +1261,8 @@ html(lang='en')
         header
             .logo
                 a.handletter(href='/home')
-                    img(src='/img/cync_logo-converted.png' alt='cync' cursor-class='arrow')
-            img.mob-logo(src='/img/cync_logo-converted.png' alt='cync' cursor-class='arrow')
+                    img(src='https://static.clubcypher.club/img/cync_logo-converted.png' alt='cync' cursor-class='arrow')
+            img.mob-logo(src='https://static.clubcypher.club/img/cync_logo-converted.png' alt='cync' cursor-class='arrow')
             #mobilenavdiv.mobile-menu-toggle.js-toggle-menu.hamburger-menu(onclick='navfunction()')
                 span.menu-item
                 span.menu-item
@@ -1362,9 +1364,9 @@ html(lang='en')
                                         a(href='https://www.youtube.com/channel/UCSULXN5apeQSDa0sLYuwEnA' target='_blank') YouTube
                 .last
                     p With &#x1F497; from (c)lub (c)ypher
-            script(src='/js/three.min.js')
-            script(src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.4.1/vanilla-tilt.min.js")
-            script(src='/js/index.js')    
+            script(src='https://static.clubcypher.club/js/three.min.js')
+            script(src="https://static.clubcypher.club/js/vanilla-tilt.min.js")
+            script(src='https://static.clubcypher.club/js/index.js')    
             script.
                 window.addEventListener("DOMContentLoaded", function(event) {
                     if(document.getElementById('username')) {
