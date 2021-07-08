@@ -7,7 +7,7 @@ html(lang='en')
         meta(name='description', content='This website is created by and for the tech club of DPS Bhopal - Team (c)ypher.')
         meta(name='viewport' content='width=device-width, initial-scale=1')
         link(rel="shortcut icon" href="https://static.clubcypher.club/img/cypher.png?v=1" type="image/x-icon")
-        link(rel="stylesheet" href="https://static.clubcypher.club/css/index.css")
+        link(rel='stylesheet preload' href='https://static.clubcypher.club/css/index.css' as='style')
     body
         header
             .logo
@@ -151,11 +151,11 @@ html(lang='en')
                             .right2
                                 ul
                                     li
-                                        a(href='https://www.instagram.com/cypherdps/' target='_blank') Instagram
+                                        a(href='https://www.instagram.com/cypherdps/' rel="noreferrer" target='_blank') Instagram
                                     li
                                         a(href='#' target='_blank') Discord
                                     li
-                                        a(href='https://www.youtube.com/channel/UCSULXN5apeQSDa0sLYuwEnA' target='_blank') YouTube
+                                        a(href='https://www.youtube.com/channel/UCSULXN5apeQSDa0sLYuwEnA' rel="noreferrer" target='_blank') YouTube
                 .last
                     p With &#x1F497; from (c)lub (c)ypher
             script(src='https://static.clubcypher.club/js/three.min.js')
