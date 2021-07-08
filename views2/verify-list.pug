@@ -54,7 +54,7 @@ block content
                     td= (index+1)
                     td
                         if team.type == 'Student'
-                            - var link1 = '/admin/participant/' + team.username;
+                            - var link1 = '/admin/student/' + team.username;
                             a(href=link1) #{team.studentname}
                         if team.type == 'Participant'
                             - var link1 = '/admin/participant/' + team.username;
@@ -63,8 +63,14 @@ block content
                             - var link1 = '/admin/schools/' + team.code + '/details';
                             a(href=link1) #{team.schoolname}
                     td
-                        - var link2 = '/admin/schools/' + team.code + '/details';
-                        a(href=link2) #{team.schoolname}
+                        if team.type == 'Participant'
+                            - var link2 = '/admin/schools/' + team.code + '/details';
+                            a(href=link2) #{team.schoolname}
+                        if team.type == 'Student'
+                            a(href=link2) #{team.schoolname}
+                        if team.type == 'School'
+                            - var link2 = '/admin/schools/' + team.code + '/details';
+                            a(href=link2) #{team.schoolname}
                     td= team.type
                     td
                         if team.verified == false
