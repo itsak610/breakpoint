@@ -9,6 +9,9 @@ html(lang='en')
         link(rel="shortcut icon" href="https://static.clubcypher.club/img/cypher.png?v=1" type="image/x-icon")
         link(rel="preload" as="font" href="https://static.clubcypher.club/font/Barlow2.woff2" crossOrigin="anonymous")
         link(rel='stylesheet preload' href='https://static.clubcypher.club/css/index.css' as='style')
+        link(rel="preload" href="https://static.clubcypher.club/js/three.min.js" as="script" crossOrigin="anonymous")
+        link(rel="preload" href="https://static.clubcypher.club/js/index.js" as="script" crossOrigin="anonymous")
+
     body
         header
             .logo
@@ -159,7 +162,7 @@ html(lang='en')
                                         a(href='https://www.youtube.com/channel/UCSULXN5apeQSDa0sLYuwEnA' rel="noreferrer" target='_blank') YouTube
                 .last
                     p With &#x1F497; from (c)lub (c)ypher
-            script(src='https://static.clubcypher.club/js/three.min.js')
+            script(src='https://static.clubcypher.club/js/three.min.js' crossOrigin="anonymous")
             script(src='https://static.clubcypher.club/js/index.js' crossOrigin="anonymous")
             script.
                 function navfunction() {

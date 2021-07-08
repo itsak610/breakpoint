@@ -5,6 +5,9 @@ html(lang='en')
         title (c)ypher
         meta(name='description', content='This website is created by and for the tech club of DPS Bhopal - Team (c)ypher.')
         meta(name='viewport' content='width=device-width, initial-scale=1')
+        link(rel="preload" href="https://static.clubcypher.club/js/three.min.js" as="script" crossOrigin="anonymous")
+        link(rel="preload" href="https://static.clubcypher.club/js/index.js" as="script" crossOrigin="anonymous")
+        link(rel="preload" href="https://static.clubcypher.club/js/vanilla-tilt.min.js" as="script" crossOrigin="anonymous")
         link(rel="preload" as="font" href="https://static.clubcypher.club/font/Barlow2.woff2" crossOrigin="anonymous")
         link(rel="shortcut icon" href="https://static.clubcypher.club/img/cypher.png?v=1" type="image/x-icon")
         style.
@@ -1366,8 +1369,8 @@ html(lang='en')
                                         a(href='https://www.youtube.com/channel/UCSULXN5apeQSDa0sLYuwEnA' rel="noreferrer" target='_blank') YouTube
                 .last
                     p With &#x1F497; from (c)lub (c)ypher
-            script(src='https://static.clubcypher.club/js/three.min.js')
-            script(src="https://static.clubcypher.club/js/vanilla-tilt.min.js")
+            script(src='https://static.clubcypher.club/js/three.min.js' crossOrigin="anonymous")
+            script(src="https://static.clubcypher.club/js/vanilla-tilt.min.js" crossOrigin="anonymous")
             script(src='https://static.clubcypher.club/js/index.js' crossOrigin="anonymous")    
             script.
                 window.addEventListener("DOMContentLoaded", function(event) {
