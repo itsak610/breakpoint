@@ -5,11 +5,12 @@ html(lang='en')
         title (c)ypher
         meta(name='description', content='This website is created by and for the tech club of DPS Bhopal - Team (c)ypher.')
         meta(name='viewport' content='width=device-width, initial-scale=1')
-        link(rel="shortcut icon" href="https://static.clubcypher.club/img/cypher.png?v=1" type="image/x-icon")        
+        link(rel="preload" as="font" href="https://static.clubcypher.club/font/Barlow2.woff2")
+        link(rel="shortcut icon" href="https://static.clubcypher.club/img/cypher.png?v=1" type="image/x-icon")
         style.
             @font-face {
                 font-family: 'Barlow';
-                src: url(https://static.clubcypher.club/font/Barlow.ttf) format("truetype");
+                src: url(https://static.clubcypher.club/font/Barlow2.woff2) format('woff2'), url(https://static.clubcypher.club/font/Barlow.ttf) format("truetype");
                 font-display: swap;
             }
 
