@@ -99,18 +99,23 @@ router.get('/over', (req, res) => {
 // -------------------------------------------------------- Normal Routes -------------------------------------------------------- //
 
 router.get('/', (req, res, next) => {
-  return res.redirect('/home');
+    return res.redirect('/home');
 });
+
 router.get('/home', (req, res, next) => {
-  return res.render('home', { title: '(c)ypher' });
+    return res.render('home', { title: '(c)ypher' });
 });
 
 router.get('/alumni', (req, res, next) => {
     return res.render('alumni', { title: 'Alumni' });
-  });
+});
 
 router.get('/events', (req, res, next) => {
     return res.render('events', { title: 'Events' });
+});
+
+router.get('/decypher', (req, res, next) => {
+    return res.render('decypher', { title: 'De(c)ypher' });
 });
 
 // Render login page
