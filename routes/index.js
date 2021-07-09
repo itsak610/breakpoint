@@ -289,7 +289,7 @@ router.post('/school/register', function(req, res) {
                 if(err)
                     return res.render('school-register', { title: 'School Register', error : 'School registered successfully.', errorcode:'blue' });
                 else 
-                    return res.render('school-register', { title: 'School Register', error : 'School registered successfully. Credentials sent to your email.', errorcode:'blue' });
+                    return res.render('school-register', { title: 'School Register', error : 'School registered successfully. Credentials sent to your email. If you are unable to find the email, check your spam folder or contact us at cypherdps@gmail.com', errorcode:'blue' });
                 });
             });
         }
@@ -404,7 +404,7 @@ router.post('/student/register/click', function(req, res) {
     return res.render('student-register', { title: 'Student Register', error : 'The passwords dont match.', errorcode:'red', eventname: 'click' });
   }
   else{
-    User.findOne({studentemail: req.body.email}, function(err, user) {
+    User.findOne({ $and: [{studentemail: req.body.email}, {studentevent: 'click'}]}, function(err, user) {
         if(!user){
             var query1 = User.find({ studentevent: 'click' })
             query1.countDocuments(function (err, count) {
@@ -478,7 +478,7 @@ router.post('/student/register/click', function(req, res) {
                         if(err)
                         return res.render('student-register', { title: 'Student Register', error : 'Student registered successfully.', errorcode:'blue', eventname: 'click' });
                         else 
-                        return res.render('student-register', { title: 'Student Register', error : 'Student registered successfully. Credentials sent to your email.', errorcode:'blue', eventname: 'click' });
+                        return res.render('student-register', { title: 'Student Register', error : 'Student registered successfully. Credentials sent to your email. If you are unable to find the email, check your spam folder or contact us at cypherdps@gmail.com', errorcode:'blue', eventname: 'click' });
                     });
                 }
                 );
@@ -501,7 +501,7 @@ router.post('/student/register/clipped', function(req, res) {
       return res.render('student-register', { title: 'Student Register', error : 'The passwords dont match.', errorcode:'red', eventname: 'clipped' });
     }
     else{
-        User.findOne({studentemail: req.body.email}, function(err, user) {
+        User.findOne({ $and: [{studentemail: req.body.email}, {studentevent: 'clipped'}]}, function(err, user) {
             if(!user){
                 var query1 = User.find({ studentevent: 'clipped' })
                 query1.countDocuments(function (err, count) {
@@ -574,7 +574,7 @@ router.post('/student/register/clipped', function(req, res) {
                         if(err)
                             return res.render('student-register', { title: 'Student Register', error : 'Student registered successfully.', errorcode:'blue', eventname: 'clipped' });
                         else 
-                            return res.render('student-register', { title: 'Student Register', error : 'Student registered successfully. Credentials sent to your email.', errorcode:'blue', eventname: 'clipped' });
+                            return res.render('student-register', { title: 'Student Register', error : 'Student registered successfully. Credentials sent to your email. If you are unable to find the email, check your spam folder or contact us at cypherdps@gmail.com', errorcode:'blue', eventname: 'clipped' });
                         });
                     }
                     );
@@ -991,7 +991,7 @@ router.post('/school/participant/register/crosshair', function(req, res) {
                 if(err)
                   return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully.', errorcode:'blue' });
                 else 
-                  return res.render('crosshair-register', { title: '(c)crosshair Register', error : 'Team registered successfully. Credentials sent to your email.', errorcode:'blue' });
+                  return res.render('crosshair-register', { title: '(c)crosshair Register', error : 'Team registered successfully. Credentials sent to your email. If you are unable to find the email, check your spam folder or contact us at cypherdps@gmail.com', errorcode:'blue' });
               });
           }
         )
@@ -1065,7 +1065,7 @@ router.post('/school/participant/register/crosshair', function(req, res) {
                     if(err)
                       return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully.', errorcode:'blue' });
                     else 
-                      return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully. Credentials sent to your email.', errorcode:'blue' });
+                      return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully. Credentials sent to your email. If you are unable to find the email, check your spam folder or contact us at cypherdps@gmail.com', errorcode:'blue' });
                 });
         });
         var verifyid3 = makeid(64);
@@ -1138,7 +1138,7 @@ router.post('/school/participant/register/crosshair', function(req, res) {
                     if(err)
                       return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully.', errorcode:'blue' });
                     else 
-                      return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully. Credentials sent to your email.', errorcode:'blue' });
+                      return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully. Credentials sent to your email. If you are unable to find the email, check your spam folder or contact us at cypherdps@gmail.com', errorcode:'blue' });
                 });
         });
         var verifyid4 = makeid(64);
@@ -1211,7 +1211,7 @@ router.post('/school/participant/register/crosshair', function(req, res) {
                     if(err)
                       return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully.', errorcode:'blue' });
                     else 
-                      return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully. Credentials sent to your email.', errorcode:'blue' });
+                      return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully. Credentials sent to your email. If you are unable to find the email, check your spam folder or contact us at cypherdps@gmail.com', errorcode:'blue' });
                 });
         });
         var verifyid5 = makeid(64);
@@ -1284,7 +1284,7 @@ router.post('/school/participant/register/crosshair', function(req, res) {
                     if(err)
                       return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully.', errorcode:'blue' });
                     else 
-                      return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully. Credentials sent to your email.', errorcode:'blue' });
+                      return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully. Credentials sent to your email. If you are unable to find the email, check your spam folder or contact us at cypherdps@gmail.com', errorcode:'blue' });
                 });
         });
         var verifyid6 = makeid(64);
@@ -1358,7 +1358,7 @@ router.post('/school/participant/register/crosshair', function(req, res) {
                     if(err)
                       return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully.', errorcode:'blue' });
                     else 
-                      return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully. Credentials sent to your email.', errorcode:'blue' });
+                      return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully. Credentials sent to your email. If you are unable to find the email, check your spam folder or contact us at cypherdps@gmail.com', errorcode:'blue' });
                 });
         });
       }
