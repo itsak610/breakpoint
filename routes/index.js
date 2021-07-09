@@ -510,6 +510,7 @@ router.post('/student/register/clipped', function(req, res) {
             if(!user){
                 var query1 = User.find({ studentevent: 'clipped' })
                 query1.countDocuments(function (err, count) {
+                    var verifyid = makeid(64);
                     var count_part = count;
                     User.register(new User({
                     username : 'clippedparticipant' + count_part,
@@ -519,7 +520,7 @@ router.post('/student/register/clipped', function(req, res) {
                     studentevent : 'clipped',
                     studentemail : req.body.email,
                     studentnumber: req.body.phonenumber,
-                    verification: makeid(64),
+                    verification: verifyid,
                     password1: req.body.password,
                     student: true,
                     time: new Date(),
