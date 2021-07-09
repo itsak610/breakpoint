@@ -663,7 +663,24 @@ router.post('/participant/login', (req, res, next) => {
 //     }
 //   }
 // });
-
+router.get('/school/participant/register', (req, res, next) => {
+    if(!eventIsOn){
+      res.render('over', {title: "Event Over"});
+    }
+    var currentUserType = req.user.type;
+    if (!req.user) {
+      return res.redirect('/login');
+    }
+    else{
+      if(currentUserType=="School"){
+        return res.redirect('/school/participant/register/crosshair');
+      }
+      else{
+        return res.redirect('/dashboard')
+      }
+    }
+  });
+var crosshairNumber = 0;
 router.get('/school/participant/register/crosshair', (req, res, next) => {
     if(!eventIsOn){
       res.render('over', {title: "Event Over"});
@@ -674,7 +691,12 @@ router.get('/school/participant/register/crosshair', (req, res, next) => {
     }
     else{
       if(currentUserType=="School"){
-        return res.render('crosshair-register', { title: '(c)rosshair Register' });
+        if (crosshairNumber != 32){
+            return res.render('crosshair-register', { title: '(c)rosshair Register' });
+        }
+        else{
+            return res.render('register-closed', { title: '(c)rosshair Register'});
+        }
       }
       else{
         return res.redirect('/dashboard')
@@ -891,454 +913,455 @@ router.get('/school/participant/register/crosshair', (req, res, next) => {
 //         });
 //     }
 //   });
-
 router.post('/school/participant/register/crosshair', function(req, res) {
-  if(!eventIsOn){
-    res.render('over', {title: "Event Over"});
-  }
-  else{
-    var verifyid1 = makeid(64);
-    User.register(new User({
-      username : (req.user.username) + '03' + '01',
-      password1 : (req.user.code) + '03' + '01',
-      schoolname : req.user.schoolname,
-      type : "Participant",
-      code : req.user.code,
-      participantname : req.body.name1,
-      participantevent : "crosshair",
-      participantemail : req.body.email1,
-      participantnumber: req.body.number1,
-      verification: verifyid1,
-      time: new Date(),
-    }), ((req.user.code) + '03' + '01'), function(err, user) {
 
-        var output = 
-        `
-        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-        <html xmlns=3D"https://www.w3.org/1999/xhtml" xmlns:v=3D"urn:schemas-micros=oft-com:vml">
-            <head>
-                <title>Registeration Details</title>
-            </head>
-            <body style="background:transparent">
-                <div style="display:flex;align-items:center;justify-content:center;font-size:3vw;">
-                    <div style="align-items:center;justify-content:center;width:fit-content;height:max-content;background:#050B18;border-radius:10px">
-                        <div style="padding:60px">
-                            <p style="font-family: Arial, Helvetica, sans-serif;padding-top:25px;color:#eee;">Thank you for registering for (c)ync!</p>
-                            <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Here are your credentials -</p>
-                            <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Username: <b>${(req.user.username) + '03' + '01'}</b></p>
-                            <p style="font-family: Arial, Helvetica, sans-serif;padding-top:5px;color:#eee;">Password: <b>${(req.user.code) + '03' + '01'}</b></p>
-                            <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;"><a style="text-decoration:none;color:red;" href="https://www.clubcypher.club/verify/${verifyid1}">Click here to verify your account.</a></p>
-                            <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;">You can use these credentials to login <a style="text-decoration:none;color:red;" href="https://www.clubcypher.club/login">HERE</a>.</p>
-                        </div>
-                    </div>
-                </div>
-            </body>
-        </html>
-        `
-
-        var da_mail = `${req.body.email1}`
-
-        const accessToken = oAuth2Client.getAccessToken();
-
-        const transporter = nodemailer.createTransport({
-            service: 'gmail',
-            auth: {
-                type: 'OAuth2',
-                user: 'clubcypher.bot@gmail.com',
-                clientId: CLIENT_ID,
-                clientSecret: CLEINT_SECRET,
-                refreshToken: REFRESH_TOKEN,
-                accessToken: accessToken,
-            },
-        });
-        
-        var mailOptions = {
-            from: '"Club Cypher" <clubcypher.bot@gmail.com>',
-            to: da_mail,
-            subject: "Registeration Details",
-            text: output,
-            html: output,
-        };
-
-      if (err) {
-        return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'The Team has already been registered.', errorcode:'red' });
+      if(!eventIsOn){
+        res.render('over', {title: "Event Over"});
       }
-      else
-          transporter.sendMail(mailOptions, function (err, info) {
-            if(err)
-              return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully.', errorcode:'blue' });
-            else 
-              return res.render('crosshair-register', { title: '(c)crosshair Register', error : 'Team registered successfully. Credentials sent to your email.', errorcode:'blue' });
-          });
+      else{
+        var verifyid1 = makeid(64);
+        crosshairNumber+=1;
+        User.register(new User({
+          username : (req.user.username) + '03' + '01',
+          password1 : (req.user.code) + '03' + '01',
+          schoolname : req.user.schoolname,
+          type : "Participant",
+          code : req.user.code,
+          participantname : req.body.name1,
+          participantevent : "crosshair",
+          participantemail : req.body.email1,
+          participantnumber: req.body.number1,
+          verification: verifyid1,
+          time: new Date(),
+        }), ((req.user.code) + '03' + '01'), function(err, user) {
+    
+            var output = 
+            `
+            <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+            <html xmlns=3D"https://www.w3.org/1999/xhtml" xmlns:v=3D"urn:schemas-micros=oft-com:vml">
+                <head>
+                    <title>Registeration Details</title>
+                </head>
+                <body style="background:transparent">
+                    <div style="display:flex;align-items:center;justify-content:center;font-size:3vw;">
+                        <div style="align-items:center;justify-content:center;width:fit-content;height:max-content;background:#050B18;border-radius:10px">
+                            <div style="padding:60px">
+                                <p style="font-family: Arial, Helvetica, sans-serif;padding-top:25px;color:#eee;">Thank you for registering for (c)ync!</p>
+                                <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Here are your credentials -</p>
+                                <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Username: <b>${(req.user.username) + '03' + '01'}</b></p>
+                                <p style="font-family: Arial, Helvetica, sans-serif;padding-top:5px;color:#eee;">Password: <b>${(req.user.code) + '03' + '01'}</b></p>
+                                <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;"><a style="text-decoration:none;color:red;" href="https://www.clubcypher.club/verify/${verifyid1}">Click here to verify your account.</a></p>
+                                <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;">You can use these credentials to login <a style="text-decoration:none;color:red;" href="https://www.clubcypher.club/login">HERE</a>.</p>
+                            </div>
+                        </div>
+                    </div>
+                </body>
+            </html>
+            `
+    
+            var da_mail = `${req.body.email1}`
+    
+            const accessToken = oAuth2Client.getAccessToken();
+    
+            const transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                    type: 'OAuth2',
+                    user: 'clubcypher.bot@gmail.com',
+                    clientId: CLIENT_ID,
+                    clientSecret: CLEINT_SECRET,
+                    refreshToken: REFRESH_TOKEN,
+                    accessToken: accessToken,
+                },
+            });
+            
+            var mailOptions = {
+                from: '"Club Cypher" <clubcypher.bot@gmail.com>',
+                to: da_mail,
+                subject: "Registeration Details",
+                text: output,
+                html: output,
+            };
+    
+          if (err) {
+            return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'The Team has already been registered.', errorcode:'red' });
+          }
+          else
+              transporter.sendMail(mailOptions, function (err, info) {
+                if(err)
+                  return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully.', errorcode:'blue' });
+                else 
+                  return res.render('crosshair-register', { title: '(c)crosshair Register', error : 'Team registered successfully. Credentials sent to your email.', errorcode:'blue' });
+              });
+          }
+        )
+        var verifyid2 = makeid(64);
+        User.register(new User({
+          username : (req.user.username) + '03' + '02',
+          password1 : (req.user.code) + '03' + '02',
+          schoolname : req.user.schoolname,
+          type : "Participant",
+          code : req.user.code,
+          participantname : req.body.name2,
+          participantevent : "crosshair",
+          participantemail : req.body.email2,
+          participantnumber: req.body.number2,
+          verification: verifyid2,
+          time: new Date(),
+        }), ((req.user.code) + '03' + '02'), function(err,user){
+            var output = 
+            `
+            <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+            <html xmlns=3D"https://www.w3.org/1999/xhtml" xmlns:v=3D"urn:schemas-micros=oft-com:vml">
+                <head>
+                    <title>Registeration Details</title>
+                </head>
+                <body style="background:transparent">
+                    <div style="display:flex;align-items:center;justify-content:center;font-size:3vw;">
+                        <div style="align-items:center;justify-content:center;width:fit-content;height:max-content;background:#050B18;border-radius:10px">
+                            <div style="padding:60px">
+                                <p style="font-family: Arial, Helvetica, sans-serif;padding-top:25px;color:#eee;">Thank you for registering for (c)ync!</p>
+                                <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Here are your credentials -</p>
+                                <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Username: <b>${(req.user.username) + '03' + '02'}</b></p>
+                                <p style="font-family: Arial, Helvetica, sans-serif;padding-top:5px;color:#eee;">Password: <b>${(req.user.code) + '03' + '02'}</b></p>
+                                <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;"><a style="text-decoration:none;color:red;" href="https://www.clubcypher.club/verify/${verifyid2}">Click here to verify your account.</a></p>
+                                <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;">You can use these credentials to login <a style="text-decoration:none;color:red;" href="https://www.clubcypher.club/login">HERE</a>.</p>
+                            </div>
+                        </div>
+                    </div>
+                </body>
+            </html>
+            `
+    
+            var da_mail = `${req.body.email2}`
+    
+            const accessToken = oAuth2Client.getAccessToken();
+    
+            const transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                    type: 'OAuth2',
+                    user: 'clubcypher.bot@gmail.com',
+                    clientId: CLIENT_ID,
+                    clientSecret: CLEINT_SECRET,
+                    refreshToken: REFRESH_TOKEN,
+                    accessToken: accessToken,
+                },
+            });
+            
+            var mailOptions = {
+                from: '"Club Cypher" <clubcypher.bot@gmail.com>',
+                to: da_mail,
+                subject: "Registeration Details",
+                text: output,
+                html: output,
+            };
+    
+            if (err) {
+                return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'The Team has already been registered.', errorcode:'red' });
+              }
+              else
+                  transporter.sendMail(mailOptions, function (err, info) {
+                    if(err)
+                      return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully.', errorcode:'blue' });
+                    else 
+                      return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully. Credentials sent to your email.', errorcode:'blue' });
+                });
+        });
+        var verifyid3 = makeid(64);
+        User.register(new User({
+          username : (req.user.username) + '03' + '03',
+          password1 : (req.user.code) + '03' + '03',
+          schoolname : req.user.schoolname,
+          type : "Participant",
+          code : req.user.code,
+          participantname : req.body.name3,
+          participantevent : "crosshair",
+          participantemail : req.body.email3,
+          participantnumber: req.body.number3,
+          verification: verifyid3,
+          time: new Date(),
+        }), ((req.user.code) + '03' + '03'), function(err,user){;
+            var output = 
+            `
+            <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+            <html xmlns=3D"https://www.w3.org/1999/xhtml" xmlns:v=3D"urn:schemas-micros=oft-com:vml">
+                <head>
+                    <title>Registeration Details</title>
+                </head>
+                <body style="background:transparent">
+                    <div style="display:flex;align-items:center;justify-content:center;font-size:3vw;">
+                        <div style="align-items:center;justify-content:center;width:fit-content;height:max-content;background:#050B18;border-radius:10px">
+                            <div style="padding:60px">
+                                <p style="font-family: Arial, Helvetica, sans-serif;padding-top:25px;color:#eee;">Thank you for registering for (c)ync!</p>
+                                <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Here are your credentials -</p>
+                                <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Username: <b>${(req.user.username) + '03' + '03'}</b></p>
+                                <p style="font-family: Arial, Helvetica, sans-serif;padding-top:5px;color:#eee;">Password: <b>${(req.user.code) + '03' + '03'}</b></p>
+                                <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;"><a style="text-decoration:none;color:red;" href="https://www.clubcypher.club/verify/${verifyid3}">Click here to verify your account.</a></p>
+                                <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;">You can use these credentials to login <a style="text-decoration:none;color:red;" href="https://www.clubcypher.club/login">HERE</a>.</p>
+                            </div>
+                        </div>
+                    </div>
+                </body>
+            </html>
+            `
+    
+            var da_mail = `${req.body.email3}`
+    
+            const accessToken = oAuth2Client.getAccessToken();
+    
+            const transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                    type: 'OAuth2',
+                    user: 'clubcypher.bot@gmail.com',
+                    clientId: CLIENT_ID,
+                    clientSecret: CLEINT_SECRET,
+                    refreshToken: REFRESH_TOKEN,
+                    accessToken: accessToken,
+                },
+            });
+            
+            var mailOptions = {
+                from: '"Club Cypher" <clubcypher.bot@gmail.com>',
+                to: da_mail,
+                subject: "Registeration Details",
+                text: output,
+                html: output,
+            };
+    
+            if (err) {
+                return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'The Team has already been registered.', errorcode:'red' });
+              }
+              else
+                  transporter.sendMail(mailOptions, function (err, info) {
+                    if(err)
+                      return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully.', errorcode:'blue' });
+                    else 
+                      return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully. Credentials sent to your email.', errorcode:'blue' });
+                });
+        });
+        var verifyid4 = makeid(64);
+        User.register(new User({
+          username : (req.user.username) + '03' + '04',
+          password1 : (req.user.code) + '03' + '04',
+          schoolname : req.user.schoolname,
+          type : "Participant",
+          code : req.user.code,
+          participantname : req.body.name4,
+          participantevent : "crosshair",
+          participantemail : req.body.email4,
+          participantnumber: req.body.number4,
+          verification: verifyid4,
+          time: new Date(),
+        }), ((req.user.code) + '03' + '04'), function(err,user){;
+            var output = 
+            `
+            <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+            <html xmlns=3D"https://www.w3.org/1999/xhtml" xmlns:v=3D"urn:schemas-micros=oft-com:vml">
+                <head>
+                    <title>Registeration Details</title>
+                </head>
+                <body style="background:transparent">
+                    <div style="display:flex;align-items:center;justify-content:center;font-size:3vw;">
+                        <div style="align-items:center;justify-content:center;width:fit-content;height:max-content;background:#050B18;border-radius:10px">
+                            <div style="padding:60px">
+                                <p style="font-family: Arial, Helvetica, sans-serif;padding-top:25px;color:#eee;">Thank you for registering for (c)ync!</p>
+                                <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Here are your credentials -</p>
+                                <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Username: <b>${(req.user.username) + '03' + '04'}</b></p>
+                                <p style="font-family: Arial, Helvetica, sans-serif;padding-top:5px;color:#eee;">Password: <b>${(req.user.code) + '03' + '04'}</b></p>
+                                <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;"><a style="text-decoration:none;color:red;" href="https://www.clubcypher.club/verify/${verifyid4}">Click here to verify your account.</a></p>
+                                <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;">You can use these credentials to login <a style="text-decoration:none;color:red;" href="https://www.clubcypher.club/login">HERE</a>.</p>
+                            </div>
+                        </div>
+                    </div>
+                </body>
+            </html>
+            `
+    
+            var da_mail = `${req.body.email4}`
+    
+            const accessToken = oAuth2Client.getAccessToken();
+    
+            const transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                    type: 'OAuth2',
+                    user: 'clubcypher.bot@gmail.com',
+                    clientId: CLIENT_ID,
+                    clientSecret: CLEINT_SECRET,
+                    refreshToken: REFRESH_TOKEN,
+                    accessToken: accessToken,
+                },
+            });
+            
+            var mailOptions = {
+                from: '"Club Cypher" <clubcypher.bot@gmail.com>',
+                to: da_mail,
+                subject: "Registeration Details",
+                text: output,
+                html: output,
+            };
+    
+            if (err) {
+                return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'The Team has already been registered.', errorcode:'red' });
+              }
+              else
+                  transporter.sendMail(mailOptions, function (err, info) {
+                    if(err)
+                      return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully.', errorcode:'blue' });
+                    else 
+                      return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully. Credentials sent to your email.', errorcode:'blue' });
+                });
+        });
+        var verifyid5 = makeid(64);
+        User.register(new User({
+          username : (req.user.username) + '03' + '05',
+          password1 : (req.user.code) + '03' + '05',
+          schoolname : req.user.schoolname,
+          type : "Participant",
+          code : req.user.code,
+          participantname : req.body.name5,
+          participantevent : "crosshair",
+          participantemail : req.body.email5,
+          participantnumber: req.body.number5,
+          verification: verifyid5,
+          time: new Date(),
+        }), ((req.user.code) + '03' + '05'), function(err,user){;
+            var output = 
+            `
+            <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+            <html xmlns=3D"https://www.w3.org/1999/xhtml" xmlns:v=3D"urn:schemas-micros=oft-com:vml">
+                <head>
+                    <title>Registeration Details</title>
+                </head>
+                <body style="background:transparent">
+                    <div style="display:flex;align-items:center;justify-content:center;font-size:3vw;">
+                        <div style="align-items:center;justify-content:center;width:fit-content;height:max-content;background:#050B18;border-radius:10px">
+                            <div style="padding:60px">
+                                <p style="font-family: Arial, Helvetica, sans-serif;padding-top:25px;color:#eee;">Thank you for registering for (c)ync!</p>
+                                <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Here are your credentials -</p>
+                                <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Username: <b>${(req.user.username) + '03' + '05'}</b></p>
+                                <p style="font-family: Arial, Helvetica, sans-serif;padding-top:5px;color:#eee;">Password: <b>${(req.user.code) + '03' + '05'}</b></p>
+                                <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;"><a style="text-decoration:none;color:red;" href="https://www.clubcypher.club/verify/${verifyid5}">Click here to verify your account.</a></p>
+                                <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;">You can use these credentials to login <a style="text-decoration:none;color:red;" href="https://www.clubcypher.club/login">HERE</a>.</p>
+                            </div>
+                        </div>
+                    </div>
+                </body>
+            </html>
+            `
+    
+            var da_mail = `${req.body.email5}`
+    
+            const accessToken = oAuth2Client.getAccessToken();
+    
+            const transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                    type: 'OAuth2',
+                    user: 'clubcypher.bot@gmail.com',
+                    clientId: CLIENT_ID,
+                    clientSecret: CLEINT_SECRET,
+                    refreshToken: REFRESH_TOKEN,
+                    accessToken: accessToken,
+                },
+            });
+            
+            var mailOptions = {
+                from: '"Club Cypher" <clubcypher.bot@gmail.com>',
+                to: da_mail,
+                subject: "Registeration Details",
+                text: output,
+                html: output,
+            };
+    
+            if (err) {
+                return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'The Team has already been registered.', errorcode:'red' });
+              }
+              else
+                  transporter.sendMail(mailOptions, function (err, info) {
+                    if(err)
+                      return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully.', errorcode:'blue' });
+                    else 
+                      return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully. Credentials sent to your email.', errorcode:'blue' });
+                });
+        });
+        var verifyid6 = makeid(64);
+        User.register(new User({
+            username : (req.user.username) + '03' + '06',
+            password1 : (req.user.code) + '03' + '06',
+            schoolname : req.user.schoolname,
+            type : "Participant",
+            code : req.user.code,
+            participantname : req.body.name6 + '(substitute)',
+            participantevent : "crosshair",
+            participantemail : req.body.email6,
+            participantnumber: req.body.number6,
+            verification: verifyid6,
+            substitute: true,
+            time: new Date(),
+        }), ((req.user.code) + '03' + '06'), function(err,user){;
+            var output = 
+            `
+            <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+            <html xmlns=3D"https://www.w3.org/1999/xhtml" xmlns:v=3D"urn:schemas-micros=oft-com:vml">
+                <head>
+                    <title>Registeration Details</title>
+                </head>
+                <body style="background:transparent">
+                    <div style="display:flex;align-items:center;justify-content:center;font-size:3vw;">
+                        <div style="align-items:center;justify-content:center;width:fit-content;height:max-content;background:#050B18;border-radius:10px">
+                            <div style="padding:60px">
+                                <p style="font-family: Arial, Helvetica, sans-serif;padding-top:25px;color:#eee;">Thank you for registering for (c)ync!</p>
+                                <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Here are your credentials -</p>
+                                <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Username: <b>${(req.user.username) + '03' + '06'}</b></p>
+                                <p style="font-family: Arial, Helvetica, sans-serif;padding-top:5px;color:#eee;">Password: <b>${(req.user.code) + '03' + '06'}</b></p>
+                                <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;"><a style="text-decoration:none;color:red;" href="https://www.clubcypher.club/verify/${verifyid6}">Click here to verify your account.</a></p>
+                                <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;">You can use these credentials to login <a style="text-decoration:none;color:red;" href="https://www.clubcypher.club/login">HERE</a>.</p>
+                            </div>
+                        </div>
+                    </div>
+                </body>
+            </html>
+            `
+    
+            var da_mail = `${req.body.email6}`
+    
+            const accessToken = oAuth2Client.getAccessToken();
+    
+            const transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                    type: 'OAuth2',
+                    user: 'clubcypher.bot@gmail.com',
+                    clientId: CLIENT_ID,
+                    clientSecret: CLEINT_SECRET,
+                    refreshToken: REFRESH_TOKEN,
+                    accessToken: accessToken,
+                },
+            });
+            
+            var mailOptions = {
+                from: '"Club Cypher" <clubcypher.bot@gmail.com>',
+                to: da_mail,
+                subject: "Registeration Details",
+                text: output,
+                html: output,
+            };
+    
+            if (err) {
+                return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'The Team has already been registered.', errorcode:'red' });
+              }
+              else
+                  transporter.sendMail(mailOptions, function (err, info) {
+                    if(err)
+                      return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully.', errorcode:'blue' });
+                    else 
+                      return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully. Credentials sent to your email.', errorcode:'blue' });
+                });
+        });
       }
-    )
-    var verifyid2 = makeid(64);
-    User.register(new User({
-      username : (req.user.username) + '03' + '02',
-      password1 : (req.user.code) + '03' + '02',
-      schoolname : req.user.schoolname,
-      type : "Participant",
-      code : req.user.code,
-      participantname : req.body.name2,
-      participantevent : "crosshair",
-      participantemail : req.body.email2,
-      participantnumber: req.body.number2,
-      verification: verifyid2,
-      time: new Date(),
-    }), ((req.user.code) + '03' + '02'), function(err,user){
-        var output = 
-        `
-        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-        <html xmlns=3D"https://www.w3.org/1999/xhtml" xmlns:v=3D"urn:schemas-micros=oft-com:vml">
-            <head>
-                <title>Registeration Details</title>
-            </head>
-            <body style="background:transparent">
-                <div style="display:flex;align-items:center;justify-content:center;font-size:3vw;">
-                    <div style="align-items:center;justify-content:center;width:fit-content;height:max-content;background:#050B18;border-radius:10px">
-                        <div style="padding:60px">
-                            <p style="font-family: Arial, Helvetica, sans-serif;padding-top:25px;color:#eee;">Thank you for registering for (c)ync!</p>
-                            <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Here are your credentials -</p>
-                            <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Username: <b>${(req.user.username) + '03' + '02'}</b></p>
-                            <p style="font-family: Arial, Helvetica, sans-serif;padding-top:5px;color:#eee;">Password: <b>${(req.user.code) + '03' + '02'}</b></p>
-                            <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;"><a style="text-decoration:none;color:red;" href="https://www.clubcypher.club/verify/${verifyid2}">Click here to verify your account.</a></p>
-                            <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;">You can use these credentials to login <a style="text-decoration:none;color:red;" href="https://www.clubcypher.club/login">HERE</a>.</p>
-                        </div>
-                    </div>
-                </div>
-            </body>
-        </html>
-        `
-
-        var da_mail = `${req.body.email2}`
-
-        const accessToken = oAuth2Client.getAccessToken();
-
-        const transporter = nodemailer.createTransport({
-            service: 'gmail',
-            auth: {
-                type: 'OAuth2',
-                user: 'clubcypher.bot@gmail.com',
-                clientId: CLIENT_ID,
-                clientSecret: CLEINT_SECRET,
-                refreshToken: REFRESH_TOKEN,
-                accessToken: accessToken,
-            },
-        });
-        
-        var mailOptions = {
-            from: '"Club Cypher" <clubcypher.bot@gmail.com>',
-            to: da_mail,
-            subject: "Registeration Details",
-            text: output,
-            html: output,
-        };
-
-        if (err) {
-            return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'The Team has already been registered.', errorcode:'red' });
-          }
-          else
-              transporter.sendMail(mailOptions, function (err, info) {
-                if(err)
-                  return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully.', errorcode:'blue' });
-                else 
-                  return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully. Credentials sent to your email.', errorcode:'blue' });
-            });
-    });
-    var verifyid3 = makeid(64);
-    User.register(new User({
-      username : (req.user.username) + '03' + '03',
-      password1 : (req.user.code) + '03' + '03',
-      schoolname : req.user.schoolname,
-      type : "Participant",
-      code : req.user.code,
-      participantname : req.body.name3,
-      participantevent : "crosshair",
-      participantemail : req.body.email3,
-      participantnumber: req.body.number3,
-      verification: verifyid3,
-      time: new Date(),
-    }), ((req.user.code) + '03' + '03'), function(err,user){;
-        var output = 
-        `
-        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-        <html xmlns=3D"https://www.w3.org/1999/xhtml" xmlns:v=3D"urn:schemas-micros=oft-com:vml">
-            <head>
-                <title>Registeration Details</title>
-            </head>
-            <body style="background:transparent">
-                <div style="display:flex;align-items:center;justify-content:center;font-size:3vw;">
-                    <div style="align-items:center;justify-content:center;width:fit-content;height:max-content;background:#050B18;border-radius:10px">
-                        <div style="padding:60px">
-                            <p style="font-family: Arial, Helvetica, sans-serif;padding-top:25px;color:#eee;">Thank you for registering for (c)ync!</p>
-                            <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Here are your credentials -</p>
-                            <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Username: <b>${(req.user.username) + '03' + '03'}</b></p>
-                            <p style="font-family: Arial, Helvetica, sans-serif;padding-top:5px;color:#eee;">Password: <b>${(req.user.code) + '03' + '03'}</b></p>
-                            <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;"><a style="text-decoration:none;color:red;" href="https://www.clubcypher.club/verify/${verifyid3}">Click here to verify your account.</a></p>
-                            <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;">You can use these credentials to login <a style="text-decoration:none;color:red;" href="https://www.clubcypher.club/login">HERE</a>.</p>
-                        </div>
-                    </div>
-                </div>
-            </body>
-        </html>
-        `
-
-        var da_mail = `${req.body.email3}`
-
-        const accessToken = oAuth2Client.getAccessToken();
-
-        const transporter = nodemailer.createTransport({
-            service: 'gmail',
-            auth: {
-                type: 'OAuth2',
-                user: 'clubcypher.bot@gmail.com',
-                clientId: CLIENT_ID,
-                clientSecret: CLEINT_SECRET,
-                refreshToken: REFRESH_TOKEN,
-                accessToken: accessToken,
-            },
-        });
-        
-        var mailOptions = {
-            from: '"Club Cypher" <clubcypher.bot@gmail.com>',
-            to: da_mail,
-            subject: "Registeration Details",
-            text: output,
-            html: output,
-        };
-
-        if (err) {
-            return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'The Team has already been registered.', errorcode:'red' });
-          }
-          else
-              transporter.sendMail(mailOptions, function (err, info) {
-                if(err)
-                  return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully.', errorcode:'blue' });
-                else 
-                  return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully. Credentials sent to your email.', errorcode:'blue' });
-            });
-    });
-    var verifyid4 = makeid(64);
-    User.register(new User({
-      username : (req.user.username) + '03' + '04',
-      password1 : (req.user.code) + '03' + '04',
-      schoolname : req.user.schoolname,
-      type : "Participant",
-      code : req.user.code,
-      participantname : req.body.name4,
-      participantevent : "crosshair",
-      participantemail : req.body.email4,
-      participantnumber: req.body.number4,
-      verification: verifyid4,
-      time: new Date(),
-    }), ((req.user.code) + '03' + '04'), function(err,user){;
-        var output = 
-        `
-        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-        <html xmlns=3D"https://www.w3.org/1999/xhtml" xmlns:v=3D"urn:schemas-micros=oft-com:vml">
-            <head>
-                <title>Registeration Details</title>
-            </head>
-            <body style="background:transparent">
-                <div style="display:flex;align-items:center;justify-content:center;font-size:3vw;">
-                    <div style="align-items:center;justify-content:center;width:fit-content;height:max-content;background:#050B18;border-radius:10px">
-                        <div style="padding:60px">
-                            <p style="font-family: Arial, Helvetica, sans-serif;padding-top:25px;color:#eee;">Thank you for registering for (c)ync!</p>
-                            <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Here are your credentials -</p>
-                            <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Username: <b>${(req.user.username) + '03' + '04'}</b></p>
-                            <p style="font-family: Arial, Helvetica, sans-serif;padding-top:5px;color:#eee;">Password: <b>${(req.user.code) + '03' + '04'}</b></p>
-                            <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;"><a style="text-decoration:none;color:red;" href="https://www.clubcypher.club/verify/${verifyid4}">Click here to verify your account.</a></p>
-                            <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;">You can use these credentials to login <a style="text-decoration:none;color:red;" href="https://www.clubcypher.club/login">HERE</a>.</p>
-                        </div>
-                    </div>
-                </div>
-            </body>
-        </html>
-        `
-
-        var da_mail = `${req.body.email4}`
-
-        const accessToken = oAuth2Client.getAccessToken();
-
-        const transporter = nodemailer.createTransport({
-            service: 'gmail',
-            auth: {
-                type: 'OAuth2',
-                user: 'clubcypher.bot@gmail.com',
-                clientId: CLIENT_ID,
-                clientSecret: CLEINT_SECRET,
-                refreshToken: REFRESH_TOKEN,
-                accessToken: accessToken,
-            },
-        });
-        
-        var mailOptions = {
-            from: '"Club Cypher" <clubcypher.bot@gmail.com>',
-            to: da_mail,
-            subject: "Registeration Details",
-            text: output,
-            html: output,
-        };
-
-        if (err) {
-            return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'The Team has already been registered.', errorcode:'red' });
-          }
-          else
-              transporter.sendMail(mailOptions, function (err, info) {
-                if(err)
-                  return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully.', errorcode:'blue' });
-                else 
-                  return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully. Credentials sent to your email.', errorcode:'blue' });
-            });
-    });
-    var verifyid5 = makeid(64);
-    User.register(new User({
-      username : (req.user.username) + '03' + '05',
-      password1 : (req.user.code) + '03' + '05',
-      schoolname : req.user.schoolname,
-      type : "Participant",
-      code : req.user.code,
-      participantname : req.body.name5,
-      participantevent : "crosshair",
-      participantemail : req.body.email5,
-      participantnumber: req.body.number5,
-      verification: verifyid5,
-      time: new Date(),
-    }), ((req.user.code) + '03' + '05'), function(err,user){;
-        var output = 
-        `
-        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-        <html xmlns=3D"https://www.w3.org/1999/xhtml" xmlns:v=3D"urn:schemas-micros=oft-com:vml">
-            <head>
-                <title>Registeration Details</title>
-            </head>
-            <body style="background:transparent">
-                <div style="display:flex;align-items:center;justify-content:center;font-size:3vw;">
-                    <div style="align-items:center;justify-content:center;width:fit-content;height:max-content;background:#050B18;border-radius:10px">
-                        <div style="padding:60px">
-                            <p style="font-family: Arial, Helvetica, sans-serif;padding-top:25px;color:#eee;">Thank you for registering for (c)ync!</p>
-                            <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Here are your credentials -</p>
-                            <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Username: <b>${(req.user.username) + '03' + '05'}</b></p>
-                            <p style="font-family: Arial, Helvetica, sans-serif;padding-top:5px;color:#eee;">Password: <b>${(req.user.code) + '03' + '05'}</b></p>
-                            <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;"><a style="text-decoration:none;color:red;" href="https://www.clubcypher.club/verify/${verifyid5}">Click here to verify your account.</a></p>
-                            <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;">You can use these credentials to login <a style="text-decoration:none;color:red;" href="https://www.clubcypher.club/login">HERE</a>.</p>
-                        </div>
-                    </div>
-                </div>
-            </body>
-        </html>
-        `
-
-        var da_mail = `${req.body.email5}`
-
-        const accessToken = oAuth2Client.getAccessToken();
-
-        const transporter = nodemailer.createTransport({
-            service: 'gmail',
-            auth: {
-                type: 'OAuth2',
-                user: 'clubcypher.bot@gmail.com',
-                clientId: CLIENT_ID,
-                clientSecret: CLEINT_SECRET,
-                refreshToken: REFRESH_TOKEN,
-                accessToken: accessToken,
-            },
-        });
-        
-        var mailOptions = {
-            from: '"Club Cypher" <clubcypher.bot@gmail.com>',
-            to: da_mail,
-            subject: "Registeration Details",
-            text: output,
-            html: output,
-        };
-
-        if (err) {
-            return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'The Team has already been registered.', errorcode:'red' });
-          }
-          else
-              transporter.sendMail(mailOptions, function (err, info) {
-                if(err)
-                  return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully.', errorcode:'blue' });
-                else 
-                  return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully. Credentials sent to your email.', errorcode:'blue' });
-            });
-    });
-    var verifyid6 = makeid(64);
-    User.register(new User({
-        username : (req.user.username) + '03' + '06',
-        password1 : (req.user.code) + '03' + '06',
-        schoolname : req.user.schoolname,
-        type : "Participant",
-        code : req.user.code,
-        participantname : req.body.name6 + '(substitute)',
-        participantevent : "crosshair",
-        participantemail : req.body.email6,
-        participantnumber: req.body.number6,
-        verification: verifyid6,
-        substitute: true,
-        time: new Date(),
-    }), ((req.user.code) + '03' + '06'), function(err,user){;
-        var output = 
-        `
-        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-        <html xmlns=3D"https://www.w3.org/1999/xhtml" xmlns:v=3D"urn:schemas-micros=oft-com:vml">
-            <head>
-                <title>Registeration Details</title>
-            </head>
-            <body style="background:transparent">
-                <div style="display:flex;align-items:center;justify-content:center;font-size:3vw;">
-                    <div style="align-items:center;justify-content:center;width:fit-content;height:max-content;background:#050B18;border-radius:10px">
-                        <div style="padding:60px">
-                            <p style="font-family: Arial, Helvetica, sans-serif;padding-top:25px;color:#eee;">Thank you for registering for (c)ync!</p>
-                            <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Here are your credentials -</p>
-                            <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Username: <b>${(req.user.username) + '03' + '06'}</b></p>
-                            <p style="font-family: Arial, Helvetica, sans-serif;padding-top:5px;color:#eee;">Password: <b>${(req.user.code) + '03' + '06'}</b></p>
-                            <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;"><a style="text-decoration:none;color:red;" href="https://www.clubcypher.club/verify/${verifyid6}">Click here to verify your account.</a></p>
-                            <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;">You can use these credentials to login <a style="text-decoration:none;color:red;" href="https://www.clubcypher.club/login">HERE</a>.</p>
-                        </div>
-                    </div>
-                </div>
-            </body>
-        </html>
-        `
-
-        var da_mail = `${req.body.email6}`
-
-        const accessToken = oAuth2Client.getAccessToken();
-
-        const transporter = nodemailer.createTransport({
-            service: 'gmail',
-            auth: {
-                type: 'OAuth2',
-                user: 'clubcypher.bot@gmail.com',
-                clientId: CLIENT_ID,
-                clientSecret: CLEINT_SECRET,
-                refreshToken: REFRESH_TOKEN,
-                accessToken: accessToken,
-            },
-        });
-        
-        var mailOptions = {
-            from: '"Club Cypher" <clubcypher.bot@gmail.com>',
-            to: da_mail,
-            subject: "Registeration Details",
-            text: output,
-            html: output,
-        };
-
-        if (err) {
-            return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'The Team has already been registered.', errorcode:'red' });
-          }
-          else
-              transporter.sendMail(mailOptions, function (err, info) {
-                if(err)
-                  return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully.', errorcode:'blue' });
-                else 
-                  return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully. Credentials sent to your email.', errorcode:'blue' });
-            });
-    });
-  }
 });
 
 router.get('/school/teams', (req, res, next) => {

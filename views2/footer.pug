@@ -32,11 +32,3 @@ footer
         p With &#x1F497; from (c)lub (c)ypher
     script(src='https://static.clubcypher.club/js/three.min.js' crossOrigin="anonymous")
     script(src='https://static.clubcypher.club/js/index.js' crossOrigin="anonymous")    
-    script.
-        window.addEventListener("DOMContentLoaded", function(event) {
-            if(document.getElementById('username')) {
-                document.getElementById('username').addEventListener('input', function(){
-                    this.value = this.value.replace(/\s+/g, '').toLowerCase();
-                });
-            }
-        });

@@ -88,7 +88,7 @@ const totalCPUs = require('os').cpus().length;
   app.use(compression());
 
   // //Setting public directory
-  app.use(express.static(__dirname + '/public'));
+//   app.use(express.static(__dirname + '/public'));
   // app.use(express.static(__dirname + '/obfuscated'));
 
   //Setting view engine

@@ -80,10 +80,6 @@ block content
                 br
                 p Participant Name - #{currentUser.studentname}
                 br
-                if currentUser.studentevent == 'click'
-                    p Events - (c)lick
-                if currentUser.studentevent == 'clipped'
-                    p Events - (c)lipped
                 if currentUser.studentevent == 'crosshair'
                     p Events - (c)rosshair
                 if currentUser.verified == false 
@@ -93,21 +89,36 @@ block content
                     b.warning NOTE : You will not be registered for the event until you have a verified account.
 
     else
-
         .dashContainer 
             .dashCard(cursor-class='extender')
                 p School Name - #{currentUser.schoolname}
                 br
                 p Participant Name - #{currentUser.studentname}
                 br
+                p Participant Name - #{currentUser.studentemail}
+                br
+                p Participant Name - #{currentUser.studentnumber}
+                br
                 if currentUser.studentevent == 'click'
                     p Events - (c)lick
                 if currentUser.studentevent == 'clipped'
                     p Events - (c)lipped
-                if currentUser.studentevent == 'crosshair'
-                    p Events - (c)rosshair
+                br
+                br
+                b.warning 
+                    | Thank you for verifying your account!
+                    br
+                    | Join our discord for further updates - 
+                    if currentUser.studentevent == 'click'
+                        a(href="https://discord.gg/HhEBYR7k8t") CLICK HERE
+                    else
+                        a(href="https://discord.gg/422xzYZJ23") CLICK HERE
                 if currentUser.verified == false 
-                    b.warning You are not verified yet! We have sent a verification email on your registered email address, follow the steps in the email to verify your account.
+                    b.warning 
+                        | You are not verified yet! We have sent a verification email on your registered email address, follow the steps in the email to verify your account.
+                        br
+                        br
+                        | If you cannot find it, check your spam folder or contact us at clubcypher.bot@gmail.com.
                     br
                     br
                     b.warning NOTE : You will not be registered for the event until you have a verified account.
