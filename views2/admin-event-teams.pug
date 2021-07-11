@@ -49,8 +49,6 @@ block content
     var page = path.split("/").pop();
     document.getElementById("leaderboardnav").classList.toggle("active");
     document.getElementById("leaderboardnav").style.backgroundSize = "80px 2px";
-    var variable1 = 1
-    var variable2 = 15
     var variable3 = (document.getElementsByTagName("tr").length - ((document.getElementsByTagName("tr").length)%15)) +1
     var count = document.getElementsByTagName("tr").length - 1
     function searchBar() {
@@ -76,33 +74,8 @@ block content
           if (!input.value){
             td1 = tr[i].getElementsByTagName("td")[0];
             txtValue1 = td1.innerText;
-            if (parseInt(txtValue1) < variable1 || parseInt(txtValue1) > variable2){
-              tr[i].style.display = "none"
-            }
           }
         }
       }
-    }
-    function nextPage() {
-      variable1+=15
-      variable2+=15
-    }
-    function previousPage() {
-      variable1-=15
-      variable2-=15
-    }
-    function you() {
-      currentuser = document.getElementById("you").innerText
-      input = document.getElementById("myInput");
-      input.value = currentuser
-      searchBar()
-    }
-    function nested1() {
-      nextPage();
-      searchBar();
-    }
-    function nested2() {
-      previousPage();
-      searchBar();
     }
     window.addEventListener("DOMContentLoaded", searchBar() )
