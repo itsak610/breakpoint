@@ -35,4 +35,11 @@ block content
     br
     br
   script.
-    document.getElementById("dashboardnav").classList.toggle("active");
+    let modes = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    let interval = 1000; //one second
+    modes.forEach((mode, i) => {
+        setTimeout(() => {
+                console.log(mode)
+                console.log(i)
+            }, i * interval)
+    })
