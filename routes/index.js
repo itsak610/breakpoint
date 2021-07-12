@@ -541,7 +541,7 @@ router.post('/student/register/clipped', function(req, res) {
                                         <div style="padding:60px">
                                             <p style="font-family: Arial, Helvetica, sans-serif;padding-top:25px;color:#eee;">Thank you for registering for (c)ync!</p>
                                             <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Here are your credentials -</p>
-                                            <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Username: <b>clickparticipant${count_part}</b></p>
+                                            <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Username: <b>clippedparticipant${count_part}</b></p>
                                             <p style="font-family: Arial, Helvetica, sans-serif;padding-top:5px;color:#eee;">Password: <b>${req.body.password}</b></p>
                                             <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;"><a style="text-decoration:none;color:red;" href="https://www.clubcypher.club/verify/${verifyid}">Click here to verify your account.</a></p>
                                             <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;">You can use these credentials to login <a style="text-decoration:none;color:red;" href="https://www.clubcypher.club/login">HERE</a>.</p>
@@ -1397,6 +1397,334 @@ router.get('/school/teams', (req, res, next) => {
 
 
 // -------------------------------------------------------- Admin Routes -------------------------------------------------------- //
+
+
+// Send Email to teams
+router.get('/admin/email', (req, res, next) => {
+    if (req.user.username != 'admin' || !req.user.username) {
+      res.redirect('/');
+    }
+    else{
+        return res.render('admin-email', { title: 'Send Mail' });
+    }
+  });
+router.post('/admin/email', (req, res, next) => {
+    var query = { username : { $ne: 'admin'}}
+    User.find().find(query).exec(function(err, mails) {
+        for (i in mails){
+            var tempMail = mails[i].email
+            var output = 
+            `
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8" />
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                <title>(C)YNC v7.0</title>
+            </head>
+            <body style="color: #fff;width:fit-content;padding: 10px;background-color: transparent;">
+                <style>
+                @import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;500;700&display=swap");
+    
+                * {
+                    margin: 0;
+                    padding: 0;
+                    font-family: "Comfortaa", cursive;
+                }
+                h3{
+                    font-size:1.1em !important;
+                }
+                .right a:hover {
+                    color: #185adb !important;
+                }
+                .button a:hover{
+                    color: #000 !important;
+                    background-color: #DA1893 !important;
+                }
+                @media (max-width:1112px){
+                    .left{
+                        width: 100% !important;
+                        padding: 0 !important;
+                        maRgin-top: 25px !important;
+                        padding-bottom: 25px !important;
+                    }
+                    .right{
+                        width: 100% !important;
+                        padding: 0 !important;
+                    }
+                    .textContainer{
+                        font-size: 2vw !important;
+                        line-height: 3vw !important;
+                    }
+                }    
+                @media (max-width:750px){
+                    body{
+                        width:90vw !important;
+                    }
+                    .card{
+                        width: 80% !important;
+                    }
+                    .textContainer{
+                        font-size: 2vw !important;
+                        padding:0 !important;
+                        line-height:20px !important;
+                    }
+                    h2{
+                        font-size:20px !important;
+                    }
+                    h3{
+                        font-size:15px !important;
+                    }
+                }
+                </style>
+                <section class="card" style="background-color: #080808;width: 50vw;border: 1px solid #fff;padding: 50px;position: relative;border-radius: 10px;">
+                <div class="imgContainer" style="width:fit-content;margin:0 auto;padding-bottom:30px">
+                    <img src="https://static.clubcypher.club/img/decypher.png" style="height:auto;width:10vw;" alt="decypher" />
+                </div>
+                <div class="textContainer" style="text-align: center;font-size: 20px;padding:30px 0;">
+                    <h2 style="margin-bottom: 20px;">De(c)ypher</h2>
+                </div>
+                <div class="content" style="width:fit-content;margin:0 auto;">
+                    <div class="left" style="width: fit-content;padding: 20px;margin:0 auto;">
+                        <h3 style="width:fit-content;margin-bottom: 20px;margin:0 auto;padding:30px;">
+                            ${req.body.content}
+                        </h3>
+                    </div>
+                </div>
+                <div class="end" style="padding: 20px;width: fit-content;margin:0 auto">
+                    <div class="endLinks" style="width: fit-content;margin:0 auto">
+                        <a href="https://www.instagram.com/cypherdps/"
+                            ><img src="https://static.clubcypher.club/email/instagram2x.png" style="height: auto;width: 5vw;" alt=""
+                        /></a>
+                        <a href="https://www.youtube.com/channel/UCSULXN5apeQSDa0sLYuwEnA"
+                            ><img src="https://static.clubcypher.club/email/youtube2x.png" style="height: auto;width: 5vw;" alt=""
+                        /></a>
+                    </div>
+                    <div class="imgContainer2" style="width: fit-content; margin:0 auto">
+                        <img src="https://static.clubcypher.club/email/cypher-01.png" style="height:auto;width:20vw;margin:0 auto" alt="" />
+                    </div>
+                </div>
+                </section>
+            </body>
+            </html>
+            `
+    
+            var da_mail = `${tempMail}`
+    
+            const accessToken = oAuth2Client.getAccessToken();
+    
+            const transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                    type: 'OAuth2',
+                    user: 'clubcypher.bot@gmail.com',
+                    clientId: CLIENT_ID,
+                    clientSecret: CLEINT_SECRET,
+                    refreshToken: REFRESH_TOKEN,
+                    accessToken: accessToken,
+                },
+            });
+            
+            var mailOptions = {
+                from: '"Club Cypher" <clubcypher.bot@gmail.com>',
+                to: da_mail,
+                subject: "Registeration Details",
+                text: output,
+                html: output,
+            };
+            if (err) {
+                return res.render('admin-email', { title: 'Send Mail', error : err});
+                }
+            else
+                transporter.sendMail(mailOptions, function (err, info) {
+                if(err)
+                    return res.render('admin-email', { title: 'Send Mail', error : 'Mail sent successfully.'});
+                else 
+                    return res.render('admin-email', { title: 'Send Mail', error : 'Mail sent successfully.'});
+                });
+        }
+    });
+
+    return res.redirect('/admin/email');
+});
+
+router.post('/admin/email/verify', (req, res, next) => {
+    var query1 = { username : { $ne: 'admin'}}
+    var query2 = { verified : false }
+    User.find().find(query1).find(query2).exec(function(err, mails) {
+        for (i in mails){
+            if (mails[i].type == 'Student'){
+                var tempMail = mails[i].studentemail
+                var output = 
+                `
+                <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+                <html xmlns=3D"https://www.w3.org/1999/xhtml" xmlns:v=3D"urn:schemas-micros=oft-com:vml">
+                    <head>
+                        <title>Registeration Details</title>
+                    </head>
+                    <body style="background:transparent">
+                        <div style="display:flex;align-items:center;justify-content:center;font-size:3vw;">
+                            <div style="align-items:center;justify-content:center;width:fit-content;height:max-content;background:#050B18;border-radius:10px">
+                                <div style="padding:60px">
+                                    <p style="font-family: Arial, Helvetica, sans-serif;padding-top:25px;color:#eee;">Thank you for registering for (c)ync!</p>
+                                    <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Here are your credentials -</p>
+                                    <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Username: <b>${mails[i].username}}</b></p>
+                                    <p style="font-family: Arial, Helvetica, sans-serif;padding-top:5px;color:#eee;">Password: <b>${mails[i].password1}}</b></p>
+                                    <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;"><a style="text-decoration:none;color:red;" href="https://www.clubcypher.club/verify/${mails[i].verification}">Click here to verify your account.</a></p>
+                                    <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;">You can use these credentials to login <a style="text-decoration:none;color:red;" href="https://www.clubcypher.club/login">HERE</a>.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </body>
+                </html>
+                `
+                var da_mail = `${tempMail}`
+        
+                var accessToken = oAuth2Client.getAccessToken();
+        
+                var transporter = nodemailer.createTransport({
+                    service: 'gmail',
+                    auth: {
+                        type: 'OAuth2',
+                        user: 'clubcypher.bot@gmail.com',
+                        clientId: CLIENT_ID,
+                        clientSecret: CLEINT_SECRET,
+                        refreshToken: REFRESH_TOKEN,
+                        accessToken: accessToken,
+                    },
+                });
+                
+                var mailOptions = {
+                    from: '"Club Cypher" <clubcypher.bot@gmail.com>',
+                    to: da_mail,
+                    subject: "Registeration Details",
+                    text: output,
+                    html: output,
+                };
+    
+            }
+            else if (mails[i].type == 'School'){
+                var tempMail = mails[i].schoolemail
+                var output = 
+                `
+                <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+                <html xmlns=3D"https://www.w3.org/1999/xhtml" xmlns:v=3D"urn:schemas-micros=oft-com:vml">
+                    <head>
+                        <title>Registeration Details</title>
+                    </head>
+                    <body style="background:transparent">
+                        <div style="display:flex;align-items:center;justify-content:center;font-size:3vw;">
+                            <div style="align-items:center;justify-content:center;width:fit-content;height:max-content;background:#050B18;border-radius:10px">
+                                <div style="padding:60px">
+                                    <p style="font-family: Arial, Helvetica, sans-serif;padding-top:25px;color:#eee;">Thank you for registering for (c)ync!</p>
+                                    <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Here are your credentials -</p>
+                                    <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Username: <b>${mails[i].username}}</b></p>
+                                    <p style="font-family: Arial, Helvetica, sans-serif;padding-top:5px;color:#eee;">Password: <b>${mails[i].password1}}</b></p>
+                                    <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;"><a style="text-decoration:none;color:red;" href="https://www.clubcypher.club/verify/${mails[i].verification}">Click here to verify your account.</a></p>
+                                    <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;">You can use these credentials to login <a style="text-decoration:none;color:red;" href="https://www.clubcypher.club/login">HERE</a>.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </body>
+                </html>
+                `
+        
+                var da_mail = `${tempMail}`
+        
+                var accessToken = oAuth2Client.getAccessToken();
+        
+                var transporter = nodemailer.createTransport({
+                    service: 'gmail',
+                    auth: {
+                        type: 'OAuth2',
+                        user: 'clubcypher.bot@gmail.com',
+                        clientId: CLIENT_ID,
+                        clientSecret: CLEINT_SECRET,
+                        refreshToken: REFRESH_TOKEN,
+                        accessToken: accessToken,
+                    },
+                });
+                
+                var mailOptions = {
+                    from: '"Club Cypher" <clubcypher.bot@gmail.com>',
+                    to: da_mail,
+                    subject: "Registeration Details",
+                    text: output,
+                    html: output,
+                };
+    
+            }
+            else{
+                var tempMail = mails[i].participantemail
+                var output = 
+                `
+                <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+                <html xmlns=3D"https://www.w3.org/1999/xhtml" xmlns:v=3D"urn:schemas-micros=oft-com:vml">
+                    <head>
+                        <title>Registeration Details</title>
+                    </head>
+                    <body style="background:transparent">
+                        <div style="display:flex;align-items:center;justify-content:center;font-size:3vw;">
+                            <div style="align-items:center;justify-content:center;width:fit-content;height:max-content;background:#050B18;border-radius:10px">
+                                <div style="padding:60px">
+                                    <p style="font-family: Arial, Helvetica, sans-serif;padding-top:25px;color:#eee;">Thank you for registering for (c)ync!</p>
+                                    <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Here are your credentials -</p>
+                                    <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;color:#eee;">Username: <b>${mails[i].username}}</b></p>
+                                    <p style="font-family: Arial, Helvetica, sans-serif;padding-top:5px;color:#eee;">Password: <b>${mails[i].password1}}</b></p>
+                                    <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;"><a style="text-decoration:none;color:red;" href="https://www.clubcypher.club/verify/${mails[i].verification}">Click here to verify your account.</a></p>
+                                    <p style="font-family: Arial, Helvetica, sans-serif;padding-top:15px;padding-bottom:25px;color:#eee;">You can use these credentials to login <a style="text-decoration:none;color:red;" href="https://www.clubcypher.club/login">HERE</a>.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </body>
+                </html>
+                `
+        
+                var da_mail = `${tempMail}`
+        
+                var accessToken = oAuth2Client.getAccessToken();
+        
+                var transporter = nodemailer.createTransport({
+                    service: 'gmail',
+                    auth: {
+                        type: 'OAuth2',
+                        user: 'clubcypher.bot@gmail.com',
+                        clientId: CLIENT_ID,
+                        clientSecret: CLEINT_SECRET,
+                        refreshToken: REFRESH_TOKEN,
+                        accessToken: accessToken,
+                    },
+                });
+                
+                var mailOptions = {
+                    from: '"Club Cypher" <clubcypher.bot@gmail.com>',
+                    to: da_mail,
+                    subject: "Registeration Details",
+                    text: output,
+                    html: output,
+                };
+            }
+            if (err) {
+                return res.render('admin-email', { title: 'Send Mail', error : err});
+                }
+            else{
+                transporter.sendMail(mailOptions, function (err, info) {
+                if(err){
+                    console.log(err)
+                    return res.render('admin-email', { title: 'Send Mail', error : 'Verification mail sent successfully.'});
+                }
+                else 
+                    return res.render('admin-email', { title: 'Send Mail', error : 'Verification mail sent successfully.'});
+                });
+            }
+            
+        }
+    });
+
+    return res.redirect('/admin/email');
+});
+
 
 // Admin Panel Route
 router.get('/admin', (req, res) => {
