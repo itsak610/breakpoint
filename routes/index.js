@@ -16,7 +16,7 @@ const { google } = require('googleapis');
 const CLIENT_ID = '638781291529-c7tgea5km6kgb2ganamane5bhj6bsnh1.apps.googleusercontent.com';
 const CLEINT_SECRET = 'dZib3-TgRMsNiC-RvCHXkMfF';
 const REDIRECT_URI = 'https://developers.google.com/oauthplayground';
-const REFRESH_TOKEN = '1//04NBHRgTNrywoCgYIARAAGAQSNwF-L9IrmhC8h6b4AY6GKANkUuB9Eq7jrpR8bt6LpnYHmOvCPvfDGi6cOcrvSDf_xHPaMBkRnOY';
+const REFRESH_TOKEN = '1//0414wN3S9Cvt6CgYIARAAGAQSNwF-L9IrBCb7A6VAMu5d_5u3e4zfJL-F7XQFR05ZWPZVfTM9KkU7YdycTbQKTh1PyLEqBXlMyFs';
 
 const oAuth2Client = new google.auth.OAuth2(
   CLIENT_ID,
@@ -480,10 +480,13 @@ router.post('/student/register/click', function(req, res) {
                 }
                 else
                     transporter.sendMail(mailOptions, function (err, info) {
-                        if(err)
-                        return res.render('student-register', { title: 'Student Register', error : 'Student registered successfully.', errorcode:'blue', eventname: 'click' });
-                        else 
-                        return res.render('student-register', { title: 'Student Register', error : 'Student registered successfully. Credentials sent to your email. If you are unable to find the email, check your spam folder or contact us at cypherdps@gmail.com', errorcode:'blue', eventname: 'click' });
+                        if(err){
+                            console.log(err)
+                            return res.render('student-register', { title: 'Student Register', error : 'Student registered successfully.', errorcode:'blue', eventname: 'click' });
+                        }
+                        else {
+                            return res.render('student-register', { title: 'Student Register', error : 'Student registered successfully. Credentials sent to your email. If you are unable to find the email, check your spam folder or contact us at cypherdps@gmail.com', errorcode:'blue', eventname: 'click' });
+                        }
                     });
                 }
                 );
