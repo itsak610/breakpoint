@@ -78,12 +78,32 @@ block content
             .dashCard(cursor-class='extender')
                 p School Name - #{currentUser.schoolname}
                 br
-                p Participant Name - #{currentUser.studentname}
+                p Participant Name - #{currentUser.participantname}
+                br
+                p Participant Number - #{currentUser.participantnumber}
+                br
+                p Participant Email - #{currentUser.participantemail}
+                br
+                p School Code - #{currentUser.code}
+                br
                 br
                 if currentUser.studentevent == 'crosshair'
                     p Events - (c)rosshair
+                br
+                br
+                b.warning 
+                    | Thank you for verifying your account!
+                    br
+                    | Join our discord for further updates - 
+                    a(href="https://discord.gg/d9YSfgNQf2") CLICK HERE
+                br
+                br
                 if currentUser.verified == false 
-                    b.warning You are not verified yet! We have sent a verification email on your registered email address, follow the steps in the email to verify your account.
+                    b.warning
+                        | You are not verified yet! We have sent a verification email on your registered email address, follow the steps in the email to verify your account.
+                        br
+                        br
+                        | If you cannot find it, check your spam folder or contact us at cypherdps@gmail.com.
                     br
                     br
                     b.warning NOTE : You will not be registered for the event until you have a verified account.
@@ -95,9 +115,9 @@ block content
                 br
                 p Participant Name - #{currentUser.studentname}
                 br
-                p Participant Name - #{currentUser.studentemail}
+                p Participant Email - #{currentUser.studentemail}
                 br
-                p Participant Name - #{currentUser.studentnumber}
+                p Participant Number - #{currentUser.studentnumber}
                 br
                 if currentUser.studentevent == 'click'
                     p Events - (c)lick

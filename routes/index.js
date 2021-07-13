@@ -485,7 +485,7 @@ router.post('/student/register/click', function(req, res) {
                             return res.render('student-register', { title: 'Student Register', error : 'Student registered successfully.', errorcode:'blue', eventname: 'click' });
                         }
                         else {
-                            return res.render('student-register', { title: 'Student Register', error : 'Student registered successfully. Credentials sent to your email. If you are unable to find the email, check your spam folder or contact us at cypherdps@gmail.com', errorcode:'blue', eventname: 'click' });
+                            return res.render('student-register', { title: 'Student Register', error : 'Student registered successfully. Credentials sent to your email. If you are unable to find the email, check your spam folder or contact us at cypherdps@gmail.com . If you wish to register for other events as well, head over to the register page and register for the desired event using the same email id.', errorcode:'blue', eventname: 'click' });
                         }
                     });
                 }
@@ -583,14 +583,14 @@ router.post('/student/register/clipped', function(req, res) {
                         if(err)
                             return res.render('student-register', { title: 'Student Register', error : 'Student registered successfully.', errorcode:'blue', eventname: 'clipped' });
                         else 
-                            return res.render('student-register', { title: 'Student Register', error : 'Student registered successfully. Credentials sent to your email. If you are unable to find the email, check your spam folder or contact us at cypherdps@gmail.com', errorcode:'blue', eventname: 'clipped' });
+                            return res.render('student-register', { title: 'Student Register', error : 'Student registered successfully. Credentials sent to your email. If you are unable to find the email, check your spam folder or contact us at cypherdps@gmail.com . If you wish to register for other events as well, head over to the register page and register for the desired event using the same email id.', errorcode:'blue', eventname: 'clipped' });
                         });
                     }
                     );
                 });
             }
             else{
-                return res.render('student-register', { title: 'Student Register', error : 'The passwords dont match.', errorcode:'red', eventname: 'clipped' });
+                return res.render('student-register', { title: 'Student Register', error : 'The email is already registered.', errorcode:'red', eventname: 'clipped' });
             }
         })
     }
@@ -1293,7 +1293,7 @@ router.post('/school/participant/register/crosshair', function(req, res) {
                     if(err)
                       return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully.', errorcode:'blue' });
                     else 
-                      return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully. Credentials sent to your email. If you are unable to find the email, check your spam folder or contact us at cypherdps@gmail.com', errorcode:'blue' });
+                      return res.render('crosshair-register', { title: '(c)rosshair Register', error : 'Team registered successfully. Credentials sent to their emails. If you are unable to find the email, check your spam folder or contact us at cypherdps@gmail.com', errorcode:'blue' });
                 });
         });
         var verifyid6 = makeid(64);
