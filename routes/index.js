@@ -244,7 +244,7 @@ router.post('/school/register', function(req, res) {
                 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                 <html xmlns=3D"https://www.w3.org/1999/xhtml" xmlns:v=3D"urn:schemas-micros=oft-com:vml">
                     <head>
-                        <title>Registeration Details</title>
+                        <title>Registration Details</title>
                     </head>
                     <body style="background:transparent">
                         <div style="display:flex;align-items:center;justify-content:center;font-size:3vw;">
@@ -282,7 +282,7 @@ router.post('/school/register', function(req, res) {
                 var mailOptions = {
                     from: '"Club Cypher" <clubcypher.bot@gmail.com>',
                     to: da_mail,
-                    subject: "Registeration Details",
+                    subject: "Registration Details",
                     text: output,
                     html: output,
                 };
@@ -433,7 +433,7 @@ router.post('/student/register/click', function(req, res) {
                     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                     <html xmlns=3D"https://www.w3.org/1999/xhtml" xmlns:v=3D"urn:schemas-micros=oft-com:vml">
                         <head>
-                            <title>Registeration Details</title>
+                            <title>Registration Details</title>
                         </head>
                         <body style="background:transparent">
                             <div style="display:flex;align-items:center;justify-content:center;font-size:3vw;">
@@ -471,7 +471,7 @@ router.post('/student/register/click', function(req, res) {
                     var mailOptions = {
                         from: '"Club Cypher" <clubcypher.bot@gmail.com>',
                         to: da_mail,
-                        subject: "Registeration Details",
+                        subject: "Registration Details",
                         text: output,
                         html: output,
                     };
@@ -533,7 +533,7 @@ router.post('/student/register/clipped', function(req, res) {
                         <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                         <html xmlns=3D"https://www.w3.org/1999/xhtml" xmlns:v=3D"urn:schemas-micros=oft-com:vml">
                             <head>
-                                <title>Registeration Details</title>
+                                <title>Registration Details</title>
                             </head>
                             <body style="background:transparent">
                                 <div style="display:flex;align-items:center;justify-content:center;font-size:3vw;">
@@ -571,7 +571,7 @@ router.post('/student/register/clipped', function(req, res) {
                         var mailOptions = {
                             from: '"Club Cypher" <clubcypher.bot@gmail.com>',
                             to: da_mail,
-                            subject: "Registeration Details",
+                            subject: "Registration Details",
                             text: output,
                             html: output,
                         };
@@ -777,7 +777,7 @@ router.get('/school/participant/register/crosshair', (req, res, next) => {
 //                 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 //                 <html xmlns=3D"https://www.w3.org/1999/xhtml" xmlns:v=3D"urn:schemas-micros=oft-com:vml">
 //                     <head>
-//                         <title>Registeration Details</title>
+//                         <title>Registration Details</title>
 //                     </head>
 //                     <body style="background:transparent">
 //                         <div style="display:flex;align-items:center;justify-content:center;font-size:3vw;">
@@ -815,7 +815,7 @@ router.get('/school/participant/register/crosshair', (req, res, next) => {
 //                 var mailOptions = {
 //                     from: '"Club Cypher" <clubcypher.bot@gmail.com>',
 //                     to: da_mail,
-//                     subject: "Registeration Details",
+//                     subject: "Registration Details",
 //                     text: output,
 //                     html: output,
 //                 };
@@ -865,7 +865,7 @@ router.get('/school/participant/register/crosshair', (req, res, next) => {
 //                 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 //                 <html xmlns=3D"https://www.w3.org/1999/xhtml" xmlns:v=3D"urn:schemas-micros=oft-com:vml">
 //                     <head>
-//                         <title>Registeration Details</title>
+//                         <title>Registration Details</title>
 //                     </head>
 //                     <body style="background:transparent">
 //                         <div style="display:flex;align-items:center;justify-content:center;font-size:3vw;">
@@ -903,7 +903,7 @@ router.get('/school/participant/register/crosshair', (req, res, next) => {
 //                 var mailOptions = {
 //                     from: '"Club Cypher" <clubcypher.bot@gmail.com>',
 //                     to: da_mail,
-//                     subject: "Registeration Details",
+//                     subject: "Registration Details",
 //                     text: output,
 //                     html: output,
 //                 };
@@ -949,7 +949,7 @@ router.post('/school/participant/register/crosshair', function(req, res) {
             <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
             <html xmlns=3D"https://www.w3.org/1999/xhtml" xmlns:v=3D"urn:schemas-micros=oft-com:vml">
                 <head>
-                    <title>Registeration Details</title>
+                    <title>Registration Details</title>
                 </head>
                 <body style="background:transparent">
                     <div style="display:flex;align-items:center;justify-content:center;font-size:3vw;">
@@ -987,7 +987,7 @@ router.post('/school/participant/register/crosshair', function(req, res) {
             var mailOptions = {
                 from: '"Club Cypher" <clubcypher.bot@gmail.com>',
                 to: da_mail,
-                subject: "Registeration Details",
+                subject: "Registration Details",
                 text: output,
                 html: output,
             };
@@ -1023,7 +1023,7 @@ router.post('/school/participant/register/crosshair', function(req, res) {
             <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
             <html xmlns=3D"https://www.w3.org/1999/xhtml" xmlns:v=3D"urn:schemas-micros=oft-com:vml">
                 <head>
-                    <title>Registeration Details</title>
+                    <title>Registration Details</title>
                 </head>
                 <body style="background:transparent">
                     <div style="display:flex;align-items:center;justify-content:center;font-size:3vw;">
@@ -1061,7 +1061,7 @@ router.post('/school/participant/register/crosshair', function(req, res) {
             var mailOptions = {
                 from: '"Club Cypher" <clubcypher.bot@gmail.com>',
                 to: da_mail,
-                subject: "Registeration Details",
+                subject: "Registration Details",
                 text: output,
                 html: output,
             };
@@ -1096,7 +1096,7 @@ router.post('/school/participant/register/crosshair', function(req, res) {
             <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
             <html xmlns=3D"https://www.w3.org/1999/xhtml" xmlns:v=3D"urn:schemas-micros=oft-com:vml">
                 <head>
-                    <title>Registeration Details</title>
+                    <title>Registration Details</title>
                 </head>
                 <body style="background:transparent">
                     <div style="display:flex;align-items:center;justify-content:center;font-size:3vw;">
@@ -1134,7 +1134,7 @@ router.post('/school/participant/register/crosshair', function(req, res) {
             var mailOptions = {
                 from: '"Club Cypher" <clubcypher.bot@gmail.com>',
                 to: da_mail,
-                subject: "Registeration Details",
+                subject: "Registration Details",
                 text: output,
                 html: output,
             };
@@ -1169,7 +1169,7 @@ router.post('/school/participant/register/crosshair', function(req, res) {
             <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
             <html xmlns=3D"https://www.w3.org/1999/xhtml" xmlns:v=3D"urn:schemas-micros=oft-com:vml">
                 <head>
-                    <title>Registeration Details</title>
+                    <title>Registration Details</title>
                 </head>
                 <body style="background:transparent">
                     <div style="display:flex;align-items:center;justify-content:center;font-size:3vw;">
@@ -1207,7 +1207,7 @@ router.post('/school/participant/register/crosshair', function(req, res) {
             var mailOptions = {
                 from: '"Club Cypher" <clubcypher.bot@gmail.com>',
                 to: da_mail,
-                subject: "Registeration Details",
+                subject: "Registration Details",
                 text: output,
                 html: output,
             };
@@ -1242,7 +1242,7 @@ router.post('/school/participant/register/crosshair', function(req, res) {
             <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
             <html xmlns=3D"https://www.w3.org/1999/xhtml" xmlns:v=3D"urn:schemas-micros=oft-com:vml">
                 <head>
-                    <title>Registeration Details</title>
+                    <title>Registration Details</title>
                 </head>
                 <body style="background:transparent">
                     <div style="display:flex;align-items:center;justify-content:center;font-size:3vw;">
@@ -1280,7 +1280,7 @@ router.post('/school/participant/register/crosshair', function(req, res) {
             var mailOptions = {
                 from: '"Club Cypher" <clubcypher.bot@gmail.com>',
                 to: da_mail,
-                subject: "Registeration Details",
+                subject: "Registration Details",
                 text: output,
                 html: output,
             };
@@ -1316,7 +1316,7 @@ router.post('/school/participant/register/crosshair', function(req, res) {
             <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
             <html xmlns=3D"https://www.w3.org/1999/xhtml" xmlns:v=3D"urn:schemas-micros=oft-com:vml">
                 <head>
-                    <title>Registeration Details</title>
+                    <title>Registration Details</title>
                 </head>
                 <body style="background:transparent">
                     <div style="display:flex;align-items:center;justify-content:center;font-size:3vw;">
@@ -1354,7 +1354,7 @@ router.post('/school/participant/register/crosshair', function(req, res) {
             var mailOptions = {
                 from: '"Club Cypher" <clubcypher.bot@gmail.com>',
                 to: da_mail,
-                subject: "Registeration Details",
+                subject: "Registration Details",
                 text: output,
                 html: output,
             };
@@ -1531,7 +1531,7 @@ router.post('/admin/email', (req, res, next) => {
                 var mailOptions = {
                     from: '"Club Cypher" <clubcypher.bot@gmail.com>',
                     to: da_mail,
-                    subject: "Registeration Details",
+                    subject: "Registration Details",
                     text: output,
                     html: output,
                 };
@@ -1571,7 +1571,7 @@ router.post('/admin/email/verify', (req, res, next) => {
                 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                 <html xmlns=3D"https://www.w3.org/1999/xhtml" xmlns:v=3D"urn:schemas-micros=oft-com:vml">
                     <head>
-                        <title>Registeration Details</title>
+                        <title>Registration Details</title>
                     </head>
                     <body style="background:transparent">
                         <div style="display:flex;align-items:center;justify-content:center;font-size:3vw;">
@@ -1608,7 +1608,7 @@ router.post('/admin/email/verify', (req, res, next) => {
                 var mailOptions = {
                     from: '"Club Cypher" <clubcypher.bot@gmail.com>',
                     to: da_mail,
-                    subject: "Registeration Details",
+                    subject: "Registration Details",
                     text: output,
                     html: output,
                 };
@@ -1639,7 +1639,7 @@ router.post('/admin/email/verify', (req, res, next) => {
                 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                 <html xmlns=3D"https://www.w3.org/1999/xhtml" xmlns:v=3D"urn:schemas-micros=oft-com:vml">
                     <head>
-                        <title>Registeration Details</title>
+                        <title>Registration Details</title>
                     </head>
                     <body style="background:transparent">
                         <div style="display:flex;align-items:center;justify-content:center;font-size:3vw;">
@@ -1677,7 +1677,7 @@ router.post('/admin/email/verify', (req, res, next) => {
                 var mailOptions = {
                     from: '"Club Cypher" <clubcypher.bot@gmail.com>',
                     to: da_mail,
-                    subject: "Registeration Details",
+                    subject: "Registration Details",
                     text: output,
                     html: output,
                 };
@@ -1707,7 +1707,7 @@ router.post('/admin/email/verify', (req, res, next) => {
                 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                 <html xmlns=3D"https://www.w3.org/1999/xhtml" xmlns:v=3D"urn:schemas-micros=oft-com:vml">
                     <head>
-                        <title>Registeration Details</title>
+                        <title>Registration Details</title>
                     </head>
                     <body style="background:transparent">
                         <div style="display:flex;align-items:center;justify-content:center;font-size:3vw;">
@@ -1745,7 +1745,7 @@ router.post('/admin/email/verify', (req, res, next) => {
                 var mailOptions = {
                     from: '"Club Cypher" <clubcypher.bot@gmail.com>',
                     to: da_mail,
-                    subject: "Registeration Details",
+                    subject: "Registration Details",
                     text: output,
                     html: output,
                 };
