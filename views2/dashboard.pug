@@ -31,7 +31,9 @@ block content
         a{
             transition:0.3s ease-in-out;
         }
-
+        .warning a{
+            color:#3282B8;
+        }
         a:hover{
             color:#3282B8;
         }
@@ -53,6 +55,14 @@ block content
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center; */
+        }
+        @media (max-width:750px){
+            p{
+                font-size: 4vw;
+            }
+            b{
+                font-size: 3vw;
+            }
         }
     
     h1.title #{currentUser.type} Dashboard
