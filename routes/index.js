@@ -115,7 +115,7 @@ router.get('/events', (req, res, next) => {
 });
 
 router.get('/decypher', (req, res, next) => {
-    return res.render('decypher', { title: 'De(c)ypher' });
+    return res.redirect('https://www.decypher.club/register');
 });
 
 // Render login page
