@@ -1,6 +1,8 @@
 extends layout
 
 block content
+    if isRedirect
+        meta(http-equiv="refresh" content="7; url=http://clubcypher.club/login")
     style.
         form input[type="email"] {
             text-transform: lowercase;

@@ -482,10 +482,10 @@ router.post('/student/register/click', function(req, res) {
                     transporter.sendMail(mailOptions, function (err, info) {
                         if(err){
                             console.log(err)
-                            return res.render('student-register', { title: 'Student Register', error : 'Student registered successfully.', errorcode:'blue', eventname: 'click' });
+                            return res.render('student-register', { isRedirect : true, title: 'Student Register', error : 'Student registered successfully.', errorcode:'blue', eventname: 'click' });
                         }
                         else {
-                            return res.render('student-register', { title: 'Student Register', error : 'Student registered successfully. Credentials sent to your email. If you are unable to find the email, check your spam folder or contact us at cypherdps@gmail.com . If you wish to register for other events as well, head over to the register page and register for the desired event using the same email id.', errorcode:'blue', eventname: 'click' });
+                            return res.render('student-register', { isRedirect : true, title: 'Student Register', error : 'Student registered successfully. Credentials sent to your email. If you are unable to find the email, check your spam folder or contact us at cypherdps@gmail.com . If you wish to register for other events as well, head over to the register page and register for the desired event using the same email id.', errorcode:'blue', eventname: 'click' });
                         }
                     });
                 }
