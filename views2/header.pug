@@ -1,37 +1,69 @@
 header
     .logo
         a.handletter(href='/home')
-            img(src='https://static.clubcypher.club/img/cync_logo-converted.png' alt='cync' cursor-class='arrow')
-    img.mob-logo(src='https://static.clubcypher.club/img/cync_logo-converted.png' alt='cync' cursor-class='arrow')
+            if alumnipage
+                img(src='https://static.clubcypher.club/img/cypher-01.png' alt='cync' cursor-class='golden')
+            else
+                img(src='https://static.clubcypher.club/img/cync_logo-converted.png' alt='cync' cursor-class='arrow')
+    if alumnipage
+        img.mob-logo(src='https://static.clubcypher.club/img/cypher.png' alt='cync' cursor-class='golden')
+    else
+        img.mob-logo(src='https://static.clubcypher.club/img/cync_logo-converted.png' alt='cync' cursor-class='arrow')
     #mobilenavdiv.mobile-menu-toggle.js-toggle-menu.hamburger-menu(onclick='navfunction()')
         span.menu-item
         span.menu-item
         span.menu-item
     nav.navbar.desktop-nav
-        if currentUser
-            ul
-                li
-                    a(href='/home' cursor-class='arrow') Home
-                li
-                    a(href='/decypher' cursor-class='arrow') De(c)ypher
-                li
-                    a(href='/events' cursor-class='arrow') Events
-                li
-                    a(href='/dashboard' cursor-class='arrow') Dashboard
-                li
-                    a(href='/logout' cursor-class='arrow') Logout from #{currentUser.username}
+        if alumnipage
+            if currentUser
+                ul
+                    li
+                        a(href='/home' cursor-class='golden') Home
+                    li
+                        a(href='/decypher' cursor-class='golden') De(c)ypher
+                    li
+                        a(href='/events' cursor-class='golden') Events
+                    li
+                        a(href='/dashboard' cursor-class='golden') Dashboard
+                    li
+                        a(href='/logout' cursor-class='golden') Logout from #{currentUser.username}
+            else
+                ul
+                    li
+                        a(href='/home' cursor-class='golden') Home
+                    li
+                        a(href='/decypher' cursor-class='golden') De(c)ypher
+                    li
+                        a(href='/events' cursor-class='golden') Events
+                    li
+                        a(href='/login' cursor-class='golden') Login
+                    li
+                        a(href='/register' cursor-class='golden') Register
         else
-            ul
-                li
-                    a(href='/home' cursor-class='arrow') Home
-                li
-                    a(href='/decypher' cursor-class='arrow') De(c)ypher
-                li
-                    a(href='/events' cursor-class='arrow') Events
-                li
-                    a(href='/login' cursor-class='arrow') Login
-                li
-                    a(href='/register' cursor-class='arrow') Register
+            if currentUser
+                ul
+                    li
+                        a(href='/home' cursor-class='arrow') Home
+                    li
+                        a(href='/decypher' cursor-class='arrow') De(c)ypher
+                    li
+                        a(href='/events' cursor-class='arrow') Events
+                    li
+                        a(href='/dashboard' cursor-class='arrow') Dashboard
+                    li
+                        a(href='/logout' cursor-class='arrow') Logout from #{currentUser.username}
+            else
+                ul
+                    li
+                        a(href='/home' cursor-class='arrow') Home
+                    li
+                        a(href='/decypher' cursor-class='arrow') De(c)ypher
+                    li
+                        a(href='/events' cursor-class='arrow') Events
+                    li
+                        a(href='/login' cursor-class='arrow') Login
+                    li
+                        a(href='/register' cursor-class='arrow') Register
     nav#nav.mobile-nav.hidden
         if currentUser
             ul

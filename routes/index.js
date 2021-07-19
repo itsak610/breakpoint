@@ -16,7 +16,7 @@ const { google } = require('googleapis');
 const CLIENT_ID = '638781291529-c7tgea5km6kgb2ganamane5bhj6bsnh1.apps.googleusercontent.com';
 const CLEINT_SECRET = 'dZib3-TgRMsNiC-RvCHXkMfF';
 const REDIRECT_URI = 'https://developers.google.com/oauthplayground';
-const REFRESH_TOKEN = '1//0414wN3S9Cvt6CgYIARAAGAQSNwF-L9IrBCb7A6VAMu5d_5u3e4zfJL-F7XQFR05ZWPZVfTM9KkU7YdycTbQKTh1PyLEqBXlMyFs';
+const REFRESH_TOKEN = '1//04sKMnD8pPWc5CgYIARAAGAQSNwF-L9IrWCOrNU5QfDBM-Zx_C9xIHD5eNqatV_MnkvPaIYpADbvF5eRRRDTg1c21MViIsqlit2E';
 
 const oAuth2Client = new google.auth.OAuth2(
   CLIENT_ID,
@@ -107,7 +107,7 @@ router.get('/home', (req, res, next) => {
 });
 
 router.get('/alumni', (req, res, next) => {
-    return res.render('alumni', { title: 'Alumni' });
+    return res.render('alumni', { title: 'Alumni' , alumnipage : true});
 });
 
 router.get('/events', (req, res, next) => {
@@ -1561,7 +1561,7 @@ router.post('/admin/email/verify', (req, res, next) => {
     var query6 = { studentemail : {$regex : '.*@gmail.com.*'}}
     var query7 = { schoolemail : {$regex : '.*@gmail.com.*'}}
     var query8 = { participantemail : {$regex : '.*@gmail.com.*'}}
-    var tempquery = {participantemail : 'udyat.gamer@gmail.com'}
+    var tempquery = { code : 'EBGAodSq'}
     // User.find().find(query1).find(query2).find(query3).exec(function(err, mails) {
     //     let interval = 1200;
     //     mails.forEach((mail, i) => {
@@ -1702,151 +1702,11 @@ router.post('/admin/email/verify', (req, res, next) => {
     //     });  
     // });
     
-    // User.find().find(query1).find(query2).find(query4).find(tempquery).exec(function(err, mails) {
-    //     let interval = 1200;
-    //     mails.forEach((mail, i) => {
-    //         setTimeout(() => {
-    //             var tempMail = mail.schoolemail
-    //             var output = 
-    //             `
-    //             <!DOCTYPE html>
-    //             <html lang="en">
-    //                 <head>
-    //                     <meta charset="UTF-8" />
-    //                     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    //                     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    //                     <title>(C)YNC v7.0</title>
-    //                 </head>
-    //                 <body style="color: #fff;width:fit-content;background-color: transparent;">
-    //                     <style>
-    //                     @import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;500;700&display=swap");
-
-    //                     * {
-    //                         margin: 0;
-    //                         padding: 0;
-    //                         font-family: "Comfortaa", cursive;
-    //                     }
-    //                     .right a:hover {
-    //                         color: #185adb !important;
-    //                     }
-    //                     .button a:hover{
-    //                         color: #000 !important;
-    //                         background-color: #DA1893 !important;
-    //                     }
-    //                     @media (max-width:1112px){
-    //                         .left{
-    //                             width: 100% !important;
-    //                             padding: 0 !important;
-    //                             maRgin-top: 25px !important;
-    //                             padding-bottom: 25px !important;
-    //                         }
-    //                         .right{
-    //                             width: 100% !important;
-    //                             padding: 0 !important;
-    //                         }
-    //                         .textContainer{
-    //                             font-size: 2vw !important;
-    //                             line-height: 3vw !important;
-    //                         }
-    //                     }    
-    //                     @media (max-width:750px){
-    //                         .card{
-    //                             width: 60vw !important;
-    //                             margin:0 !important;
-    //                         }
-    //                         .textContainer{
-    //                             font-size: 2vw !important;
-    //                             padding:0 !important;
-    //                         }
-    //                         .endText{
-    //                             font-size: 2.5vw !important;
-    //                         }
-    //                     }
-    //                     </style>
-    //                     <section class="card" style="background-color: #080808;width: 50vw;border: 1px solid #fff;padding: 50px;position: relative;border-radius: 10px;">
-    //                         <div class="imgContainer" style="width:fit-content;margin:0 auto;">
-    //                             <img src="https://static.clubcypher.club/img/cypher.png" style="height:auto;width:10vw;" alt="decypher" />
-    //                         </div>
-    //                         <div class="textContainer" style="text-align: center;font-size: 20px;padding:30px 0;">
-    //                             <h2 style="margin-bottom: 20px;">Thank you for registering for (c)ync!</h2>
-    //                             <h2 style="margin-top:30px;margin-bottom:50px">Here are your credentials-</h2>
-    //                             <p style="padding:20px">Username - ${mail.username}</p>
-    //                             <p style="padding:20px">Password - ${mail.password1}</p>
-    //                             <h2 style="margin-top:30px">Please verify your account by clicking on the button below-</h2>
-    //                         </div>
-    //                         <div class="button" style="width:fit-content;margin:0 auto;padding: 40px 0;">
-    //                             <a style="color: #DA1893;border: 1px solid #DA1893;padding: 20px 30px;font-size: 3vw;width: 100%;text-align: center;text-decoration: none;" href="https://www.clubcypher.club/verify/${mail.verification}" target="_blank">Verify Here</a>
-    //                         </div>
-    //                         <div class="end" style="padding: 20px;width: fit-content;margin:0 auto">
-    //                             <div class="endText" style="margin-bottom: 40px;">
-    //                             We look forward to your active participation and co-operation to make
-    //                             this endeavor a grand success.
-    //                             <br /><br />
-    //                             Thank You.
-    //                             <br /><br />
-    //                             Team (c)ypher, DPS Bhopal
-    //                             </div>
-    //                             <div class="endLinks" style="width: fit-content;margin:0 auto">
-    //                             <a href="https://www.instagram.com/cypherdps/"
-    //                                 ><img src="https://static.clubcypher.club/email/instagram2x.png" style="height: auto;width: 5vw;" alt=""
-    //                             /></a>
-    //                             <a href="https://www.youtube.com/channel/UCSULXN5apeQSDa0sLYuwEnA"
-    //                                 ><img src="https://static.clubcypher.club/email/youtube2x.png" style="height: auto;width: 5vw;" alt=""
-    //                             /></a>
-    //                             </div>
-    //                             <div class="imgContainer2" style="width: fit-content; margin:0 auto">
-    //                             <img src="https://static.clubcypher.club/email/cypher-01.png" style="height:auto;width:20vw;margin:0 auto" alt="" />
-    //                             </div>
-    //                         </div>
-    //                     </section>
-    //                 </body>
-    //             </html>
-    //             `
-        
-    //             var da_mail = `${tempMail}`
-        
-    //             var accessToken = oAuth2Client.getAccessToken();
-        
-    //             var transporter = nodemailer.createTransport({
-    //                 service: 'gmail',
-    //                 auth: {
-    //                     type: 'OAuth2',
-    //                     user: 'clubcypher.bot@gmail.com',
-    //                     clientId: CLIENT_ID,
-    //                     clientSecret: CLEINT_SECRET,
-    //                     refreshToken: REFRESH_TOKEN,
-    //                     accessToken: accessToken,
-    //                 },
-    //             });
-                
-    //             var mailOptions = {
-    //                 from: '"Club Cypher" <clubcypher.bot@gmail.com>',
-    //                 to: da_mail,
-    //                 subject: "Registration Details",
-    //                 text: output,
-    //                 html: output,
-    //             };
-    //             if (err) {
-    //                 return res.render('admin-email', { title: 'Send Mail', error : err});
-    //                 }
-    //             else{
-    //                 transporter.sendMail(mailOptions, function (err, info) {
-    //                 if(err){
-    //                     console.log(err)
-    //                     return res.render('admin-email', { title: 'Send Mail', error : 'Verification mail sent successfully.'});
-    //                 }
-    //                 else 
-    //                     return res.render('admin-email', { title: 'Send Mail', error : 'Verification mail sent successfully.'});
-    //                 });
-    //             }
-    //         }, i * interval)
-    //     });
-    // });
-    User.find().find(query1).find(query2).find(query5).find(tempquery).exec(function(err, mails) {
+    User.find().find(query1).find(query2).find(query4).find(tempquery).exec(function(err, mails) {
         let interval = 1200;
         mails.forEach((mail, i) => {
             setTimeout(() => {
-                var tempMail = mail.participantemail
+                var tempMail = mail.schoolemail
                 var output = 
                 `
                 <!DOCTYPE html>
@@ -1981,7 +1841,147 @@ router.post('/admin/email/verify', (req, res, next) => {
                 }
             }, i * interval)
         });
-    }); 
+    });
+    // User.find().find(query1).find(query2).find(query5).find(tempquery).exec(function(err, mails) {
+    //     let interval = 1200;
+    //     mails.forEach((mail, i) => {
+    //         setTimeout(() => {
+    //             var tempMail = mail.participantemail
+    //             var output = 
+    //             `
+    //             <!DOCTYPE html>
+    //             <html lang="en">
+    //                 <head>
+    //                     <meta charset="UTF-8" />
+    //                     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    //                     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    //                     <title>(C)YNC v7.0</title>
+    //                 </head>
+    //                 <body style="color: #fff;width:fit-content;background-color: transparent;">
+    //                     <style>
+    //                     @import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;500;700&display=swap");
+
+    //                     * {
+    //                         margin: 0;
+    //                         padding: 0;
+    //                         font-family: "Comfortaa", cursive;
+    //                     }
+    //                     .right a:hover {
+    //                         color: #185adb !important;
+    //                     }
+    //                     .button a:hover{
+    //                         color: #000 !important;
+    //                         background-color: #DA1893 !important;
+    //                     }
+    //                     @media (max-width:1112px){
+    //                         .left{
+    //                             width: 100% !important;
+    //                             padding: 0 !important;
+    //                             maRgin-top: 25px !important;
+    //                             padding-bottom: 25px !important;
+    //                         }
+    //                         .right{
+    //                             width: 100% !important;
+    //                             padding: 0 !important;
+    //                         }
+    //                         .textContainer{
+    //                             font-size: 2vw !important;
+    //                             line-height: 3vw !important;
+    //                         }
+    //                     }    
+    //                     @media (max-width:750px){
+    //                         .card{
+    //                             width: 60vw !important;
+    //                             margin:0 !important;
+    //                         }
+    //                         .textContainer{
+    //                             font-size: 2vw !important;
+    //                             padding:0 !important;
+    //                         }
+    //                         .endText{
+    //                             font-size: 2.5vw !important;
+    //                         }
+    //                     }
+    //                     </style>
+    //                     <section class="card" style="background-color: #080808;width: 50vw;border: 1px solid #fff;padding: 50px;position: relative;border-radius: 10px;">
+    //                         <div class="imgContainer" style="width:fit-content;margin:0 auto;">
+    //                             <img src="https://static.clubcypher.club/img/cypher.png" style="height:auto;width:10vw;" alt="decypher" />
+    //                         </div>
+    //                         <div class="textContainer" style="text-align: center;font-size: 20px;padding:30px 0;">
+    //                             <h2 style="margin-bottom: 20px;">Thank you for registering for (c)ync!</h2>
+    //                             <h2 style="margin-top:30px;margin-bottom:50px">Here are your credentials-</h2>
+    //                             <p style="padding:20px">Username - ${mail.username}</p>
+    //                             <p style="padding:20px">Password - ${mail.password1}</p>
+    //                             <h2 style="margin-top:30px">Please verify your account by clicking on the button below-</h2>
+    //                         </div>
+    //                         <div class="button" style="width:fit-content;margin:0 auto;padding: 40px 0;">
+    //                             <a style="color: #DA1893;border: 1px solid #DA1893;padding: 20px 30px;font-size: 3vw;width: 100%;text-align: center;text-decoration: none;" href="https://www.clubcypher.club/verify/${mail.verification}" target="_blank">Verify Here</a>
+    //                         </div>
+    //                         <div class="end" style="padding: 20px;width: fit-content;margin:0 auto">
+    //                             <div class="endText" style="margin-bottom: 40px;">
+    //                             We look forward to your active participation and co-operation to make
+    //                             this endeavor a grand success.
+    //                             <br /><br />
+    //                             Thank You.
+    //                             <br /><br />
+    //                             Team (c)ypher, DPS Bhopal
+    //                             </div>
+    //                             <div class="endLinks" style="width: fit-content;margin:0 auto">
+    //                             <a href="https://www.instagram.com/cypherdps/"
+    //                                 ><img src="https://static.clubcypher.club/email/instagram2x.png" style="height: auto;width: 5vw;" alt=""
+    //                             /></a>
+    //                             <a href="https://www.youtube.com/channel/UCSULXN5apeQSDa0sLYuwEnA"
+    //                                 ><img src="https://static.clubcypher.club/email/youtube2x.png" style="height: auto;width: 5vw;" alt=""
+    //                             /></a>
+    //                             </div>
+    //                             <div class="imgContainer2" style="width: fit-content; margin:0 auto">
+    //                             <img src="https://static.clubcypher.club/email/cypher-01.png" style="height:auto;width:20vw;margin:0 auto" alt="" />
+    //                             </div>
+    //                         </div>
+    //                     </section>
+    //                 </body>
+    //             </html>
+    //             `
+        
+    //             var da_mail = `${tempMail}`
+        
+    //             var accessToken = oAuth2Client.getAccessToken();
+        
+    //             var transporter = nodemailer.createTransport({
+    //                 service: 'gmail',
+    //                 auth: {
+    //                     type: 'OAuth2',
+    //                     user: 'clubcypher.bot@gmail.com',
+    //                     clientId: CLIENT_ID,
+    //                     clientSecret: CLEINT_SECRET,
+    //                     refreshToken: REFRESH_TOKEN,
+    //                     accessToken: accessToken,
+    //                 },
+    //             });
+                
+    //             var mailOptions = {
+    //                 from: '"Club Cypher" <clubcypher.bot@gmail.com>',
+    //                 to: da_mail,
+    //                 subject: "Registration Details",
+    //                 text: output,
+    //                 html: output,
+    //             };
+    //             if (err) {
+    //                 return res.render('admin-email', { title: 'Send Mail', error : err});
+    //                 }
+    //             else{
+    //                 transporter.sendMail(mailOptions, function (err, info) {
+    //                 if(err){
+    //                     console.log(err)
+    //                     return res.render('admin-email', { title: 'Send Mail', error : 'Verification mail sent successfully.'});
+    //                 }
+    //                 else 
+    //                     return res.render('admin-email', { title: 'Send Mail', error : 'Verification mail sent successfully.'});
+    //                 });
+    //             }
+    //         }, i * interval)
+    //     });
+    // }); 
     return res.redirect('/admin/email');
 });
 

@@ -7,8 +7,6 @@ var compression = require('compression');
 var MongoStore = require('connect-mongo');
 var LocalStrategy = require('passport-local').Strategy;
 mongoose.Promise = require('bluebird');
-const cluster = require('cluster');
-const totalCPUs = require('os').cpus().length;
 
 // if (cluster.isMaster) {
 //   console.log(`Number of CPUs is ${totalCPUs}`);
