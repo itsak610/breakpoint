@@ -16,7 +16,7 @@ const { google } = require('googleapis');
 const CLIENT_ID = '638781291529-c7tgea5km6kgb2ganamane5bhj6bsnh1.apps.googleusercontent.com';
 const CLEINT_SECRET = 'dZib3-TgRMsNiC-RvCHXkMfF';
 const REDIRECT_URI = 'https://developers.google.com/oauthplayground';
-const REFRESH_TOKEN = '1//04sKMnD8pPWc5CgYIARAAGAQSNwF-L9IrWCOrNU5QfDBM-Zx_C9xIHD5eNqatV_MnkvPaIYpADbvF5eRRRDTg1c21MViIsqlit2E';
+const REFRESH_TOKEN = '1//04Cd1A1ATeztKCgYIARAAGAQSNwF-L9IrlNSYxtlcy5WY9fMtfD_Bd2vZND1OfjEWPt4Ujycq5hCsjm09cEYb9WZTWQPjcmY4XxM';
 
 const oAuth2Client = new google.auth.OAuth2(
   CLIENT_ID,
@@ -2047,123 +2047,385 @@ router.get('/school/teams', (req, res, next) => {
 // -------------------------------------------------------- Admin Routes -------------------------------------------------------- //
 
 
-// Send Email to teams
+// ------------------------------------------- Send Email to teams ------------------------------------------- //
+
+
+// ------------------------------------- Send Email Get Routes ------------------------------------- //
+
 router.get('/admin/email', (req, res, next) => {
     if (req.user.username != 'admin' || !req.user.username) {
-      res.redirect('/');
+        res.redirect('/');
     }
     else{
         return res.render('admin-email', { title: 'Send Mail' });
     }
-  });
-router.post('/admin/email', (req, res, next) => {
+});
+
+// ---------------------------- Send Email Content ---------------------------- //
+
+router.get('/admin/email/content', (req, res, next) => {
+    if (req.user.username != 'admin' || !req.user.username) {
+      res.redirect('/');
+    }
+    else{
+        return res.render('admin-email-content', { title: 'Send Mail' });
+    }
+});
+router.get('/admin/email/content/all', (req, res, next) => {
+    if (req.user.username != 'admin' || !req.user.username) {
+      res.redirect('/');
+    }
+    else{
+        return res.render('admin-email-content-send', { title: 'Send Mail', pageType: 'all' });
+    }
+});
+router.get('/admin/email/content/specific', (req, res, next) => {
+    if (req.user.username != 'admin' || !req.user.username) {
+      res.redirect('/');
+    }
+    else{
+        return res.render('admin-email-content-send', { title: 'Send Mail', pageType: 'specific' });
+    }
+});
+router.get('/admin/email/content/custom', (req, res, next) => {
+    if (req.user.username != 'admin' || !req.user.username) {
+      res.redirect('/');
+    }
+    else{
+        return res.render('admin-email-content-send', { title: 'Send Mail', pageType: 'custom' });
+    }
+});
+// ---------------------------- Send Email Verification ---------------------------- //
+
+router.get('/admin/email/verification', (req, res, next) => {
+    if (req.user.username != 'admin' || !req.user.username) {
+        res.redirect('/');
+    }
+    else{
+        return res.render('admin-email-verification', { title: 'Send Mail' });
+    }
+});
+router.get('/admin/email/verification/all', (req, res, next) => {
+    if (req.user.username != 'admin' || !req.user.username) {
+      res.redirect('/');
+    }
+    else{
+        return res.render('admin-email-verification-send', { title: 'Send Mail', pageType: 'all' });
+    }
+});
+router.get('/admin/email/verification/specific', (req, res, next) => {
+    if (req.user.username != 'admin' || !req.user.username) {
+      res.redirect('/');
+    }
+    else{
+        return res.render('admin-email-verification-send', { title: 'Send Mail', pageType: 'specific' });
+    }
+});
+router.get('/admin/email/verification/custom', (req, res, next) => {
+    if (req.user.username != 'admin' || !req.user.username) {
+      res.redirect('/');
+    }
+    else{
+        return res.render('admin-email-verification-send', { title: 'Send Mail', pageType: 'custom' });
+    }
+});
+
+// ---------------------------- Send Email Credentials ---------------------------- //
+
+router.get('/admin/email/credentials', (req, res, next) => {
+    if (req.user.username != 'admin' || !req.user.username) {
+      res.redirect('/');
+    }
+    else{
+        return res.render('admin-email-credentials', { title: 'Send Mail' });
+    }
+});
+router.get('/admin/email/credentials/all', (req, res, next) => {
+    if (req.user.username != 'admin' || !req.user.username) {
+      res.redirect('/');
+    }
+    else{
+        return res.render('admin-email-credentials-send', { title: 'Send Mail', pageType: 'custom' });
+    }
+});
+router.get('/admin/email/credentials/specific', (req, res, next) => {
+    if (req.user.username != 'admin' || !req.user.username) {
+      res.redirect('/');
+    }
+    else{
+        return res.render('admin-email-credentials-send', { title: 'Send Mail', pageType: 'specific' });
+    }
+});
+router.get('/admin/email/credentials/custom', (req, res, next) => {
+    if (req.user.username != 'admin' || !req.user.username) {
+      res.redirect('/');
+    }
+    else{
+        return res.render('admin-email-credentials-send', { title: 'Send Mail', pageType: 'custom' });
+    }
+});
+
+// ------------------------------------------------------------------------------------------------- //
+
+
+// ------------------------------------- Send Email Post Routes ------------------------------------ //
+
+// ----------------------- Send Content Mail Post Routes ----------------------- //
+
+// ----------- Send Content Mail to All Post Route ----------- //
+
+
+// ----------------------------------------------------------- //
+
+// -------- Send Content Mail to Specific Post Route --------  //
+
+
+
+// ----------------------------------------------------------- //
+
+// ----- Send Content Mail with Custom Query Post Route -----  //
+
+router.post('/admin/email/content/custom', (req, res, next) => {
     var query = { username : { $ne: 'admin'}}
-    User.find().find(query).exec(function(err, mails) {
+    var contentValue = req.body.contentValue
+    var Value1 = req.body.content
+    var Value2 = req.body.inputQuery
+    if (Value1 == 'verified'){
+        var fieldName = { verified : Value2}
+    }
+    else if (Value1 == 'teachername'){
+        var fieldName = { teachername : Value2}
+    }
+    else if (Value1 == 'teachernumber'){
+        var fieldName = { teachernumber : Value2}
+    }
+    else if (Value1 == 'schoolemail'){
+        var fieldName = { schoolemail : Value2}
+    }
+    else if (Value1 == 'code'){
+        var fieldName = { code : Value2}
+    }
+    else if (Value1 == 'studentname'){
+        var fieldName = { studentname : Value2}
+    }
+    else if (Value1 == 'studentevent'){
+        var fieldName = { studentevent : Value2}
+    }
+    else if (Value1 == 'studentemail'){
+        var fieldName = { studentemail : Value2}
+    }
+    else if (Value1 == 'studentnumber'){
+        var fieldName = { studentnumber : Value2}
+    }
+    else if (Value1 == 'participantname'){
+        var fieldName = { participantname : Value2}
+    }
+    else if (Value1 == 'participantevent'){
+        var fieldName = { participantevent : Value2}
+    }
+    else if (Value1 == 'participantemail'){
+        var fieldName = { participantemail : Value2}
+    }
+    else if (Value1 == 'participantnumber'){
+        var fieldName = { username : Value2}
+    }
+    else if (Value1 == 'substitute'){
+        var fieldName = { substitute : Value2}
+    }
+    else if (Value1 == 'username'){
+        var fieldName = { username : Value2}
+    }
+    else if (Value1 == 'schoolname'){
+        var fieldName = { schoolname : Value2}
+    }
+    else if (Value1 == 'type'){
+        var fieldName = { type : Value2}
+    }
+    else{
+        return res.render('admin-email-content-send', { title: 'Send Mail', error : 'No such field.'});
+    }
+    User.find().find(query).find(fieldName).exec(function(err, mails) {
+        if (mails.length == 0){
+            return res.render('admin-email-content-send', { title: 'Send Mail', error : 'No Records Found'});
+        }
+        else{
+            return res.render('admin-email-content-send', { title: 'Send Mail', error : 'Please Confirm', isList: true, mails: mails, contentValue: contentValue, value1: Value1, value2: Value2 });
+        }
+    });
+});
+router.post('/admin/email/content/custom/send', (req, res, next) => {
+    var query = { username : { $ne: 'admin'}}
+    var contentValue = req.body.contentValue
+    var Value1 = req.body.content
+    var Value2 = req.body.inputQuery
+    if (Value1 == 'verified'){
+        var fieldName = { verified : Value2}
+    }
+    else if (Value1 == 'teachername'){
+        var fieldName = { teachername : Value2}
+    }
+    else if (Value1 == 'teachernumber'){
+        var fieldName = { teachernumber : Value2}
+    }
+    else if (Value1 == 'schoolemail'){
+        var fieldName = { schoolemail : Value2}
+    }
+    else if (Value1 == 'code'){
+        var fieldName = { code : Value2}
+    }
+    else if (Value1 == 'studentname'){
+        var fieldName = { studentname : Value2}
+    }
+    else if (Value1 == 'studentevent'){
+        var fieldName = { studentevent : Value2}
+    }
+    else if (Value1 == 'studentemail'){
+        var fieldName = { studentemail : Value2}
+    }
+    else if (Value1 == 'studentnumber'){
+        var fieldName = { studentnumber : Value2}
+    }
+    else if (Value1 == 'participantname'){
+        var fieldName = { participantname : Value2}
+    }
+    else if (Value1 == 'participantevent'){
+        var fieldName = { participantevent : Value2}
+    }
+    else if (Value1 == 'participantemail'){
+        var fieldName = { participantemail : Value2}
+    }
+    else if (Value1 == 'participantnumber'){
+        var fieldName = { username : Value2}
+    }
+    else if (Value1 == 'substitute'){
+        var fieldName = { substitute : Value2}
+    }
+    else if (Value1 == 'username'){
+        var fieldName = { username : Value2}
+    }
+    else if (Value1 == 'schoolname'){
+        var fieldName = { schoolname : Value2}
+    }
+    else if (Value1 == 'type'){
+        var fieldName = { type : Value2}
+    }
+    else{
+        return res.render('admin-email-content-send', { title: 'Send Mail', error : 'No such field.'});
+    }
+    User.find().find(query).find(fieldName).exec(function(err, mails) {
         let interval = 1200;
         mails.forEach((mail, i) => {
             setTimeout(() => {
-                var tempMail = mail.email
+                if (mail.type == 'Student'){
+                    var tempMail = mail.studentemail
+                }
+                else if (mail.type == 'Participant'){
+                    var tempMail = mail.participantemail
+                }
+                else{
+                    var tempMail = mail.schoolemail
+                }
                 var output = 
                 `
                 <!DOCTYPE html>
                 <html lang="en">
                 <head>
-                    <meta charset="UTF-8" />
-                    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-                    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-                    <title>(C)YNC v7.0</title>
+                <meta charset="UTF-8" />
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                <title>(C)YNC v7.0</title>
                 </head>
                 <body style="color: #fff;width:fit-content;padding: 10px;background-color: transparent;">
-                    <style>
-                    @import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;500;700&display=swap");
-        
-                    * {
-                        margin: 0;
-                        padding: 0;
-                        font-family: "Comfortaa", cursive;
+                <style>
+                @import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;500;700&display=swap");
+                
+                * {
+                    margin: 0;
+                    padding: 0;
+                    font-family: "Comfortaa", cursive;
+                }
+                h3{
+                    font-size:1.1em !important;
+                }
+                .right a:hover {
+                    color: #185adb !important;
+                }
+                .button a:hover{
+                    color: #000 !important;
+                    background-color: #DA1893 !important;
+                }
+                @media (max-width:1112px){
+                    .left{
+                        width: 100% !important;
+                        padding: 0 !important;
+                        maRgin-top: 25px !important;
+                        padding-bottom: 25px !important;
+                    }
+                    .right{
+                        width: 100% !important;
+                        padding: 0 !important;
+                    }
+                    .textContainer{
+                        font-size: 2vw !important;
+                        line-height: 3vw !important;
+                    }
+                }    
+                @media (max-width:750px){
+                    body{
+                        width:90vw !important;
+                    }
+                    .card{
+                        width: 80% !important;
+                    }
+                    .textContainer{
+                        font-size: 2vw !important;
+                        padding:0 !important;
+                        line-height:20px !important;
+                    }
+                    h2{
+                        font-size:20px !important;
                     }
                     h3{
-                        font-size:1.1em !important;
+                        font-size:15px !important;
                     }
-                    .right a:hover {
-                        color: #185adb !important;
-                    }
-                    .button a:hover{
-                        color: #000 !important;
-                        background-color: #DA1893 !important;
-                    }
-                    @media (max-width:1112px){
-                        .left{
-                            width: 100% !important;
-                            padding: 0 !important;
-                            maRgin-top: 25px !important;
-                            padding-bottom: 25px !important;
-                        }
-                        .right{
-                            width: 100% !important;
-                            padding: 0 !important;
-                        }
-                        .textContainer{
-                            font-size: 2vw !important;
-                            line-height: 3vw !important;
-                        }
-                    }    
-                    @media (max-width:750px){
-                        body{
-                            width:90vw !important;
-                        }
-                        .card{
-                            width: 80% !important;
-                        }
-                        .textContainer{
-                            font-size: 2vw !important;
-                            padding:0 !important;
-                            line-height:20px !important;
-                        }
-                        h2{
-                            font-size:20px !important;
-                        }
-                        h3{
-                            font-size:15px !important;
-                        }
-                    }
-                    </style>
-                    <section class="card" style="background-color: #080808;width: 50vw;border: 1px solid #fff;padding: 50px;position: relative;border-radius: 10px;">
-                    <div class="imgContainer" style="width:fit-content;margin:0 auto;padding-bottom:30px">
-                        <img src="https://static.clubcypher.club/img/decypher.png" style="height:auto;width:10vw;" alt="decypher" />
-                    </div>
-                    <div class="textContainer" style="text-align: center;font-size: 20px;padding:30px 0;">
-                        <h2 style="margin-bottom: 20px;">De(c)ypher</h2>
-                    </div>
-                    <div class="content" style="width:fit-content;margin:0 auto;">
-                        <div class="left" style="width: fit-content;padding: 20px;margin:0 auto;">
-                            <h3 style="width:fit-content;margin-bottom: 20px;margin:0 auto;padding:30px;">
-                                ${req.body.content}
-                            </h3>
-                        </div>
-                    </div>
-                    <div class="end" style="padding: 20px;width: fit-content;margin:0 auto">
-                        <div class="endLinks" style="width: fit-content;margin:0 auto">
-                            <a href="https://www.instagram.com/cypherdps/"
-                                ><img src="https://static.clubcypher.club/email/instagram2x.png" style="height: auto;width: 5vw;" alt=""
-                            /></a>
-                            <a href="https://www.youtube.com/channel/UCSULXN5apeQSDa0sLYuwEnA"
-                                ><img src="https://static.clubcypher.club/email/youtube2x.png" style="height: auto;width: 5vw;" alt=""
-                            /></a>
-                        </div>
-                        <div class="imgContainer2" style="width: fit-content; margin:0 auto">
-                            <img src="https://static.clubcypher.club/email/cypher-01.png" style="height:auto;width:20vw;margin:0 auto" alt="" />
-                        </div>
-                    </div>
-                    </section>
+                }
+                </style>
+                <section class="card" style="background-color: #080808;width: 50vw;border: 1px solid #fff;padding: 50px;position: relative;border-radius: 10px;">
+                <div class="imgContainer" style="width:fit-content;margin:0 auto;padding-bottom:30px">
+                <img src="https://static.clubcypher.club/img/decypher.png" style="height:auto;width:10vw;" alt="decypher" />
+                </div>
+                <div class="textContainer" style="text-align: center;font-size: 20px;padding:30px 0;">
+                <h2 style="margin-bottom: 20px;">De(c)ypher</h2>
+                </div>
+                <div class="content" style="width:fit-content;margin:0 auto;">
+                <div class="left" style="width: fit-content;padding: 20px;margin:0 auto;">
+                <h3 style="width:fit-content;margin-bottom: 20px;margin:0 auto;padding:30px;">
+                ${contentValue}
+                </h3>
+                </div>
+                </div>
+                <div class="end" style="padding: 20px;width: fit-content;margin:0 auto">
+                <div class="endLinks" style="width: fit-content;margin:0 auto">
+                <a href="https://www.instagram.com/cypherdps/"
+                ><img src="https://static.clubcypher.club/email/instagram2x.png" style="height: auto;width: 5vw;" alt=""
+                /></a>
+                <a href="https://www.youtube.com/channel/UCSULXN5apeQSDa0sLYuwEnA"
+                ><img src="https://static.clubcypher.club/email/youtube2x.png" style="height: auto;width: 5vw;" alt=""
+                /></a>
+                </div>
+                <div class="imgContainer2" style="width: fit-content; margin:0 auto">
+                <img src="https://static.clubcypher.club/email/cypher-01.png" style="height:auto;width:20vw;margin:0 auto" alt="" />
+                </div>
+                </div>
+                </section>
                 </body>
                 </html>
                 `
         
                 var da_mail = `${tempMail}`
-        
+                
                 const accessToken = oAuth2Client.getAccessToken();
-        
+                
                 const transporter = nodemailer.createTransport({
                     service: 'gmail',
                     auth: {
@@ -2184,136 +2446,158 @@ router.post('/admin/email', (req, res, next) => {
                     html: output,
                 };
                 if (err) {
-                    return res.render('admin-email', { title: 'Send Mail', error : err});
-                    }
+                    return res.render('admin-email-content-send', { title: 'Send Mail', error : err});
+                }
                 else
-                    transporter.sendMail(mailOptions, function (err, info) {
+                transporter.sendMail(mailOptions, function (err, info) {
                     if(err)
-                        return res.render('admin-email', { title: 'Send Mail', error : 'Mail sent successfully.'});
+                    return res.render('admin-email-content-send', { title: 'Send Mail', error : 'Mail sent successfully.'});
                     else 
-                        return res.render('admin-email', { title: 'Send Mail', error : 'Mail sent successfully.'});
-                    });
+                    return res.render('admin-email-content-send', { title: 'Send Mail', error : 'Mail sent successfully.'});
+                });
             }, i * interval)
         })
     });
-
-    return res.redirect('/admin/email');
 });
 
-router.post('/admin/email/verify', (req, res, next) => {
+// ----------------------------------------------------------- //
+
+// ----------------------------------------------------------------------------- //
+
+// -------------------- Send Verification Mail Post Routes  -------------------- //
+
+// ----------- Send Verification Mail to All Post Route ----------- //
+
+router.post('/admin/email/verification/all', (req, res, next) => {
+    var query = { username : { $ne: 'admin'}}
+    var query2 = { verified : false }
+    var query4 = { participantname: {$ne: '(substitute)'}}
+    User.find().find(query).find(query2).find(query4).exec(function(err, mails) {
+        if (mails.length == 0){
+            return res.render('admin-email-verification-send', { title: 'Send Mail', error : 'No Records Found', pageType: 'all'});
+        }
+        else{
+            return res.render('admin-email-verification-send', { title: 'Send Mail', error : 'Please Confirm', isList: true, mails: mails, pageType: 'all'});
+        }
+    });
+});
+
+router.post('/admin/email/verification/all/send', (req, res, next) => {
     var query1 = { username : { $ne: 'admin'}}
     var query2 = { verified : false }
-    var query3 = { type : 'Student' }
-    var query4 = { type : 'School' }
-    var query5 = { type : 'Participant' }
-    var query6 = { studentemail : {$regex : '.*@gmail.com.*'}}
-    var query7 = { schoolemail : {$regex : '.*@gmail.com.*'}}
-    var query8 = { participantemail : {$regex : '.*@gmail.com.*'}}
-    var tempquery = { code : 'EBGAodSq'}
-    User.find().find(query1).find(query2).find(query3).exec(function(err, mails) {
+    var query4 = { participantname: {$ne: '(substitute)'}}
+    User.find().find(query1).find(query2).find(query4).exec(function(err, mails) {
         let interval = 1200;
         mails.forEach((mail, i) => {
             setTimeout(() => {
-                var tempMail = mail.studentemail
+                if (mail.type == 'Student'){
+                    var tempMail = mail.studentemail
+                    var nameType = mail.studentname
+                }
+                else if (mail.type == 'Participant'){
+                    var tempMail = mail.participantemail
+                    var nameType = mail.participantname
+                }
+                else{
+                    var tempMail = mail.schoolemail
+                    var nameType = mail.teachername
+                }
                 var output = 
                 `
                 <!DOCTYPE html>
                 <html lang="en">
-                    <head>
-                        <meta charset="UTF-8" />
-                        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-                        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-                        <title>(C)YNC v7.0</title>
-                    </head>
-                    <body style="color: #fff;width:fit-content;background-color: transparent;">
-                        <style>
-                        @import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;500;700&display=swap");
-
-                        * {
-                            margin: 0;
-                            padding: 0;
-                            font-family: "Comfortaa", cursive;
-                        }
-                        .right a:hover {
-                            color: #185adb !important;
-                        }
-                        .button a:hover{
-                            color: #000 !important;
-                            background-color: #DA1893 !important;
-                        }
-                        @media (max-width:1112px){
-                            .left{
-                                width: 100% !important;
-                                padding: 0 !important;
-                                maRgin-top: 25px !important;
-                                padding-bottom: 25px !important;
-                            }
-                            .right{
-                                width: 100% !important;
-                                padding: 0 !important;
-                            }
-                            .textContainer{
-                                font-size: 2vw !important;
-                                line-height: 3vw !important;
-                            }
-                        }    
-                        @media (max-width:750px){
-                            .card{
-                                width: 60vw !important;
-                                margin:0 !important;
-                            }
-                            .textContainer{
-                                font-size: 2vw !important;
-                                padding:0 !important;
-                            }
-                            .endText{
-                                font-size: 2.5vw !important;
-                            }
-                        }
-                        </style>
-                        <section class="card" style="background-color: #080808;width: 50vw;border: 1px solid #fff;padding: 50px;position: relative;border-radius: 10px;">
-                            <div class="imgContainer" style="width:fit-content;margin:0 auto;">
-                                <img src="https://static.clubcypher.club/img/cypher.png" style="height:auto;width:10vw;" alt="decypher" />
-                            </div>
-                            <div class="textContainer" style="text-align: center;font-size: 20px;padding:30px 0;">
-                                <h2 style="margin-bottom: 20px;">Thank you for registering for (c)ync!</h2>
-                                <h2 style="margin-top:30px;margin-bottom:50px">Here are your credentials-</h2>
-                                <p style="padding:20px">Username - ${mail.username}</p>
-                                <p style="padding:20px">Password - ${mail.password1}</p>
-                                <h2 style="margin-top:30px">Please verify your account by clicking on the button below-</h2>
-                            </div>
-                            <div class="button" style="width:fit-content;margin:0 auto;padding: 40px 0;">
-                                <a style="color: #DA1893;border: 1px solid #DA1893;padding: 20px 30px;font-size: 3vw;width: 100%;text-align: center;text-decoration: none;" href="https://www.clubcypher.club/verify/${mail.verification}" target="_blank">Verify Here</a>
-                            </div>
-                            <div class="end" style="padding: 20px;width: fit-content;margin:0 auto">
-                                <div class="endText" style="margin-bottom: 40px;">
-                                We look forward to your active participation and co-operation to make
-                                this endeavor a grand success.
-                                <br /><br />
-                                Thank You.
-                                <br /><br />
-                                Team (c)ypher, DPS Bhopal
-                                </div>
-                                <div class="endLinks" style="width: fit-content;margin:0 auto">
-                                <a href="https://www.instagram.com/cypherdps/"
-                                    ><img src="https://static.clubcypher.club/email/instagram2x.png" style="height: auto;width: 5vw;" alt=""
-                                /></a>
-                                <a href="https://www.youtube.com/channel/UCSULXN5apeQSDa0sLYuwEnA"
-                                    ><img src="https://static.clubcypher.club/email/youtube2x.png" style="height: auto;width: 5vw;" alt=""
-                                /></a>
-                                </div>
-                                <div class="imgContainer2" style="width: fit-content; margin:0 auto">
-                                <img src="https://static.clubcypher.club/email/cypher-01.png" style="height:auto;width:20vw;margin:0 auto" alt="" />
-                                </div>
-                            </div>
-                        </section>
-                    </body>
+                <head>
+                <meta charset="UTF-8" />
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                <title>(C)YNC v7.0</title>
+                </head>
+                <body style="color: #fff;width:fit-content;background-color: transparent;">
+                <style>
+                @import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;500;700&display=swap");
+                
+                * {
+                    margin: 0;
+                    padding: 0;
+                    font-family: "Comfortaa", cursive;
+                }
+                .right a:hover {
+                    color: #185adb !important;
+                }
+                .button a:hover{
+                    color: #000 !important;
+                    background-color: #DA1893 !important;
+                }
+                @media (max-width:1112px){
+                    .left{
+                        width: 100% !important;
+                        padding: 0 !important;
+                        maRgin-top: 25px !important;
+                        padding-bottom: 25px !important;
+                    }
+                    .right{
+                        width: 100% !important;
+                        padding: 0 !important;
+                    }
+                    .textContainer{
+                        font-size: 2vw !important;
+                        line-height: 3vw !important;
+                    }
+                }    
+                @media (max-width:750px){
+                    .card{
+                        width: 60vw !important;
+                        margin:0 !important;
+                    }
+                    .textContainer{
+                        font-size: 2vw !important;
+                        padding:0 !important;
+                    }
+                    .endText{
+                        font-size: 2.5vw !important;
+                    }
+                }
+                </style>
+                <section class="card" style="background-color: #080808;width: 50vw;border: 1px solid #fff;padding: 50px;position: relative;border-radius: 10px;">
+                <div class="imgContainer" style="width:fit-content;margin:0 auto;">
+                <img src="https://static.clubcypher.club/img/cypher.png" style="height:auto;width:10vw;" alt="decypher" />
+                </div>
+                <div class="textContainer" style="text-align: center;font-size: 20px;padding:30px 0;">
+                <h2 style="margin-bottom: 20px;">Hey ${nameType} !</h2>
+                <h2 style="margin-top:30px">You need to verify your account to participate and/or to claim any prizes. Please verify your account by clicking on the button below-</h2>
+                </div>
+                <div class="button" style="width:fit-content;margin:0 auto;padding: 40px 0;">
+                <a style="color: #DA1893;border: 1px solid #DA1893;padding: 20px 30px;font-size: 3vw;width: 100%;text-align: center;text-decoration: none;" href="https://www.clubcypher.club/verify/${mail.verification}" target="_blank">Verify Here</a>
+                </div>
+                <div class="end" style="padding: 20px;width: fit-content;margin:0 auto">
+                <div class="endText" style="margin-bottom: 40px;">
+                We look forward to your active participation and co-operation to make
+                this endeavor a grand success.
+                <br /><br />
+                Thank You.
+                <br /><br />
+                Team (c)ypher, DPS Bhopal
+                </div>
+                <div class="endLinks" style="width: fit-content;margin:0 auto">
+                <a href="https://www.instagram.com/cypherdps/"
+                ><img src="https://static.clubcypher.club/email/instagram2x.png" style="height: auto;width: 5vw;" alt=""
+                /></a>
+                <a href="https://www.youtube.com/channel/UCSULXN5apeQSDa0sLYuwEnA"
+                ><img src="https://static.clubcypher.club/email/youtube2x.png" style="height: auto;width: 5vw;" alt=""
+                /></a>
+                </div>
+                <div class="imgContainer2" style="width: fit-content; margin:0 auto">
+                <img src="https://static.clubcypher.club/email/cypher-01.png" style="height:auto;width:20vw;margin:0 auto" alt="" />
+                </div>
+                </div>
+                </section>
+                </body>
                 </html>
                 `
                 var da_mail = `${tempMail}`
-        
+                
                 var accessToken = oAuth2Client.getAccessToken();
-        
+                
                 var transporter = nodemailer.createTransport({
                     service: 'gmail',
                     auth: {
@@ -2334,128 +2618,272 @@ router.post('/admin/email/verify', (req, res, next) => {
                     html: output,
                 };
                 if (err) {
-                    return res.render('admin-email', { title: 'Send Mail', error : err});
-                    }
+                    return res.render('admin-email-verification-send', { title: 'Send Mail', error : err, pageType: 'all'});
+                }
                 else{
                     transporter.sendMail(mailOptions, function (err, info) {
-                    if(err){
-                        console.log(err)
-                        return res.render('admin-email', { title: 'Send Mail', error : 'Verification mail sent successfully.'});
-                    }
-                    else 
-                        return res.render('admin-email', { title: 'Send Mail', error : 'Verification mail sent successfully.'});
+                        if(err){
+                            console.log(err)
+                            return res.render('admin-email-verification-send', { title: 'Send Mail', error : 'Verification mail sent successfully.', pageType: 'all'});
+                        }
+                        else 
+                        return res.render('admin-email-verification-send', { title: 'Send Mail', error : 'Verification mail sent successfully.', pageType: 'all'});
                     });
                 }
             }, i * interval)
         });  
     });
-    
-    User.find().find(query1).find(query2).find(query4).find(tempquery).exec(function(err, mails) {
+});
+
+// --------------------------------------------------------------- //
+
+// -------- Send Verification Mail to Specific Post Route --------  //
+
+
+
+// --------------------------------------------------------------- //
+
+// ----- Send Verification Mail with Custom Query Post Route -----  //
+router.post('/admin/email/verification/custom', (req, res, next) => {
+    var query = { username : { $ne: 'admin'}}
+    var Value1 = req.body.content
+    var Value2 = req.body.inputQuery
+    if (Value1 == 'verified'){
+        var fieldName = { verified : Value2}
+    }
+    else if (Value1 == 'teachername'){
+        var fieldName = { teachername : Value2}
+    }
+    else if (Value1 == 'teachernumber'){
+        var fieldName = { teachernumber : Value2}
+    }
+    else if (Value1 == 'schoolemail'){
+        var fieldName = { schoolemail : Value2}
+    }
+    else if (Value1 == 'code'){
+        var fieldName = { code : Value2}
+    }
+    else if (Value1 == 'studentname'){
+        var fieldName = { studentname : Value2}
+    }
+    else if (Value1 == 'studentevent'){
+        var fieldName = { studentevent : Value2}
+    }
+    else if (Value1 == 'studentemail'){
+        var fieldName = { studentemail : Value2}
+    }
+    else if (Value1 == 'studentnumber'){
+        var fieldName = { studentnumber : Value2}
+    }
+    else if (Value1 == 'participantname'){
+        var fieldName = { participantname : Value2}
+    }
+    else if (Value1 == 'participantevent'){
+        var fieldName = { participantevent : Value2}
+    }
+    else if (Value1 == 'participantemail'){
+        var fieldName = { participantemail : Value2}
+    }
+    else if (Value1 == 'participantnumber'){
+        var fieldName = { username : Value2}
+    }
+    else if (Value1 == 'substitute'){
+        var fieldName = { substitute : Value2}
+    }
+    else if (Value1 == 'username'){
+        var fieldName = { username : Value2}
+    }
+    else if (Value1 == 'schoolname'){
+        var fieldName = { schoolname : Value2}
+    }
+    else if (Value1 == 'type'){
+        var fieldName = { type : Value2}
+    }
+    else{
+        return res.render('admin-email-verification-send', { title: 'Send Mail', error : 'No such field.', pageType: 'custom'});
+    }
+    User.find().find(query).find(fieldName).exec(function(err, mails) {
+        if (mails.length == 0){
+            return res.render('admin-email-verification-send', { title: 'Send Mail', error : 'No Records Found', pageType: 'custom'});
+        }
+        else{
+            return res.render('admin-email-verification-send', { title: 'Send Mail', error : 'Please Confirm', isList: true, mails: mails, value1: Value1, value2: Value2, pageType: 'custom' });
+        }
+    });
+});
+router.post('/admin/email/verification/custom/send', (req, res, next) => {
+    var query = { username : { $ne: 'admin'}}
+    var query2 = { verified : false}
+    var Value1 = req.body.content
+    var Value2 = req.body.inputQuery
+    if (Value1 == 'verified'){
+        var fieldName = { verified : Value2}
+    }
+    else if (Value1 == 'teachername'){
+        var fieldName = { teachername : Value2}
+    }
+    else if (Value1 == 'teachernumber'){
+        var fieldName = { teachernumber : Value2}
+    }
+    else if (Value1 == 'schoolemail'){
+        var fieldName = { schoolemail : Value2}
+    }
+    else if (Value1 == 'code'){
+        var fieldName = { code : Value2}
+    }
+    else if (Value1 == 'studentname'){
+        var fieldName = { studentname : Value2}
+    }
+    else if (Value1 == 'studentevent'){
+        var fieldName = { studentevent : Value2}
+    }
+    else if (Value1 == 'studentemail'){
+        var fieldName = { studentemail : Value2}
+    }
+    else if (Value1 == 'studentnumber'){
+        var fieldName = { studentnumber : Value2}
+    }
+    else if (Value1 == 'participantname'){
+        var fieldName = { participantname : Value2}
+    }
+    else if (Value1 == 'participantevent'){
+        var fieldName = { participantevent : Value2}
+    }
+    else if (Value1 == 'participantemail'){
+        var fieldName = { participantemail : Value2}
+    }
+    else if (Value1 == 'participantnumber'){
+        var fieldName = { username : Value2}
+    }
+    else if (Value1 == 'substitute'){
+        var fieldName = { substitute : Value2}
+    }
+    else if (Value1 == 'username'){
+        var fieldName = { username : Value2}
+    }
+    else if (Value1 == 'schoolname'){
+        var fieldName = { schoolname : Value2}
+    }
+    else if (Value1 == 'type'){
+        var fieldName = { type : Value2}
+    }
+    else{
+        return res.render('admin-email-verification-send', { title: 'Send Mail', error : 'No such field.', pageType: 'custom'});
+    }
+    User.find().find(query).find(query2).find(fieldName).exec(function(err, mails) {
         let interval = 1200;
         mails.forEach((mail, i) => {
             setTimeout(() => {
-                var tempMail = mail.schoolemail
+                if (mail.type == 'Student'){
+                    var tempMail = mail.studentemail
+                    var nameType = mail.studentname
+                }
+                else if (mail.type == 'Participant'){
+                    var tempMail = mail.participantemail
+                    var nameType = mail.participantname
+                }
+                else{
+                    var tempMail = mail.schoolemail
+                    var nameType = mail.teachername
+                }
                 var output = 
                 `
                 <!DOCTYPE html>
                 <html lang="en">
-                    <head>
-                        <meta charset="UTF-8" />
-                        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-                        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-                        <title>(C)YNC v7.0</title>
-                    </head>
-                    <body style="color: #fff;width:fit-content;background-color: transparent;">
-                        <style>
-                        @import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;500;700&display=swap");
-
-                        * {
-                            margin: 0;
-                            padding: 0;
-                            font-family: "Comfortaa", cursive;
-                        }
-                        .right a:hover {
-                            color: #185adb !important;
-                        }
-                        .button a:hover{
-                            color: #000 !important;
-                            background-color: #DA1893 !important;
-                        }
-                        @media (max-width:1112px){
-                            .left{
-                                width: 100% !important;
-                                padding: 0 !important;
-                                maRgin-top: 25px !important;
-                                padding-bottom: 25px !important;
-                            }
-                            .right{
-                                width: 100% !important;
-                                padding: 0 !important;
-                            }
-                            .textContainer{
-                                font-size: 2vw !important;
-                                line-height: 3vw !important;
-                            }
-                        }    
-                        @media (max-width:750px){
-                            .card{
-                                width: 60vw !important;
-                                margin:0 !important;
-                            }
-                            .textContainer{
-                                font-size: 2vw !important;
-                                padding:0 !important;
-                            }
-                            .endText{
-                                font-size: 2.5vw !important;
-                            }
-                        }
-                        </style>
-                        <section class="card" style="background-color: #080808;width: 50vw;border: 1px solid #fff;padding: 50px;position: relative;border-radius: 10px;">
-                            <div class="imgContainer" style="width:fit-content;margin:0 auto;">
-                                <img src="https://static.clubcypher.club/img/cypher.png" style="height:auto;width:10vw;" alt="decypher" />
-                            </div>
-                            <div class="textContainer" style="text-align: center;font-size: 20px;padding:30px 0;">
-                                <h2 style="margin-bottom: 20px;">Thank you for registering for (c)ync!</h2>
-                                <h2 style="margin-top:30px;margin-bottom:50px">Here are your credentials-</h2>
-                                <p style="padding:20px">Username - ${mail.username}</p>
-                                <p style="padding:20px">Password - ${mail.password1}</p>
-                                <h2 style="margin-top:30px">Please verify your account by clicking on the button below-</h2>
-                            </div>
-                            <div class="button" style="width:fit-content;margin:0 auto;padding: 40px 0;">
-                                <a style="color: #DA1893;border: 1px solid #DA1893;padding: 20px 30px;font-size: 3vw;width: 100%;text-align: center;text-decoration: none;" href="https://www.clubcypher.club/verify/${mail.verification}" target="_blank">Verify Here</a>
-                            </div>
-                            <div class="end" style="padding: 20px;width: fit-content;margin:0 auto">
-                                <div class="endText" style="margin-bottom: 40px;">
-                                We look forward to your active participation and co-operation to make
-                                this endeavor a grand success.
-                                <br /><br />
-                                Thank You.
-                                <br /><br />
-                                Team (c)ypher, DPS Bhopal
-                                </div>
-                                <div class="endLinks" style="width: fit-content;margin:0 auto">
-                                <a href="https://www.instagram.com/cypherdps/"
-                                    ><img src="https://static.clubcypher.club/email/instagram2x.png" style="height: auto;width: 5vw;" alt=""
-                                /></a>
-                                <a href="https://www.youtube.com/channel/UCSULXN5apeQSDa0sLYuwEnA"
-                                    ><img src="https://static.clubcypher.club/email/youtube2x.png" style="height: auto;width: 5vw;" alt=""
-                                /></a>
-                                </div>
-                                <div class="imgContainer2" style="width: fit-content; margin:0 auto">
-                                <img src="https://static.clubcypher.club/email/cypher-01.png" style="height:auto;width:20vw;margin:0 auto" alt="" />
-                                </div>
-                            </div>
-                        </section>
-                    </body>
+                <head>
+                <meta charset="UTF-8" />
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                <title>(C)YNC v7.0</title>
+                </head>
+                <body style="color: #fff;width:fit-content;background-color: transparent;">
+                <style>
+                @import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;500;700&display=swap");
+                
+                * {
+                    margin: 0;
+                    padding: 0;
+                    font-family: "Comfortaa", cursive;
+                }
+                .right a:hover {
+                    color: #185adb !important;
+                }
+                .button a:hover{
+                    color: #000 !important;
+                    background-color: #DA1893 !important;
+                }
+                @media (max-width:1112px){
+                    .left{
+                        width: 100% !important;
+                        padding: 0 !important;
+                        maRgin-top: 25px !important;
+                        padding-bottom: 25px !important;
+                    }
+                    .right{
+                        width: 100% !important;
+                        padding: 0 !important;
+                    }
+                    .textContainer{
+                        font-size: 2vw !important;
+                        line-height: 3vw !important;
+                    }
+                }    
+                @media (max-width:750px){
+                    .card{
+                        width: 60vw !important;
+                        margin:0 !important;
+                    }
+                    .textContainer{
+                        font-size: 2vw !important;
+                        padding:0 !important;
+                    }
+                    .endText{
+                        font-size: 2.5vw !important;
+                    }
+                }
+                </style>
+                <section class="card" style="background-color: #080808;width: 50vw;border: 1px solid #fff;padding: 50px;position: relative;border-radius: 10px;">
+                <div class="imgContainer" style="width:fit-content;margin:0 auto;">
+                <img src="https://static.clubcypher.club/img/cypher.png" style="height:auto;width:10vw;" alt="decypher" />
+                </div>
+                <div class="textContainer" style="text-align: center;font-size: 20px;padding:30px 0;">
+                <h2 style="margin-bottom: 20px;">Hey ${nameType} !</h2>
+                <h2 style="margin-top:30px">You need to verify your account to participate and/or to claim any prizes. Please verify your account by clicking on the button below-</h2>
+                </div>
+                <div class="button" style="width:fit-content;margin:0 auto;padding: 40px 0;">
+                <a style="color: #DA1893;border: 1px solid #DA1893;padding: 20px 30px;font-size: 3vw;width: 100%;text-align: center;text-decoration: none;" href="https://www.clubcypher.club/verify/${mail.verification}" target="_blank">Verify Here</a>
+                </div>
+                <div class="end" style="padding: 20px;width: fit-content;margin:0 auto">
+                <div class="endText" style="margin-bottom: 40px;">
+                We look forward to your active participation and co-operation to make
+                this endeavor a grand success.
+                <br /><br />
+                Thank You.
+                <br /><br />
+                Team (c)ypher, DPS Bhopal
+                </div>
+                <div class="endLinks" style="width: fit-content;margin:0 auto">
+                <a href="https://www.instagram.com/cypherdps/"
+                ><img src="https://static.clubcypher.club/email/instagram2x.png" style="height: auto;width: 5vw;" alt=""
+                /></a>
+                <a href="https://www.youtube.com/channel/UCSULXN5apeQSDa0sLYuwEnA"
+                ><img src="https://static.clubcypher.club/email/youtube2x.png" style="height: auto;width: 5vw;" alt=""
+                /></a>
+                </div>
+                <div class="imgContainer2" style="width: fit-content; margin:0 auto">
+                <img src="https://static.clubcypher.club/email/cypher-01.png" style="height:auto;width:20vw;margin:0 auto" alt="" />
+                </div>
+                </div>
+                </section>
+                </body>
                 </html>
                 `
         
                 var da_mail = `${tempMail}`
-        
-                var accessToken = oAuth2Client.getAccessToken();
-        
-                var transporter = nodemailer.createTransport({
+                
+                const accessToken = oAuth2Client.getAccessToken();
+                
+                const transporter = nodemailer.createTransport({
                     service: 'gmail',
                     auth: {
                         type: 'OAuth2',
@@ -2475,163 +2903,42 @@ router.post('/admin/email/verify', (req, res, next) => {
                     html: output,
                 };
                 if (err) {
-                    return res.render('admin-email', { title: 'Send Mail', error : err});
-                    }
-                else{
-                    transporter.sendMail(mailOptions, function (err, info) {
-                    if(err){
-                        console.log(err)
-                        return res.render('admin-email', { title: 'Send Mail', error : 'Verification mail sent successfully.'});
-                    }
-                    else 
-                        return res.render('admin-email', { title: 'Send Mail', error : 'Verification mail sent successfully.'});
-                    });
+                    return res.render('admin-email-verification-send', { title: 'Send Mail', error : err, pageType: 'custom'});
                 }
+                else
+                transporter.sendMail(mailOptions, function (err, info) {
+                    if(err)
+                    return res.render('admin-email-verification-send', { title: 'Send Mail', error : 'Mail sent successfully.', pageType: 'custom'});
+                    else 
+                    return res.render('admin-email-verification-send', { title: 'Send Mail', error : 'Mail sent successfully.', pageType: 'custom'});
+                });
             }, i * interval)
-        });
+        })
     });
-    // User.find().find(query1).find(query2).find(query5).find(tempquery).exec(function(err, mails) {
-    //     let interval = 1200;
-    //     mails.forEach((mail, i) => {
-    //         setTimeout(() => {
-    //             var tempMail = mail.participantemail
-    //             var output = 
-    //             `
-    //             <!DOCTYPE html>
-    //             <html lang="en">
-    //                 <head>
-    //                     <meta charset="UTF-8" />
-    //                     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    //                     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    //                     <title>(C)YNC v7.0</title>
-    //                 </head>
-    //                 <body style="color: #fff;width:fit-content;background-color: transparent;">
-    //                     <style>
-    //                     @import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;500;700&display=swap");
-
-    //                     * {
-    //                         margin: 0;
-    //                         padding: 0;
-    //                         font-family: "Comfortaa", cursive;
-    //                     }
-    //                     .right a:hover {
-    //                         color: #185adb !important;
-    //                     }
-    //                     .button a:hover{
-    //                         color: #000 !important;
-    //                         background-color: #DA1893 !important;
-    //                     }
-    //                     @media (max-width:1112px){
-    //                         .left{
-    //                             width: 100% !important;
-    //                             padding: 0 !important;
-    //                             maRgin-top: 25px !important;
-    //                             padding-bottom: 25px !important;
-    //                         }
-    //                         .right{
-    //                             width: 100% !important;
-    //                             padding: 0 !important;
-    //                         }
-    //                         .textContainer{
-    //                             font-size: 2vw !important;
-    //                             line-height: 3vw !important;
-    //                         }
-    //                     }    
-    //                     @media (max-width:750px){
-    //                         .card{
-    //                             width: 60vw !important;
-    //                             margin:0 !important;
-    //                         }
-    //                         .textContainer{
-    //                             font-size: 2vw !important;
-    //                             padding:0 !important;
-    //                         }
-    //                         .endText{
-    //                             font-size: 2.5vw !important;
-    //                         }
-    //                     }
-    //                     </style>
-    //                     <section class="card" style="background-color: #080808;width: 50vw;border: 1px solid #fff;padding: 50px;position: relative;border-radius: 10px;">
-    //                         <div class="imgContainer" style="width:fit-content;margin:0 auto;">
-    //                             <img src="https://static.clubcypher.club/img/cypher.png" style="height:auto;width:10vw;" alt="decypher" />
-    //                         </div>
-    //                         <div class="textContainer" style="text-align: center;font-size: 20px;padding:30px 0;">
-    //                             <h2 style="margin-bottom: 20px;">Thank you for registering for (c)ync!</h2>
-    //                             <h2 style="margin-top:30px;margin-bottom:50px">Here are your credentials-</h2>
-    //                             <p style="padding:20px">Username - ${mail.username}</p>
-    //                             <p style="padding:20px">Password - ${mail.password1}</p>
-    //                             <h2 style="margin-top:30px">Please verify your account by clicking on the button below-</h2>
-    //                         </div>
-    //                         <div class="button" style="width:fit-content;margin:0 auto;padding: 40px 0;">
-    //                             <a style="color: #DA1893;border: 1px solid #DA1893;padding: 20px 30px;font-size: 3vw;width: 100%;text-align: center;text-decoration: none;" href="https://www.clubcypher.club/verify/${mail.verification}" target="_blank">Verify Here</a>
-    //                         </div>
-    //                         <div class="end" style="padding: 20px;width: fit-content;margin:0 auto">
-    //                             <div class="endText" style="margin-bottom: 40px;">
-    //                             We look forward to your active participation and co-operation to make
-    //                             this endeavor a grand success.
-    //                             <br /><br />
-    //                             Thank You.
-    //                             <br /><br />
-    //                             Team (c)ypher, DPS Bhopal
-    //                             </div>
-    //                             <div class="endLinks" style="width: fit-content;margin:0 auto">
-    //                             <a href="https://www.instagram.com/cypherdps/"
-    //                                 ><img src="https://static.clubcypher.club/email/instagram2x.png" style="height: auto;width: 5vw;" alt=""
-    //                             /></a>
-    //                             <a href="https://www.youtube.com/channel/UCSULXN5apeQSDa0sLYuwEnA"
-    //                                 ><img src="https://static.clubcypher.club/email/youtube2x.png" style="height: auto;width: 5vw;" alt=""
-    //                             /></a>
-    //                             </div>
-    //                             <div class="imgContainer2" style="width: fit-content; margin:0 auto">
-    //                             <img src="https://static.clubcypher.club/email/cypher-01.png" style="height:auto;width:20vw;margin:0 auto" alt="" />
-    //                             </div>
-    //                         </div>
-    //                     </section>
-    //                 </body>
-    //             </html>
-    //             `
-        
-    //             var da_mail = `${tempMail}`
-        
-    //             var accessToken = oAuth2Client.getAccessToken();
-        
-    //             var transporter = nodemailer.createTransport({
-    //                 service: 'gmail',
-    //                 auth: {
-    //                     type: 'OAuth2',
-    //                     user: 'clubcypher.bot@gmail.com',
-    //                     clientId: CLIENT_ID,
-    //                     clientSecret: CLEINT_SECRET,
-    //                     refreshToken: REFRESH_TOKEN,
-    //                     accessToken: accessToken,
-    //                 },
-    //             });
-                
-    //             var mailOptions = {
-    //                 from: '"Club Cypher" <clubcypher.bot@gmail.com>',
-    //                 to: da_mail,
-    //                 subject: "Registration Details",
-    //                 text: output,
-    //                 html: output,
-    //             };
-    //             if (err) {
-    //                 return res.render('admin-email', { title: 'Send Mail', error : err});
-    //                 }
-    //             else{
-    //                 transporter.sendMail(mailOptions, function (err, info) {
-    //                 if(err){
-    //                     console.log(err)
-    //                     return res.render('admin-email', { title: 'Send Mail', error : 'Verification mail sent successfully.'});
-    //                 }
-    //                 else 
-    //                     return res.render('admin-email', { title: 'Send Mail', error : 'Verification mail sent successfully.'});
-    //                 });
-    //             }
-    //         }, i * interval)
-    //     });
-    // }); 
-    return res.redirect('/admin/email');
 });
+
+// --------------------------------------------------------------- //
+
+// ----------------------------------------------------------------------------- //
+
+// --------------------- Send Credentials Mail Post Routes --------------------- //
+
+// ----------- Send Credentials Mail to All Post Route ----------- //
+// --------------------------------------------------------------- //
+
+// -------- Send Credentials Mail to Specific Post Route --------  //
+
+
+
+// --------------------------------------------------------------- //
+
+// ----- Send Credentials Mail with Custom Query Post Route -----  //
+
+
+
+// --------------------------------------------------------------- //
+
+// ----------------------------------------------------------------------------- //
 
 
 // Admin Panel Route
@@ -2803,29 +3110,6 @@ router.get('/admin/student/:id', (req, res, next) => {
         res.redirect('/login')
     }
 });
-//SET LEVEL for teams
-// router.post('/admin/teams', (req, res, next) => {
-//   User.findOne({username: req.body.username}, function(err, user) {
-//     user.level = req.body.newLevel;
-//     user.lastLevelOn = new Date();
-//     user.save();
-//   });
-//   return res.redirect('/admin/teams');
-// });
-
-// router.get('/admin/delete', (req, res, next) => {
-//   if (req.user.username != 'admin' || !req.user.username) {
-//     res.redirect('/');
-//   }
-//   User.find().sort('username').sort('lastLevelOn').exec(function(err, teams) {
-//     return res.render('delete', { teams: teams, title: 'Delete Users' });
-//   });
-// });
-
-// router.post('/admin/delete', (req, res, next) => {
-//   User.findOne({username: req.body.username}).remove().exec();
-//   return res.redirect('/admin/delete');
-// });
 
 router.get('/dashboard', (req, res, next) => {
 
@@ -2984,7 +3268,7 @@ router.get('/admin/verified', (req, res, next) => {
         else{
             var sort = { type: -1 };
             User.find().sort('verified').sort(sort).exec(function(err, teams1) {
-                return res.render('verify-list', { teams: teams1, eventOver: true, title: 'Verification Status' });
+                return res.render('admin-verify-list', { teams: teams1, eventOver: true, title: 'Verification Status' });
             });
         }
     }

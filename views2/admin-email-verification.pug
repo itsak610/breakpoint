@@ -10,16 +10,14 @@ block content
     #main{padding-top:20vh}.card p{font-size:2.4vh;line-height:5vh;text-align:center;}
 
   .card.leaderboard
-    h1.center Send Mail
+    h1.center Send Verification Mail
     br
     br
-    a(href="/admin/email/content")
-        p Send Content Mail
+    a(href="/admin/email/verification/all")
+        p Send Verification Mail to Unverified Email Addresses
     br
-    a(href="/admin/email/verification")
-        p Send Verification Mail
+    a(href="/admin/email/verification/specific")
+        p Send Verification Mail to a Specific Email Address
     br
-    a(href="/admin/email/credentials")
-        p Send Credentials Mail
-//-   script.
-//-     document.getElementById("loginnav").classList.toggle("active");
+    a(href="/admin/email/verification/custom")
+        p Send Verification Mail through Custom Query
