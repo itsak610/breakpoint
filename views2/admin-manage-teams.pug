@@ -10,149 +10,205 @@ block content
     @media (min-width:750px) and (max-width:1112px){.card.leaderboard table th{font-size:1.2em}.card.leaderboard table td{font-size:0.9em}}
     #main{padding-top:20vh}.card p{font-size:2.4vh;line-height:5vh}.admin{font-size:2vh;text-align:center}
     form input, select, textarea{-webkit-appearance: none;-moz-appearance: none; appearance: none;background:#080808;height:5vw;max-height:50px}
+    form input{text-indent:0px !important;}form label{text-align:center !important;}
   .card.leaderboard.manage
     if userType == 'Student'
         h1.form-title Manage Users
-        form(method='post', action='/admin/manage/teams/student')
+        - var postlink1 = '/admin/manage/teams/student/' + editUsername;
+        form(method='post', action='postlink1')
             label Select team:
-            select.select-teams(type='text',name='username', id='selectedTeam' onChange='updateValues(this.value)')
+            select.select-teams(type='text',name='username', id='selectedTeam')
                 each team in teams
                     - var option = team.username;
                     option= option
-            label.single Current Username: 
+            label.single Current Username:
+                br
+                br
                 span
                     b#currentUsername
-            label.single Current Name: 
+            label.single Current Name:
+                br
+                br
                 span
                     b#currentStudentName
-            label.single Current School Name: 
+            label.single Current School Name:
+                br
+                br
                 span
                     b#currentSchoolName
-            label.single Current Type: 
+            label.single Current Type:
+                br
+                br
                 span 
                     b #{userType}
-            label Set new school name:
-            input.select-teams(type='text',name='newUsername', id='selectedTeam' onChange='updateValues(this.value)')
+
+            label Set new Username:
+            input.select-teams(type='text',name='newUsername', id='selectedTeam')
+
+            label Set new School name:
+            input.select-teams(type='text',name='newSchoolName', id='selectedTeam')
 
             label Set new Student Name:
-            input.select-teams(type='text',name='newStudentName', id='selectedTeam' onChange='updateValues(this.value)')
+            input.select-teams(type='text',name='newStudentName', id='selectedTeam')
 
             label Set new Student Event:
-            select.select-teams(name='newStudentEvent', id='selectedTeam' onChange='updateValues(this.value)')
-                option(value='click') (c)lick
-                option(value='clipped') (c)lipped
+            select.select-teams(name='newStudentEvent', id='selectedTeam')
+                each team in teams
+                    if team.studentevent == 'click'
+                        option(value='click') (c)lick
+                        option(value='clipped') (c)lipped
+                    else
+                        option(value='clipped') (c)lipped
+                        option(value='click') (c)lick
+
 
             label Set new Student Email:
-            input.select-teams(type='email', name='newStudentEmail', id='selectedTeam' onChange='updateValues(this.value)')
+            input.select-teams(type='email', name='newStudentEmail', id='selectedTeam')
 
             label Set new Student Number:
-            input.select-teams(type='number', name='newStudentNumber', id='selectedTeam' onChange='updateValues(this.value)')
+            input.select-teams(type='number', name='newStudentNumber', id='selectedTeam')
             input(type='submit', value='Save Changes')
 
 
             script(type='text/javascript').
                 var teams = !{JSON.stringify(teams)};
-                    function updateValues(selectedTeam) {
-                    var array = teams.filter(function(team) {
-                            return team.username == selectedTeam;
-                });
-                //-   document.getElementById("schoolnameinput").value = array[0].schoolname;
-                    document.getElementById('currentStudentName').innerHTML = array[0].studentname;
-                    document.getElementById('currentSchoolName').innerHTML = array[0].schoolname;
-                    document.getElementById('currentUsername').innerHTML = array[0].username;
-                }
-
+                document.getElementById('currentUsername').innerHTML = teams[0].username;
+                document.getElementById('currentStudentName').innerHTML = teams[0].studentname;
+                document.getElementById('currentSchoolName').innerHTML = teams[0].schoolname;
+                document.querySelectorAll('#selectedTeam')[1].value = teams[0].username;
+                document.querySelectorAll('#selectedTeam')[2].value = teams[0].schoolname;
+                document.querySelectorAll('#selectedTeam')[3].value = teams[0].studentname;
+                document.querySelectorAll('#selectedTeam')[4].value = teams[0].studentevent;
+                document.querySelectorAll('#selectedTeam')[5].value = teams[0].studentemail;
+                document.querySelectorAll('#selectedTeam')[6].value = teams[0].studentnumber;
     else if userType == 'School'
         h1.form-title Manage Users
-        form(method='post', action='/admin/manage/teams/school')
+        - var postlink2 = '/admin/manage/teams/school/' + editUsername;
+        form(method='post', action='postlink2')
             label Select team:
-            select.select-teams(type='text',name='username', id='selectedTeam' onChange='updateValues(this.value)')
+            select.select-teams(type='text',name='username', id='selectedTeam')
                 each team in teams
                     - var option = team.username;
                     option= option
 
-            label.single Current Username: 
+            label.single Current Username:
+                br
+                br
                 span
                     b#currentUsername
 
-            label.single Current Name: 
+            label.single Current School Name:
+                br
+                br
                 span
                     b#currentSchoolName
 
-            label.single Current Type: 
+            label.single Current Type:
+                br
+                br
                 span 
                     b #{userType}
 
-            label Set new school name:
-            input.select-teams(type='text',name='newUsername', id='selectedTeam' onChange='updateValues(this.value)')
+
+            label Set new Username:
+            input.select-teams(type='text',name='newUsername', id='selectedTeam')
+
+            label Set new School name:
+            input.select-teams(type='text',name='newSchoolName', id='selectedTeam')
+
 
             label Set new Teacher Name:
-            input.select-teams(type='text',name='newTeacherName', id='selectedTeam' onChange='updateValues(this.value)')
+            input.select-teams(type='text',name='newTeacherName', id='selectedTeam')
 
             label Set new Teacher Number:
-            input.select-teams(type='number',name='newTeacherNumber', id='selectedTeam' onChange='updateValues(this.value)')
+            input.select-teams(type='number',name='newTeacherNumber', id='selectedTeam')
 
             label Set new School Email:
-            input.select-teams(type='email',name='newSchoolEmail', id='selectedTeam' onChange='updateValues(this.value)')
+            input.select-teams(type='email',name='newSchoolEmail', id='selectedTeam')
+
+            label Set new Code:
+            input.select-teams(type='text',name='newCode', id='selectedTeam')
+
             input(type='submit', value='Save Changes')
 
 
             script(type='text/javascript').
                 var teams = !{JSON.stringify(teams)};
-                    function updateValues(selectedTeam) {
-                    var array = teams.filter(function(team) {
-                            return team.username == selectedTeam;
-                });
-                //-   document.getElementById("schoolnameinput").value = array[0].schoolname;
-                    document.getElementById('currentSchoolName').innerHTML = array[0].schoolname;
-                    document.getElementById('currentUsername').innerHTML = array[0].username;
-                }
+                document.getElementById('currentUsername').innerHTML = teams[0].username;
+                document.getElementById('currentSchoolName').innerHTML = teams[0].schoolname;
+                document.querySelectorAll('#selectedTeam')[1].value = teams[0].username;
+                document.querySelectorAll('#selectedTeam')[2].value = teams[0].schoolname;
+                document.querySelectorAll('#selectedTeam')[3].value = teams[0].teachername;
+                document.querySelectorAll('#selectedTeam')[4].value = teams[0].teachernumber;
+                document.querySelectorAll('#selectedTeam')[5].value = teams[0].schoolemail;
+                document.querySelectorAll('#selectedTeam')[6].value = teams[0].code;
 
     else if userType == 'Participant'
         h1.form-title Manage Users
-        form(method='post', action='/admin/manage/teams/participant')
+        - var postlink3 = '/admin/manage/teams/participant/' + editUsername;
+        form(method='post', action='postlink3')
             label Select team:
-            select.select-teams(type='text',name='username', id='selectedTeam' onChange='updateValues(this.value)')
+            select.select-teams(type='text',name='username', id='selectedTeam')
                 each team in teams
                     - var option = team.username;
                     option= option
-            label.single Current Username: 
+            label.single Current Username:
+                br
+                br
                 span
                     b#currentUsername
-            label.single Current Participant Name: 
+            label.single Current Password:
+                br
+                br
+                span
+                    b#currentPassword
+            label.single Current Participant Name:
+                br
+                br
                 span
                     b#currentParticipantName
-                        label.single Current School Name: 
+            label.single Current School Name:
+                br
+                br
                 span
                     b#currentSchoolName
             label.single Current Type: 
+                br
+                br
                 span 
                     b #{userType}
+            
+
+            label Set new Username:
+            input.select-teams(type='text',name='newUsername', id='selectedTeam')
             label Set new school name:
-            input.select-teams(type='text',name='newUsername', id='selectedTeam' onChange='updateValues(this.value)')
+            input.select-teams(type='text',name='newSchoolName', id='selectedTeam')
+
 
             label Set new Participant Name:
-            input.select-teams(type='text',name='newParticipantName', id='selectedTeam' onChange='updateValues(this.value)')
+            input.select-teams(type='text',name='newParticipantName', id='selectedTeam')
             label Set new Participant Event:
-            input.select-teams(type='event',name='newParticipantEvent', id='selectedTeam' onChange='updateValues(this.value)')
+            input.select-teams(type='event',name='newParticipantEvent', id='selectedTeam')
             label Set new Participant Email:
-            input.select-teams(type='email',name='newParticipantEmail', id='selectedTeam' onChange='updateValues(this.value)')
+            input.select-teams(type='email',name='newParticipantEmail', id='selectedTeam')
             label Set new Participant Number:
-            input.select-teams(type='number',name='newParticipantNumber', id='selectedTeam' onChange='updateValues(this.value)')
+            input.select-teams(type='number',name='newParticipantNumber', id='selectedTeam')
+            label Set new Password:
+            input.select-teams(type='text',name='newPassword', id='selectedTeam')
 
 
             input(type='submit', value='Save Changes')
 
             script(type='text/javascript').
                 var teams = !{JSON.stringify(teams)};
-                    function updateValues(selectedTeam) {
-                    var array = teams.filter(function(team) {
-                            return team.username == selectedTeam;
-                });
-                //-   document.getElementById("schoolnameinput").value = array[0].schoolname;
-                    document.getElementById('currentParticipantName').innerHTML = array[0].participantname;
-                    document.getElementById('currentSchoolName').innerHTML = array[0].schoolname;
-                    document.getElementById('currentUsername').innerHTML = array[0].username;
-                }
-      
-  
+                document.getElementById('currentParticipantName').innerHTML = teams[0].participantname;
+                document.getElementById('currentSchoolName').innerHTML = teams[0].schoolname;
+                document.getElementById('currentUsername').innerHTML = teams[0].username;
+                document.getElementById('currentPassword').innerHTML = teams[0].password1;
+                document.querySelectorAll('#selectedTeam')[1].value = teams[0].username;
+                document.querySelectorAll('#selectedTeam')[2].value = teams[0].schoolname;
+                document.querySelectorAll('#selectedTeam')[3].value = teams[0].participantname;
+                document.querySelectorAll('#selectedTeam')[4].value = teams[0].participantevent;
+                document.querySelectorAll('#selectedTeam')[5].value = teams[0].participantemail;
+                document.querySelectorAll('#selectedTeam')[6].value = teams[0].participantnumber;
+                document.querySelectorAll('#selectedTeam')[7].value = teams[0].password1;
