@@ -2263,6 +2263,7 @@ router.post("/admin/email/content/all", (req, res, next) => {
             $ne: "(substitute)",
         },
     };
+    var contentValue = req.body.content;
     User.find()
         .find(query)
         .find(query4)
@@ -2279,6 +2280,7 @@ router.post("/admin/email/content/all", (req, res, next) => {
                     error: "Please Confirm",
                     isList: true,
                     mails: mails,
+                    contentValue: contentValue,
                     pageType: "all",
                 });
             }
@@ -2312,100 +2314,100 @@ router.post("/admin/email/content/all/send", (req, res, next) => {
                     }
                     var contentValue = req.body.content;
                     var output = `
-                <!DOCTYPE html>
-                <html lang="en">
-                <head>
-                <meta charset="UTF-8" />
-                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-                <title>(C)YNC v7.0</title>
-                </head>
-                <body style="color: #fff;width:fit-content;padding: 10px;background-color: transparent;">
-                <style>
-                @import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;500;700&display=swap");
-                
-                * {
-                    margin: 0;
-                    padding: 0;
-                    font-family: "Comfortaa", cursive;
-                }
-                h3{
-                    font-size:1.1em !important;
-                }
-                .right a:hover {
-                    color: #185adb !important;
-                }
-                .button a:hover{
-                    color: #000 !important;
-                    background-color: #DA1893 !important;
-                }
-                @media (max-width:1112px){
-                    .left{
-                        width: 100% !important;
-                        padding: 0 !important;
-                        maRgin-top: 25px !important;
-                        padding-bottom: 25px !important;
-                    }
-                    .right{
-                        width: 100% !important;
-                        padding: 0 !important;
-                    }
-                    .textContainer{
-                        font-size: 2vw !important;
-                        line-height: 3vw !important;
-                    }
-                }    
-                @media (max-width:750px){
-                    body{
-                        width:90vw !important;
-                    }
-                    .card{
-                        width: 80% !important;
-                    }
-                    .textContainer{
-                        font-size: 2vw !important;
-                        padding:0 !important;
-                        line-height:20px !important;
-                    }
-                    h2{
-                        font-size:20px !important;
+                    <!DOCTYPE html>
+                    <html lang="en">
+                    <head>
+                    <meta charset="UTF-8" />
+                    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                    <title>(C)YNC v7.0</title>
+                    </head>
+                    <body style="color: #fff;width:fit-content;padding: 10px;background-color: transparent;">
+                    <style>
+                    @import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;500;700&display=swap");
+
+                    * {
+                        margin: 0;
+                        padding: 0;
+                        font-family: "Comfortaa", cursive;
                     }
                     h3{
-                        font-size:15px !important;
+                        font-size:1.1em !important;
                     }
-                }
-                </style>
-                <section class="card" style="background-color: #080808;width: 50vw;border: 1px solid #fff;padding: 50px;position: relative;border-radius: 10px;">
-                <div class="imgContainer" style="width:fit-content;margin:0 auto;padding-bottom:30px">
-                <img src="https://static.clubcypher.club/img/cypher.png" style="height:auto;width:10vw;" alt="cypher" />
-                </div>
-                <div class="textContainer" style="text-align: center;font-size: 20px;padding:30px 0;">
-                <h2 style="margin-bottom: 20px;">(c)ypher</h2>
-                </div>
-                <div class="content" style="width:fit-content;margin:0 auto;">
-                <div class="left" style="width: fit-content;padding: 20px;margin:0 auto;">
-                <h3 style="width:fit-content;margin-bottom: 20px;margin:0 auto;padding:30px;">
-                ${contentValue}
-                </h3>
-                </div>
-                </div>
-                <div class="end" style="padding: 20px;width: fit-content;margin:0 auto">
-                <div class="endLinks" style="width: fit-content;margin:0 auto">
-                <a href="https://www.instagram.com/cypherdps/"
-                ><img src="https://static.clubcypher.club/email/instagram2x.png" style="height: auto;width: 5vw;" alt=""
-                /></a>
-                <a href="https://www.youtube.com/channel/UCSULXN5apeQSDa0sLYuwEnA"
-                ><img src="https://static.clubcypher.club/email/youtube2x.png" style="height: auto;width: 5vw;" alt=""
-                /></a>
-                </div>
-                <div class="imgContainer2" style="width: fit-content; margin:0 auto">
-                <img src="https://static.clubcypher.club/email/cypher-01.png" style="height:auto;width:20vw;margin:0 auto" alt="" />
-                </div>
-                </div>
-                </section>
-                </body>
-                </html>
-                `;
+                    .right a:hover {
+                        color: #185adb !important;
+                    }
+                    .button a:hover{
+                        color: #000 !important;
+                        background-color: #DA1893 !important;
+                    }
+                    @media (max-width:1112px){
+                        .left{
+                            width: 100% !important;
+                            padding: 0 !important;
+                            maRgin-top: 25px !important;
+                            padding-bottom: 25px !important;
+                        }
+                        .right{
+                            width: 100% !important;
+                            padding: 0 !important;
+                        }
+                        .textContainer{
+                            font-size: 2vw !important;
+                            line-height: 3vw !important;
+                        }
+                    }
+                    @media (max-width:750px){
+                        body{
+                            width:90vw !important;
+                        }
+                        .card{
+                            width: 80% !important;
+                        }
+                        .textContainer{
+                            font-size: 2vw !important;
+                            padding:0 !important;
+                            line-height:20px !important;
+                        }
+                        h2{
+                            font-size:20px !important;
+                        }
+                        h3{
+                            font-size:15px !important;
+                        }
+                    }
+                    </style>
+                    <section class="card" style="background-color: #080808;width: 50vw;border: 1px solid #fff;padding: 50px;position: relative;border-radius: 10px;">
+                    <div class="imgContainer" style="width:fit-content;margin:0 auto;padding-bottom:30px">
+                    <img src="https://static.clubcypher.club/img/cypher.png" style="height:auto;width:10vw;" alt="cypher" />
+                    </div>
+                    <div class="textContainer" style="text-align: center;font-size: 20px;padding:30px 0;">
+                    <h2 style="margin-bottom: 20px;">(c)ypher</h2>
+                    </div>
+                    <div class="content" style="width:fit-content;margin:0 auto;">
+                    <div class="left" style="width: fit-content;padding: 20px;margin:0 auto;">
+                    <h3 style="width:fit-content;margin-bottom: 20px;margin:0 auto;padding:30px;">
+                    ${contentValue}
+                    </h3>
+                    </div>
+                    </div>
+                    <div class="end" style="padding: 20px;width: fit-content;margin:0 auto">
+                    <div class="endLinks" style="width: fit-content;margin:0 auto">
+                    <a href="https://www.instagram.com/cypherdps/"
+                    ><img src="https://static.clubcypher.club/email/instagram2x.png" style="height: auto;width: 5vw;" alt=""
+                    /></a>
+                    <a href="https://www.youtube.com/channel/UCSULXN5apeQSDa0sLYuwEnA"
+                    ><img src="https://static.clubcypher.club/email/youtube2x.png" style="height: auto;width: 5vw;" alt=""
+                    /></a>
+                    </div>
+                    <div class="imgContainer2" style="width: fit-content; margin:0 auto">
+                    <img src="https://static.clubcypher.club/email/cypher-01.png" style="height:auto;width:20vw;margin:0 auto" alt="" />
+                    </div>
+                    </div>
+                    </section>
+                    </body>
+                    </html>
+                    `;
                     var da_mail = `${tempMail}`;
 
                     var accessToken = oAuth2Client.getAccessToken();

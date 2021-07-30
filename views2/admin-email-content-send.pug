@@ -23,10 +23,15 @@ block content
                     input(type='submit', value='Send Content Mail')
                 br
                 br
+                script.
+                    console.log('listisOff')
             else
+                script.
+                    console.log('listisOn')
                 if error
                     p.error= error
                 form(method='post', action='/admin/email/content/all/send')
+                    textarea#id2(placeholder='Content' name='content') #{contentValue}
                     input(type='submit', value='Confirm')
                 br
                 table#myTable
