@@ -2310,6 +2310,7 @@ router.post("/admin/email/content/all/send", (req, res, next) => {
                     } else {
                         var tempMail = mail.schoolemail;
                     }
+                    var contentValue = req.body.content;
                     var output = `
                 <!DOCTYPE html>
                 <html lang="en">
