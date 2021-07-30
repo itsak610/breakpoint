@@ -2376,10 +2376,10 @@ router.post("/admin/email/content/all/send", (req, res, next) => {
                 </style>
                 <section class="card" style="background-color: #080808;width: 50vw;border: 1px solid #fff;padding: 50px;position: relative;border-radius: 10px;">
                 <div class="imgContainer" style="width:fit-content;margin:0 auto;padding-bottom:30px">
-                <img src="https://static.clubcypher.club/img/decypher.png" style="height:auto;width:10vw;" alt="decypher" />
+                <img src="https://static.clubcypher.club/img/cypher.png" style="height:auto;width:10vw;" alt="cypher" />
                 </div>
                 <div class="textContainer" style="text-align: center;font-size: 20px;padding:30px 0;">
-                <h2 style="margin-bottom: 20px;">De(c)ypher</h2>
+                <h2 style="margin-bottom: 20px;">(c)ypher</h2>
                 </div>
                 <div class="content" style="width:fit-content;margin:0 auto;">
                 <div class="left" style="width: fit-content;padding: 20px;margin:0 auto;">
@@ -2424,7 +2424,7 @@ router.post("/admin/email/content/all/send", (req, res, next) => {
                     var mailOptions = {
                         from: '"Club Cypher" <clubcypher.bot@gmail.com>',
                         to: da_mail,
-                        subject: "Registration Details",
+                        subject: "(c)ync v7.0",
                         text: output,
                         html: output,
                     };
@@ -2698,10 +2698,10 @@ router.post("/admin/email/content/specific/send", (req, res, next) => {
                 </style>
                 <section class="card" style="background-color: #080808;width: 50vw;border: 1px solid #fff;padding: 50px;position: relative;border-radius: 10px;">
                 <div class="imgContainer" style="width:fit-content;margin:0 auto;padding-bottom:30px">
-                <img src="https://static.clubcypher.club/img/decypher.png" style="height:auto;width:10vw;" alt="decypher" />
+                <img src="https://static.clubcypher.club/img/cypher.png" style="height:auto;width:10vw;" alt="cypher" />
                 </div>
                 <div class="textContainer" style="text-align: center;font-size: 20px;padding:30px 0;">
-                <h2 style="margin-bottom: 20px;">De(c)ypher</h2>
+                <h2 style="margin-bottom: 20px;">(c)ypher</h2>
                 </div>
                 <div class="content" style="width:fit-content;margin:0 auto;">
                 <div class="left" style="width: fit-content;padding: 20px;margin:0 auto;">
@@ -2746,7 +2746,7 @@ router.post("/admin/email/content/specific/send", (req, res, next) => {
                     var mailOptions = {
                         from: '"Club Cypher" <clubcypher.bot@gmail.com>',
                         to: da_mail,
-                        subject: "Registration Details",
+                        subject: "(c)ync v7.0",
                         text: output,
                         html: output,
                     };
@@ -3082,10 +3082,10 @@ router.post("/admin/email/content/custom/send", (req, res, next) => {
                 </style>
                 <section class="card" style="background-color: #080808;width: 50vw;border: 1px solid #fff;padding: 50px;position: relative;border-radius: 10px;">
                 <div class="imgContainer" style="width:fit-content;margin:0 auto;padding-bottom:30px">
-                <img src="https://static.clubcypher.club/img/decypher.png" style="height:auto;width:10vw;" alt="decypher" />
+                <img src="https://static.clubcypher.club/img/cypher.png" style="height:auto;width:10vw;" alt="cypher" />
                 </div>
                 <div class="textContainer" style="text-align: center;font-size: 20px;padding:30px 0;">
-                <h2 style="margin-bottom: 20px;">De(c)ypher</h2>
+                <h2 style="margin-bottom: 20px;">(c)ypher</h2>
                 </div>
                 <div class="content" style="width:fit-content;margin:0 auto;">
                 <div class="left" style="width: fit-content;padding: 20px;margin:0 auto;">
@@ -3131,7 +3131,7 @@ router.post("/admin/email/content/custom/send", (req, res, next) => {
                     var mailOptions = {
                         from: '"Club Cypher" <clubcypher.bot@gmail.com>',
                         to: da_mail,
-                        subject: "Registration Details",
+                        subject: "(c)ync v7.0",
                         text: output,
                         html: output,
                     };
