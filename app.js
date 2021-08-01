@@ -3,31 +3,23 @@ var mongoose = require("mongoose");
 var bodyParser = require("body-parser");
 var passport = require("passport");
 var session = require("express-session");
+var helmet = require("helmet");
 var compression = require("compression");
 var MongoStore = require("connect-mongo");
 var LocalStrategy = require("passport-local").Strategy;
 mongoose.Promise = require("bluebird");
 
-// if (cluster.isMaster) {
-//   console.log(`Number of CPUs is ${totalCPUs}`);
-//   console.log(`Master ${process.pid} is running`);
-
-//   // Fork workers.
-//   for (let i = 0; i < totalCPUs; i++) {
-//     cluster.fork();
-//   }
-
-//   cluster.on('exit', (worker, code, signal) => {
-//     console.log(`worker ${worker.process.pid} died`);
-//     console.log("Let's fork another worker!");
-//     cluster.fork();
-//   });
-
-// }
-// else {
-
 var app = express();
-
+app.use(
+    helmet.contentSecurityPolicy({
+        useDefaults: true,
+        directives: {
+            "script-src": ["'unsafe-inline'", "static.clubcypher.club"],
+            "style-src": ["'unsafe-inline'", "static.clubcypher.club"],
+            "img-src": ["'unsafe-inline'", "static.clubcypher.club"],
+        },
+    })
+);
 //Make new databse
 mongoose.connect(
     "mongodb+srv://itsak:hipeople@clubcypher.bd6md.mongodb.net/clubcypher?retryWrites=true&w=majority",
@@ -66,6 +58,7 @@ var sessionConfig = {
         mongoUrl:
             "mongodb+srv://itsak:hipeople@clubcypher.bd6md.mongodb.net/clubcypher?retryWrites=true&w=majority",
     }),
+    secure: true,
 };
 app.use(session(sessionConfig));
 app.use(passport.initialize());
@@ -94,22 +87,22 @@ app.use(compression());
 app.set("view engine", "pug");
 app.set("views", __dirname + "/views2");
 
-app.use(function (req, res, next) {
-    res.setHeader(
-        "Access-Control-Allow-Origin",
-        "https://distracted-wescoff-b1d8d6.netlify.app"
-    );
-    res.setHeader(
-        "Access-Control-Allow-Methods",
-        "GET, POST, OPTIONS, PUT, PATCH, DELETE"
-    );
-    res.setHeader(
-        "Access-Control-Allow-Headers",
-        "X-Requested-With,content-type"
-    );
-    res.setHeader("Access-Control-Allow-Credentials", true);
-    return next();
-});
+// app.use(function (req, res, next) {
+//     res.setHeader(
+//         "Access-Control-Allow-Origin",
+//         "https://distracted-wescoff-b1d8d6.netlify.app"
+//     );
+//     res.setHeader(
+//         "Access-Control-Allow-Methods",
+//         "GET, POST, OPTIONS, PUT, PATCH, DELETE"
+//     );
+//     res.setHeader(
+//         "Access-Control-Allow-Headers",
+//         "X-Requested-With,content-type"
+//     );
+//     res.setHeader("Access-Control-Allow-Credentials", true);
+//     return next();
+// });
 //Setting routes
 var routes = require("./routes/index");
 app.use("/", routes);
