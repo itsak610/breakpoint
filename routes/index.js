@@ -43,7 +43,7 @@ const CLIENT_ID =
 const CLEINT_SECRET = "dZib3-TgRMsNiC-RvCHXkMfF";
 const REDIRECT_URI = "https://developers.google.com/oauthplayground";
 const REFRESH_TOKEN =
-    "1//04kpiX6mh7wa2CgYIARAAGAQSNwF-L9IrS4U05XpeYlZ6-wff7PjbC0Kq0zmlCJpPShxh4-fN9RnwsDmuDNslJaJ2HXVWThUje_Q";
+    "1//04QTquKE2Jph-CgYIARAAGAQSNwF-L9IrnwJCB6a3VX-yPGCtQdCPgzzOn52YzBYoMkIb36ADdwZ_qeKgNNMT865-leD-kbCw6K4";
 
 const oAuth2Client = new google.auth.OAuth2(
     CLIENT_ID,
@@ -132,6 +132,12 @@ router.get("/alumni", (req, res, next) => {
 router.get("/events", (req, res, next) => {
     return res.render("events", {
         title: "Events",
+    });
+});
+
+router.get("/crosshair", (req, res, next) => {
+    return res.render("crosshair-standings", {
+        title: "(c)rosshair bracket",
     });
 });
 
@@ -578,7 +584,7 @@ router.get("/student/register", (req, res, next) => {
     if (req.user) {
         return res.redirect("/dashboard");
     } else {
-        return res.render("register-option", {
+        return res.render("register-closed", {
             title: "Student Register",
         });
     }
@@ -595,7 +601,7 @@ router.get("/student/register/click", (req, res, next) => {
     if (req.user) {
         return res.redirect("/dashboard");
     } else {
-        return res.render("student-register", {
+        return res.render("register-closed", {
             title: "(c)lick Register",
             eventname: "click",
         });
@@ -835,7 +841,7 @@ router.get("/student/register/clipped", (req, res, next) => {
     if (req.user) {
         return res.redirect("/dashboard");
     } else {
-        return res.render("student-register", {
+        return res.render("register-closed", {
             title: "(C)lipped Register",
             eventname: "clipped",
         });
@@ -849,7 +855,7 @@ router.post("/student/register/clipped", function (req, res) {
         });
     }
     if (req.body.password != req.body.passwordConfirm) {
-        return res.render("student-register", {
+        return res.render("register-closed", {
             title: "Student Register",
             error: "The passwords dont match.",
             errorcode: "red",
@@ -1165,50 +1171,44 @@ router.post("/participant/login", (req, res, next) => {
 
 // ---------------- Crosshair Register ---------------- //
 
-// router.get("/school/participant/register", (req, res, next) => {
-//     if (!eventIsOn) {
-//         res.render("over", {
-//             title: "Event Over",
-//         });
-//     }
-//     var currentUserType = req.user.type;
-//     if (!req.user) {
-//         return res.redirect("/login");
-//     } else {
-//         if (currentUserType == "School") {
-//             return res.redirect("/school/participant/register/crosshair");
-//         } else {
-//             return res.redirect("/dashboard");
-//         }
-//     }
-// });
+router.get("/school/participant/register", (req, res, next) => {
+    if (!eventIsOn) {
+        res.render("over", {
+            title: "Event Over",
+        });
+    }
+    var currentUserType = req.user.type;
+    if (!req.user) {
+        return res.redirect("/login");
+    } else {
+        if (currentUserType == "School") {
+            return res.redirect("/school/participant/register/crosshair");
+        } else {
+            return res.redirect("/dashboard");
+        }
+    }
+});
 
-// var crosshairNumber = 0;
-// router.get("/school/participant/register/crosshair", (req, res, next) => {
-//     if (!eventIsOn) {
-//         res.render("over", {
-//             title: "Event Over",
-//         });
-//     }
-//     var currentUserType = req.user.type;
-//     if (!req.user) {
-//         return res.redirect("/login");
-//     } else {
-//         if (currentUserType == "School") {
-//             if (crosshairNumber != 32) {
-//                 return res.render("crosshair-register", {
-//                     title: "(c)rosshair Register",
-//                 });
-//             } else {
-//                 return res.render("register-closed", {
-//                     title: "(c)rosshair Register",
-//                 });
-//             }
-//         } else {
-//             return res.redirect("/dashboard");
-//         }
-//     }
-// });
+var crosshairNumber = 0;
+router.get("/school/participant/register/crosshair", (req, res, next) => {
+    if (!eventIsOn) {
+        res.render("over", {
+            title: "Event Over",
+        });
+    }
+    var currentUserType = req.user.type;
+    if (!req.user) {
+        return res.redirect("/login");
+    } else {
+        if (currentUserType == "School") {
+            return res.render("register-closed", {
+                title: "(c)rosshair Register",
+            });
+        } else {
+            return res.redirect("/dashboard");
+        }
+    }
+});
 
 // router.post("/school/participant/register/crosshair", function (req, res) {
 //     if (!eventIsOn) {
