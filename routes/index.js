@@ -5431,4 +5431,141 @@ router.get(
 
 // ----------------------------------------------------------------------------------------------------------------------------------------- //
 
+// User.findOne({ username: "Ahmar Ul Haq0306" }, function (err, user) {
+//     var output = `
+//     <!DOCTYPE html>
+//     <html lang="en">
+//     <head>
+//         <meta charset="UTF-8" />
+//         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+//         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+//         <title>(C)YNC v7.0</title>
+//     </head>
+//     <body style="color: #fff;width:fit-content;padding: 10px;background-color: transparent;">
+//         <style>
+//         @import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;500;700&display=swap");
+
+//         /* {
+//             margin: 0;
+//             padding: 0;
+//             font-family: "Comfortaa", cursive;
+//         }
+//         .right a:hover {
+//             color: #185adb !important;
+//         }
+//         .button a:hover{
+//             color: #000 !important;
+//             background-color: #DA1893 !important;
+//         }
+//         @media (max-width:1112px){
+//             .left{
+//                 width: 100% !important;
+//                 padding: 0 !important;
+//                 maRgin-top: 25px !important;
+//                 padding-bottom: 25px !important;
+//             }
+//             .right{
+//                 width: 100% !important;
+//                 padding: 0 !important;
+//             }
+//             .textContainer{
+//                 font-size: 2vw !important;
+//                 line-height: 3vw !important;
+//             }
+//         }
+//         @media (max-width:750px){
+//             body{
+//                 width:90vw !important;
+//             }
+//             .card{
+//                 width: 80% !important;
+//             }
+//             .textContainer{
+//                 font-size: 2vw !important;
+//                 padding:0 !important;
+//                 line-height:20px !important;
+//             }
+//             h2{
+//                 font-size:13px !important;
+//             }
+//         }
+//         </style>
+//         <section class="card" style="background-color: #080808;width: 50vw;border: 1px solid #fff;padding: 50px;position: relative;border-radius: 10px;">
+//         <div class="imgContainer" style="width:fit-content;margin:0 auto;padding-bottom:30px">
+//             <img src="https://static.clubcypher.club/img/cypher.png" style="height:auto;width:10vw;" alt="cypher" />
+//         </div>
+//         <div class="textContainer" style="text-align: center;font-size: 20px;padding:30px 0;">
+//             <h2 style="margin-bottom: 20px;">(c)ync v7.0</h2>
+//         </div>
+//         <div class="content" style="width:fit-content;margin:0 auto;">
+//             <div class="left" style="width: fit-content;padding: 20px;margin:0 auto;">
+//                 <h2 style="width:fit-content;margin-bottom: 20px;margin:0 auto;">Hey ${user.participantname} !</h2>
+//             </div>
+//             <h2 style="text-align:center;">Congratulations!! You are one of the few people from the thousands that participated who out shined the rest and claimed a spot on the leaderboard!<br><br>
+//             The entire team of (c)ypher and DPS Bhopal congratulates you on your achievement and thanks you for participating. See you again next year!</h2>
+//             <div class="button" style="width:fit-content;margin:0 auto;padding: 30px;padding-bottom:60px;">
+//                 <a style="color: #DA1893;border: 1px solid #DA1893;padding: 10px;font-size: 2.5vw;text-align: center;text-decoration: none;" href="https://forms.gle/gcVS2T97KEcrbubd7" target="_blank">Click Here to claim your prize!</a>
+//             </div>
+//         </div>
+//         <div class="end" style="padding: 20px;width: fit-content;margin:0 auto">
+//             <div class="endLinks" style="width: fit-content;margin:0 auto">
+//                 <a href="https://www.instagram.com/cypherdps/"
+//                     ><img src="https://static.clubcypher.club/email/instagram2x.png" style="height: auto;width: 5vw;" alt=""
+//                 /></a>
+//                 <a href="https://www.youtube.com/channel/UCSULXN5apeQSDa0sLYuwEnA"
+//                     ><img src="https://static.clubcypher.club/email/youtube2x.png" style="height: auto;width: 5vw;" alt=""
+//                 /></a>
+//             </div>
+//             <div class="imgContainer2" style="width: fit-content; margin:0 auto">
+//                 <img src="https://static.clubcypher.club/email/cypher-01.png" style="height:auto;width:20vw;margin:0 auto" alt="" />
+//             </div>
+//         </div>
+//         </section>
+//     </body>
+//     </html>
+//     `;
+
+//     var da_mail = `${user.participantemail}`;
+
+//     const accessToken = oAuth2Client.getAccessToken();
+
+//     const transporter = nodemailer.createTransport({
+//         service: "gmail",
+//         auth: {
+//             type: "OAuth2",
+//             user: "clubcypher.bot@gmail.com",
+//             clientId: CLIENT_ID,
+//             clientSecret: CLEINT_SECRET,
+//             refreshToken: REFRESH_TOKEN,
+//             accessToken: accessToken,
+//         },
+//     });
+
+//     var mailOptions = {
+//         from: '"Club Cypher" <clubcypher.bot@gmail.com>',
+//         to: da_mail,
+//         subject: "(c)ync v7.0 prizes",
+//         text: output,
+//         html: output,
+//     };
+//     if (err) {
+//         return res.render("register", {
+//             title: "Register",
+//             error: "The user has already been registered.",
+//         });
+//     } else
+//         transporter.sendMail(mailOptions, function (err, info) {
+//             if (err)
+//                 return res.render("register", {
+//                     title: "Register",
+//                     error: "You have been registered successfully.",
+//                 });
+//             else
+//                 return res.render("register", {
+//                     title: "Register",
+//                     error: "You have been registered successfully. Credentials have been sent to your email. If you are unable to find it, check your spam folder or contact us at cypherdps@gmail.com",
+//                 });
+//         });
+// });
+
 module.exports = router;
