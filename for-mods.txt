@@ -1,0 +1,10 @@
+To fire up this project on your localhost, =
+
+1. Open the code in VS Code.
+2. Open the git bash terminal.
+3. Use the command - npm i nodemon
+4. Then use the command - nodemon app.js
+
+Alternatively, the website is up and running on the following url - 
+
+https://tethics-breakpoint.herokuapp.com

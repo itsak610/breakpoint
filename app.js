@@ -1,3 +1,5 @@
+// -------------------------------------------------------- Functions and Variables -------------------------------------------------------- //
+
 var express = require("express");
 var mongoose = require("mongoose");
 var bodyParser = require("body-parser");
@@ -8,29 +10,14 @@ var MongoStore = require("connect-mongo");
 var LocalStrategy = require("passport-local").Strategy;
 mongoose.Promise = require("bluebird");
 
-// if (cluster.isMaster) {
-//   console.log(`Number of CPUs is ${totalCPUs}`);
-//   console.log(`Master ${process.pid} is running`);
-
-//   // Fork workers.
-//   for (let i = 0; i < totalCPUs; i++) {
-//     cluster.fork();
-//   }
-
-//   cluster.on('exit', (worker, code, signal) => {
-//     console.log(`worker ${worker.process.pid} died`);
-//     console.log("Let's fork another worker!");
-//     cluster.fork();
-//   });
-
-// }
-// else {
-
 var app = express();
 
-//Make new databse
+// ----------------------------------------------------------------------------------------------------------------------------------------- //
+
+// --------------------------------------------------------- Connect Our Database ---------------------------------------------------------  //
+
 mongoose.connect(
-    "mongodb+srv://itsak:hipeople@clubcypher.bd6md.mongodb.net/clubcypher?retryWrites=true&w=majority",
+    "mongodb+srv://breakpoint:tethics1234@breakpoint.qzksm.mongodb.net/breakpoint?retryWrites=true&w=majority",
     {
         useNewUrlParser: true,
         useFindAndModify: false,
@@ -40,31 +27,23 @@ mongoose.connect(
 mongoose.set("useNewUrlParser", true);
 mongoose.set("useFindAndModify", false);
 mongoose.set("useCreateIndex", true);
-// mongoose.connect("mongodb://localhost:27017/decypher")
 var db = mongoose.connection;
-//If Mongo Error
+
 db.on("error", console.error.bind(console, "connection error"));
 app.set("trust proxy", 1);
-// //Setting up sessions+cookies
-// var sessionConfig = {
-//   secret: 'MucahitBruh',
-//   resave: false,
-//   saveUninitialized: false,
-//   store: MongoStore.create({ mongoUrl: 'mongodb+srv://itsak:hipeople@clubcypher.bd6md.mongodb.net/clubcypher?retryWrites=true&w=majority' }),
 
-// }
-// app.use(session(sessionConfig));
-// app.use(passport.initialize());
-// app.use(passport.session());
+// ----------------------------------------------------------------------------------------------------------------------------------------- //
+
+// ---------------------------------------------------------- Setting up Cookies ----------------------------------------------------------  //
 
 var sessionConfig = {
-    secret: "MucahitBruh",
+    secret: "Tethics",
     name: "Bruh",
     resave: false,
     saveUninitialized: false,
     store: MongoStore.create({
         mongoUrl:
-            "mongodb+srv://itsak:hipeople@clubcypher.bd6md.mongodb.net/clubcypher?retryWrites=true&w=majority",
+            "mongodb+srv://breakpoint:tethics1234@breakpoint.qzksm.mongodb.net/breakpoint?retryWrites=true&w=majority",
     }),
 };
 app.use(session(sessionConfig));
@@ -80,48 +59,59 @@ app.use((req, res, next) => {
     res.locals.currentUser = req.user;
     next();
 });
-//Setting up body-parser
+
+// ----------------------------------------------------------------------------------------------------------------------------------------- //
+
+// -------------------------------------------------------- Setting up Body Parser --------------------------------------------------------  //
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-// Compress all HTTP responses
+
+// ----------------------------------------------------------------------------------------------------------------------------------------- //
+
+// -------------------------------------------------------- Compress HTTP Responses -------------------------------------------------------- //
+
 app.use(compression());
 
-// //Setting public directory
+// ----------------------------------------------------------------------------------------------------------------------------------------- //
+
+// ------------------------------------------------------ Setting Up Public Directory ------------------------------------------------------ //
+
 app.use(express.static(__dirname + "/public"));
-// app.use(express.static(__dirname + '/obfuscated'));
 
-//Setting view engine
+// ----------------------------------------------------------------------------------------------------------------------------------------- //
+
+// -------------------------------------------------------- Setting Up View Engine --------------------------------------------------------  //
+
 app.set("view engine", "pug");
-app.set("views", __dirname + "/views2");
+app.set("views", [
+    __dirname + "/views",
+    __dirname + "/views/admin",
+    __dirname + "/views/static",
+    __dirname + "/views/student",
+    __dirname + "/views/teacher",
+]);
+// ----------------------------------------------------------------------------------------------------------------------------------------- //
 
-app.use(function (req, res, next) {
-    res.setHeader(
-        "Access-Control-Allow-Origin",
-        "https://distracted-wescoff-b1d8d6.netlify.app"
-    );
-    res.setHeader(
-        "Access-Control-Allow-Methods",
-        "GET, POST, OPTIONS, PUT, PATCH, DELETE"
-    );
-    res.setHeader(
-        "Access-Control-Allow-Headers",
-        "X-Requested-With,content-type"
-    );
-    res.setHeader("Access-Control-Allow-Credentials", true);
-    return next();
-});
-//Setting routes
+// ----------------------------------------------------------- Setting Up Routes ----------------------------------------------------------- //
+
 var routes = require("./routes/index");
 app.use("/", routes);
 
-//404
+// ----------------------------------------------------------------------------------------------------------------------------------------- //
+
+// --------------------------------------------------------------- 404 Page ---------------------------------------------------------------  //
+
 app.use((res, req, next) => {
     var err = new Error("File not found!");
     err.status = 404;
     next(err);
 });
 
-//Error Handler
+// ----------------------------------------------------------------------------------------------------------------------------------------- //
+
+// -------------------------------------------------------------- Error Page --------------------------------------------------------------  //
+
 app.use((err, req, res, next) => {
     res.status(err.status || 500);
     res.render("error", {
@@ -130,25 +120,17 @@ app.use((err, req, res, next) => {
         error: {},
     });
 });
-// // DDOS Protection
-// const rateLimit = require("express-rate-limit");
 
-// // Enable if you're behind a reverse proxy (Heroku, Bluemix, AWS ELB, Nginx, etc)
-// // see https://expressjs.com/en/guide/behind-proxies.html
+// ----------------------------------------------------------------------------------------------------------------------------------------- //
 
-// const apiLimiter = rateLimit({
-//   windowMs: 15 * 60 * 1000, // 15 minutes
-//   max: 100
-// });
+// -------------------------------------------------------------- HTTP / 1.1 --------------------------------------------------------------  //
 
-// // only apply to requests that begin with /api/
-// app.use("/api/", apiLimiter);
+app.listen(process.env.PORT || 5000);
 
-// HTTP / 1.1
-// Listening
-app.listen(process.env.PORT || 5501);
+// ----------------------------------------------------------------------------------------------------------------------------------------- //
 
-// HTTP / 2
+// --------------------------------------------------------------- HTTP / 2 ---------------------------------------------------------------  //
+
 // var port = 5000
 // var spdy = require('spdy')
 // var path = require('path')
@@ -159,7 +141,6 @@ app.listen(process.env.PORT || 5501);
 //   cert:  fs.readFileSync(__dirname + '/server.crt')
 // }
 
-// //Listening
 // spdy
 //   .createServer(options, app)
 //   .listen(port, (error) => {
@@ -171,3 +152,5 @@ app.listen(process.env.PORT || 5501);
 //     }
 //   })
 // }
+
+// ----------------------------------------------------------------------------------------------------------------------------------------- //

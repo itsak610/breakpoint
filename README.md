@@ -1,2 +1,3 @@
-# De(c)ypher
-The original cryptic hunt of bhopal!
+# Tethics
+
+This is created for the event Breakpoint.html !

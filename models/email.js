@@ -1,24 +1,26 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
-var HintboxSchema = new Schema({
-    level: Number,
-    hint: String,
+var EmailSchema = new Schema({
+    email: String,
+    time: {
+        type: Date,
+    },
 });
 
-HintboxSchema.statics.addHint = function (level, hint, callback) {
-    var hb = new Hintbox({
-        level: level,
-        hint: hint,
+EmailSchema.statics.addEmail = function (email, time, callback) {
+    var automail = new Email({
+        email: email,
+        time: time,
     });
-    hb.save(function (err) {
+    automail.save(function (err) {
         if (err) {
             return callback(err);
         } else {
-            return callback(null, hb);
+            return callback(null, automail);
         }
     });
 };
 
-var Hintbox = mongoose.model("Hintbox", HintboxSchema);
-module.exports = Hintbox;
+var Email = mongoose.model("Email", EmailSchema);
+module.exports = Email;
