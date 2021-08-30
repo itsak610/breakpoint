@@ -1,0 +1,34 @@
+extends layout
+
+block content
+    style.
+        header a{color:#ECE8E1}
+    section.loginpage
+        .container1
+            form.registerform(method='post' action='/login')
+                h1.title Login
+                if error
+                    p.error= error
+                .form-group
+                    label(for='username') Username:
+                    input#username(type='text' name='username' placeholder='Username' maxlength='70' required)
+                .form-group
+                    label(for='password') Type:
+                    select(name="type")
+                        option(value="student") Student
+                        option(value="teacher") Teacher
+                .form-group
+                    label(for='password') Password:
+                    input(type='password', name='password', placeholder='Password', required)
+                p Not a student? 
+                    b 
+                        a(href='/home#enroll') Enroll Here
+                input.btn(type='submit', value='Sign In')
+        script.
+            window.addEventListener("DOMContentLoaded", function(event) {
+                if(document.getElementById('username')) {
+                    document.getElementById('username').addEventListener('input', function(){
+                        this.value = this.value.replace(/\s+/g, '').toLowerCase();
+                    });
+                }
+            });

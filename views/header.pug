@@ -1,0 +1,51 @@
+header
+    .logo
+        a.handletter(href='/home')
+            img(src='/img/logo.png' cursor-class='arrow' alt='cync')
+    img.mob-logo(src='/img/logo.png' cursor-class='arrow' alt='cync')
+    #mobilenavdiv.mobile-menu-toggle.js-toggle-menu.hamburger-menu(onclick='navfunction()')
+        span.menu-item
+        span.menu-item
+        span.menu-item
+    nav.navbar.desktop-nav
+        if currentUser
+            ul
+                li
+                    a(href='/home' cursor-class='arrow') Home
+                li
+                    a(href='/dashboard' cursor-class='arrow') Dashboard
+                li
+                    a(href='https://github.com/itsak610/breakpoint' cursor-class='arrow') Source Code
+                li
+                    a(href='/logout' cursor-class='arrow') Logout from #{currentUser.username}
+        else
+            ul
+                li
+                    a(href='/home' cursor-class='arrow') Home
+                li
+                    a(href='/login' cursor-class='arrow') Login
+                li
+                    a(href='https://github.com/itsak610/breakpoint' cursor-class='arrow') Source Code
+    nav#nav.mobile-nav.hidden
+        if currentUser
+            ul
+                li
+                    a(href='/home' cursor-class='arrow') Home
+                li
+                    a(href='/dashboard' cursor-class='arrow') Dashboard
+                li
+                    a(href='https://github.com/itsak610/breakpoint' cursor-class='arrow') Source Code
+                li
+                    a(href='/logout' cursor-class='arrow') Logout from #{currentUser.username}
+        else
+            ul
+                li
+                    a(href='/home' cursor-class='arrow') Home
+                li
+                    a(href='/login' cursor-class='arrow') Login
+                li
+                    a(href='https://github.com/itsak610/breakpoint' cursor-class='arrow') Source Code
+.loader
+    .loadcontainer
+        .side
+            img(src='/img/logo.png' alt='cypher')

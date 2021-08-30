@@ -1,0 +1,145 @@
+extends layout
+
+block content
+    style.
+        header a {
+            color: #ECE8E1;
+        }
+    section.landing
+        .left
+            .text
+                h1(cursor-class='arrow') Tethics Excellence Academy
+                p(cursor-class='arrow')
+                    | With world-class faculty, groundbreaking research opportunities, and a diverse group of talented students, Tethics Excellence is more than just a place to get an education.
+                br
+                .btn-landing
+                    a.btn(href="javascript:document.getElementById('enroll').scrollIntoView()") Enroll Now
+        .right
+            .bookcontainer
+                .component
+                    ul.align
+                        li
+                            figure.book
+                                ul.hardcover_front
+                                    li
+                                        .coverDesign.blue
+                                            h1 INDEX
+                                    li
+                                ul.page
+                                    li
+                                    li.main
+                                        a.btn(href="javascript:document.getElementById('aboutus').scrollIntoView()") About us
+                                        a.btn(href="javascript:document.getElementById('gallery').scrollIntoView()") Gallery
+                                        a.btn(href="javascript:document.getElementById('structure').scrollIntoView()") Structure
+                                        a.btn(href="javascript:document.getElementById('campus').scrollIntoView()") Campus
+                                        a.btn(href="javascript:document.getElementById('facilities').scrollIntoView()") Facilities
+                                        a.btn(href="javascript:document.getElementById('enroll').scrollIntoView()") Enroll
+                                    li
+                                    li
+                                ul.hardcover_back
+                                    li
+                                    li
+                                ul.book_spine
+                                    li
+                                    li
+    section#gallery
+        .absolute-top-left
+            h1
+            | Gallery
+
+        input#trigger1(type="radio" name="slider" checked autofocus)
+        label(for="trigger1" cursor-class='sliderCircle')
+        .slide.bg1
+
+        input#trigger2(type="radio" name="slider")
+        label(for="trigger2" cursor-class='sliderCircle')
+        .slide.bg2
+
+        input#trigger3(type="radio" name="slider")
+        label(for="trigger3" cursor-class='sliderCircle')
+        .slide.bg3
+
+        input#trigger4(type="radio" name="slider")
+        label(for="trigger4" cursor-class='sliderCircle')
+        .slide.bg4
+
+        input#trigger5(type="radio" name="slider")
+        label(for="trigger5" cursor-class='sliderCircle')
+        .slide.bg5
+    section#aboutus.cync
+        .absolute-left
+            h1
+            | About
+            br
+            | TEA
+        .right-cync
+            .right-box
+                p
+                    | Tethics Excellence Academy is a new school recently established within the municipality of Delhi. The school first opened its doors in August 2013. 
+                    br
+                    | Starting with 5 grades and expanding vertically every year, the school offers an IB structured curriculum. The school started in 2013 with 39 students and 8 employees. We now have approximately 340 students and over 40 staff employed in either part-time or full-time positions. We are fortunate to have waiting lists for almost all our grades.
+                    br
+                    | We are currently registered as an authorised world school in both the Primary Years Programme and the Middle Years Programme, having recently completed an evaluation of our Middle Years Programme. We are also a 'MOT' school, a 'Dyleksi Norge' School and have very recently been certified as a Eco-Lighthouse organisation.
+                    br
+                    | Tethics Excellence Academy has students and staff from over 40 nationalities within our school community and we look forward to expanding this representation that provides us a truly international environment. 
+    section#structure
+        .absolute-right
+            h1
+            | Structure
+        .left-cync
+            .left-box
+                p
+                    | We have 10 classes in our Primary section with parallel classes in PYP and grade 6, the first two years of our MYP. We have a maximum capacity of 20 students per class. 
+                    br
+                    br
+                    | Our subject provision in the Middle Years Programme is Mathematics, English, Hindi, Sciences, Individuals and Societies, Physical Education, Performing arts (Visual Arts currently in grade 6), Design, Spanish (G8-G10) and Mandarin. We do not have an elective foreign language at present. This will probably change as we expand into parallel classes in grades 6-10. 
+    section#campus.cync
+        .absolute-left
+            h1
+            | Campus
+        .right-cync
+            .right-box
+                p
+                    | Set in 3 hectares of beautiful gardens, both the Primary and Secondary School buildings are safe and idyllic. ICS offers perfect surroundings for perfect learning.
+                    br
+                    br
+                    | Every school day, our teachers strive to create an exciting and inspiring learning experience for every child. Our school will be the stage for many of your child's most exciting days, from eye-opening discoveries in the science labs to great sporting victories and thrilling performances on stage in our 300-seater auditorium.
+                    br
+                    br
+                    | Our Primary School students explore their creative talents in a dedicated arts and crafts centre, and benefit from an IT room, music rooms, a space for movement and dance, and three separate playgrounds. Early Years students have dedicated classrooms and a play area.
+                    br
+                    br
+                    | Our Secondary School facilities are set up to support students as they master a wide range of subjects. There are rooms for design technology, computer technology, art and design, music and drama. Students can explore the wonders of science in one of five science laboratories, or revise for their Diploma Programme in a dedicated study room.
+    section#facilities
+        .absolute-right
+            h1
+            | Facilities
+        .left-cync
+            .left-box
+                p
+                    | We have 10 classes in our Primary section with parallel classes in PYP and grade 6, the first two years of our MYP. We have a maximum capacity of 20 students per class. 
+                    br
+                    br
+                    | Our subject provision in the Middle Years Programme is Mathematics, English, Norwegian, Sciences, Individuals and Societies, Physical Education, Performing arts (Visual Arts currently in grade 6), Design, Spanish (G8-G10) and Mandarin. We do not have an elective foreign language at present. This will probably change as we expand into parallel classes in grades 6-10. 
+    section#enroll
+        .titlediv
+            h1 Enroll your child today!
+        form.registerform(method='post' action='/enrollment')
+            if error1
+                script.
+                    document.getElementById('enroll').scrollIntoView()
+                p.error #{error}
+            if error2
+                script.
+                    document.getElementById('enroll').scrollIntoView()
+                p.error2 Request Successful. We'll contact you soon!
+
+            .form-group
+                label(for='email') Email Address:
+                input#username(type='email' name='email' placeholder='Email' maxlength='70' required)
+            input.btn(type='submit', value='Submit')
+        br
+        br
+        br
+        .flex-vertical
+            p We'll respond to your request and contact you on your email address in a few days. For further enquireies, contact us at breakpoint.tethics@gmail.com !

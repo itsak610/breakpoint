@@ -1,0 +1,38 @@
+footer
+    .imp-links
+        .left-footer
+            h2
+                | Tethics Excellence is more than just a place to get an education.
+            br
+            p
+                | For any further queries, please contact us at breakpoint.tethics@gmail.com .
+        .right-footer
+            h2 More Links
+            .links
+                .right1
+                    ul
+                        li
+                            a(href='/home') Home
+                        li
+                            a(href='/login') Student Login
+                        li
+                            a(href='/home#enroll') Enrollment
+                .right2
+                    ul
+                        li
+                            a(href='https://github.com/itsak610/breakpoint' rel="noreferrer" target='_blank') Source Code
+                        li
+                            a(href='/login' rel="noreferrer") Teacher Login
+                        li
+                            a(href='mailto:breakpoint.tethics@gmail.com' rel="noreferrer" target='_blank') Mail Us
+    .last
+        p © Tethics Excellence Academy 2021
+script(src='https://code.jquery.com/jquery-3.6.0.min.js' crossOrigin="anonymous")
+script(src='/js/index.js' crossOrigin="anonymous")
+script.
+    function navfunction() {
+        document.getElementsByClassName('js-toggle-menu')[0].classList.toggle('open');
+        document.getElementById("main").classList.toggle('temp-body')
+        document.getElementsByClassName("hidden")[0].classList.toggle("notHidden")
+    };
+

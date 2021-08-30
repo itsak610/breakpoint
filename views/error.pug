@@ -1,0 +1,21 @@
+extends layout
+
+block content
+    style.
+        h1{text-align:center;font-size: 2em;}
+        h1 a{color:red; border: 1.5px solid red;padding:20px;margin-top:70px}
+        h1 a:hover{color:#080808; background-color:red;}
+        .cync{display:flex;justify-content:space-evenly;align-items:center;border-top: 13px solid black;}
+        header{color:#111111 !important;}
+        #cursor.arrow .cursor__circle {border-color:#080808}
+    section.cync
+        .container1
+            h1 Error : 404
+            br
+            h1 Looks like you've reached a dead end!
+            br
+            br
+            br
+            br
+            h1 
+                a(href='javascript:window.history.back();' cursor-class="timerCursor") Go back

@@ -1,0 +1,31 @@
+extends layout
+
+block content
+    style.
+        header a{color:#ECE8E1}
+        .container2{
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            display: flex;
+            flex-flow: column;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+            text-align:center;
+        }
+    section.loginpage
+        .container2
+            h1 Name : #{currentUser.name}
+            br
+            br
+            h1 Email : #{currentUser.email}
+            br
+            br
+            h1 Number : #{currentUser.number}
+            br
+            br
+            h1 Type : #{currentUser.type}
+            br
+            br
+            h1 Time Enrolled : #{currentUser.time}
