@@ -225,7 +225,7 @@ section {
 
 header {
     display: flex;
-    position: absolute;
+    position: fixed;
     justify-content: space-between;
     align-items: center;
     height: 100px;

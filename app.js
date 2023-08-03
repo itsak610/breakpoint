@@ -16,44 +16,44 @@ var app = express();
 
 // --------------------------------------------------------- Connect Our Database ---------------------------------------------------------  //
 
-mongoose.connect(
-    "mongodb+srv://breakpoint:tethics1234@breakpoint.qzksm.mongodb.net/breakpoint?retryWrites=true&w=majority",
-    {
-        useNewUrlParser: true,
-        useFindAndModify: false,
-        useUnifiedTopology: true,
-    }
-);
-mongoose.set("useNewUrlParser", true);
-mongoose.set("useFindAndModify", false);
-mongoose.set("useCreateIndex", true);
-var db = mongoose.connection;
+// mongoose.connect(
+//     "mongodb srv link goes here",
+//     {
+//         useNewUrlParser: true,
+//         useFindAndModify: false,
+//         useUnifiedTopology: true,
+//     }
+// );
+// mongoose.set("useNewUrlParser", true);
+// mongoose.set("useFindAndModify", false);
+// mongoose.set("useCreateIndex", true);
+// var db = mongoose.connection;
 
-db.on("error", console.error.bind(console, "connection error"));
+// db.on("error", console.error.bind(console, "connection error"));
 app.set("trust proxy", 1);
 
 // ----------------------------------------------------------------------------------------------------------------------------------------- //
 
 // ---------------------------------------------------------- Setting up Cookies ----------------------------------------------------------  //
 
-var sessionConfig = {
-    secret: "Tethics",
-    name: "Bruh",
-    resave: false,
-    saveUninitialized: false,
-    store: MongoStore.create({
-        mongoUrl:
-            "mongodb+srv://breakpoint:tethics1234@breakpoint.qzksm.mongodb.net/breakpoint?retryWrites=true&w=majority",
-    }),
-};
-app.use(session(sessionConfig));
-app.use(passport.initialize());
-app.use(passport.session());
+// var sessionConfig = {
+//     secret: "Tethics",
+//     name: "Bruh",
+//     resave: false,
+//     saveUninitialized: false,
+//     store: MongoStore.create({
+//         mongoUrl:
+//             "mongodb srv link goes here",
+//     }),
+// };
+// app.use(session(sessionConfig));
+// app.use(passport.initialize());
+// app.use(passport.session());
 
-var User = require("./models/user");
-passport.use(new LocalStrategy(User.authenticate()));
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+// var User = require("./models/user");
+// passport.use(new LocalStrategy(User.authenticate()));
+// passport.serializeUser(User.serializeUser());
+// passport.deserializeUser(User.deserializeUser());
 
 app.use((req, res, next) => {
     res.locals.currentUser = req.user;
